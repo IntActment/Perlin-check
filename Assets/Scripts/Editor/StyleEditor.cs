@@ -10,7 +10,7 @@ public class StyleEditor : EditorWindow
 {
 
     // Add menu named "My Window" to the Window menu
-    [MenuItem("Civ/Style editor")]
+    [MenuItem("Window/Style editor")]
     public static void ShowEditor()
     {
         // Get existing open window or if none, make a new one:

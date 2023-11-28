@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
@@ -21,6 +22,9 @@ public class FormulaModInvert : FormulaMod
         name = "Invert";
     }
 
+    private static readonly string m_varPrefix = "inv";
+    public override string VarPrefix => m_varPrefix;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
@@ -34,8 +38,14 @@ public class FormulaModInvert : FormulaMod
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string GenerateCode()
+    public override string GenerateCode(HashSet<int> vars, StringBuilder builder)
     {
-        return $"(1 / {Inputs[0].GenerateCode()})";
+        if (false == vars.Contains(VarIndex))
+        {
+            vars.Add(VarIndex);
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = 1f / {Inputs[0].GenerateCode(vars, builder)};");
+        }
+
+        return VarName;
     }
 }

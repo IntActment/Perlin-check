@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
@@ -51,10 +52,10 @@ public class FormulaSocketIn : FormulaSocket
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public string GenerateCode()
+    public string GenerateCode(HashSet<int> vars, StringBuilder builder)
     {
         return (null == Link)
             ? "0"
-            : Link.Owner.GenerateCode();
+            : Link.Owner.GenerateCode(vars, builder);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
@@ -141,16 +142,19 @@ public class ComplexFormula : ComplexScriptable
 
     public string GetCode()
     {
-        string code = Output.GenerateCode();
+        HashSet<int> vars = new HashSet<int>();
+        StringBuilder builder = new StringBuilder();
+
+        Output.GenerateCode(vars, builder);
 
         var content = $@"<color=blue>using</color> System;
 <color=blue>using</color> UnityEngine;
  
-<color=blue>public class</color> <color=#2b91af>NoiseSample</color>
+<color=blue>public partial static class</color> <color=#2b91af>NoiseSample</color>
 {{
     <color=blue>public static float</color> <color=#74531f>Calculate</color>(<color=blue>float</color> x, <color=blue>float</color> y)
     {{
-        <color=blue>return</color> {code};
+{builder}
     }}
 }}
 ";

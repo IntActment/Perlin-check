@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
@@ -47,6 +48,9 @@ public class FormulaModClamp : FormulaMod
     }
 #endif
 
+    private static readonly string m_varPrefix = "clamp01";
+    public override string VarPrefix => m_varPrefix;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
@@ -54,8 +58,14 @@ public class FormulaModClamp : FormulaMod
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string GenerateCode()
+    public override string GenerateCode(HashSet<int> vars, StringBuilder builder)
     {
-        return $"<color=#2b91af>Mathf</color>.<color=#74531f>Clamp</color>({Inputs[0].GenerateCode()}, {m_min}f, {m_max}f)";
+        if (false == vars.Contains(VarIndex))
+        {
+            vars.Add(VarIndex);
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Clamp</color>({Inputs[0].GenerateCode(vars, builder)}, {m_min}f, {m_max}f);");
+        }
+
+        return VarName;
     }
 }

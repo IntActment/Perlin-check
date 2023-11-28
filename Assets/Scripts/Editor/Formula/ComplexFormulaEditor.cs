@@ -8,9 +8,6 @@ using UnityEngine;
 [CustomEditor(typeof(ComplexFormula))]
 public class ComplexFormulaEditor : Editor
 {
-
-
-
     public override void OnInspectorGUI()
     {
         if (GUILayout.Button("Edit..."))

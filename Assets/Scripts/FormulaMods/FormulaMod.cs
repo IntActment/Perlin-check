@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
@@ -28,7 +30,57 @@ public abstract class FormulaMod : ComplexScriptable
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => m_formula;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        set => this.SetValue(ref m_formula, value);
+        set
+        {
+            this.SetValue(ref m_formula, value);
+
+            if (null != value)
+            {
+                // find free index number
+                var mods = Formula.Modifiers.ToList();
+                bool hasDup;
+                int index = 0;
+
+                while (mods.Count > 0)
+                {
+                    hasDup = false;
+
+                    for (int i = 0; i < mods.Count; i++)
+                    {
+                        if (mods[i] == this)
+                        {
+                            mods.RemoveAt(i);
+                            i--;
+                            continue;
+                        }
+
+                        // ignore inputs/output mods
+                        if (mods[i].VarPrefix == null)
+                        {
+                            mods.RemoveAt(i);
+                            i--;
+                            continue;
+                        }
+
+                        if (index == mods[i].m_varIndex)
+                        {
+                            hasDup = true;
+                            mods.RemoveAt(i);
+                            break;
+                        }
+                    }
+
+                    if (false == hasDup)
+                    {
+                        break;
+                    }
+
+                    index++;
+                }
+
+                this.SetValue(ref m_varIndex, index);
+            }
+        }
     }
 #endif
 
@@ -50,6 +102,23 @@ public abstract class FormulaMod : ComplexScriptable
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => m_outputs;
         //private set => this.SetValue<List<FormulaSocketOut>>(ref m_outputs, value);
+    }
+
+    public abstract string VarPrefix { get; }
+
+    [SerializeField]
+    protected int m_varIndex = 0;
+
+    public int VarIndex
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_varIndex;
+    }
+
+    public string VarName
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => $"{VarPrefix}_{m_varIndex}";
     }
 
 #if UNITY_EDITOR
@@ -263,5 +332,5 @@ public abstract class FormulaMod : ComplexScriptable
 
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public abstract string GenerateCode();
+    public abstract string GenerateCode(HashSet<int> vars, StringBuilder builder);
 }

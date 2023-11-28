@@ -43,7 +43,7 @@ public class PowDrawer : BaseDrawer
 
         FormulaModPow m = (mod as FormulaModPow);
 
-        m.Power = EditorGUI.IntSlider(new Rect(m_space.x, m_space.y * 1 + m_fieldSize.y * 0, m_fieldSize.x, m_fieldSize.y), "Power", m.Power, 2, 10);
+        m.Power = EditorGUI.Slider(new Rect(m_space.x, m_space.y * 1 + m_fieldSize.y * 0, m_fieldSize.x, m_fieldSize.y), "Power", m.Power, 0, 10);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

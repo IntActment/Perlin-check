@@ -6,19 +6,19 @@ using UnityEditor;
 
 using UnityEngine;
 
-public class ConstantDrawer : BaseDrawer
+public class NumberDrawer : BaseDrawer
 {
     public override string HelpMessage => m_helpMessage;
 
-    private const string m_helpMessage = "[<color=orange>Constant</color>] provides constant float value.";
+    private const string m_helpMessage = "[<color=orange>Number</color>] provides constant float value.";
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public ConstantDrawer(FormulaModConstant mod)
+    public NumberDrawer(FormulaModNumber mod)
         : base(mod) { }
 
-    static ConstantDrawer()
+    static NumberDrawer()
     {
-        Register(typeof(FormulaModConstant), mod => new ConstantDrawer((FormulaModConstant)mod));
+        Register(typeof(FormulaModNumber), mod => new NumberDrawer((FormulaModNumber)mod));
     }
 
     private Vector2 m_space;
@@ -39,7 +39,7 @@ public class ConstantDrawer : BaseDrawer
 
         m_fieldSize = new Vector2(BodyArea.width - m_space.x * 2, m_fieldSize.y);
 
-        FormulaModConstant m = (mod as FormulaModConstant);
+        FormulaModNumber m = (mod as FormulaModNumber);
 
         m.Value = EditorGUI.FloatField(new Rect(m_space.x, m_space.y * 1 + m_fieldSize.y * 0, m_fieldSize.x, m_fieldSize.y), "Value", m.Value);
     }
@@ -49,7 +49,7 @@ public class ConstantDrawer : BaseDrawer
     {
         m_space = new Vector2(3, 4);
 
-        m_fieldSize = new Vector2(64, 20);
+        m_fieldSize = new Vector2(84, 20);
 
         return new Vector2(
             m_fieldSize.x + m_space.x * 2,

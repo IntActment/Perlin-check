@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
-public class FormulaModConstant : FormulaMod
+public class FormulaModNumber : FormulaMod
 {
     [SerializeField]
     private float m_value;
@@ -21,8 +22,11 @@ public class FormulaModConstant : FormulaMod
 
     protected override void OnEnable()
     {
-        name = "Constant";
+        name = "Number";
     }
+
+    private static readonly string m_varPrefix = "num";
+    public override string VarPrefix => m_varPrefix;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
@@ -31,8 +35,14 @@ public class FormulaModConstant : FormulaMod
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string GenerateCode()
+    public override string GenerateCode(HashSet<int> vars, StringBuilder builder)
     {
-        return $"{m_value}f";
+        if (false == vars.Contains(VarIndex))
+        {
+            vars.Add(VarIndex);
+            builder.AppendLine($"        <color=blue>const float</color> {VarName} = 1 - {m_value}f;");
+        }
+
+        return VarName;
     }
 }

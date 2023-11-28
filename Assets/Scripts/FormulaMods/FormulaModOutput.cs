@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
@@ -23,6 +24,8 @@ public class FormulaModOutput : FormulaMod
         name = "[Out]";
     }
 
+    public override string VarPrefix => null;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
@@ -30,8 +33,12 @@ public class FormulaModOutput : FormulaMod
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string GenerateCode()
+    public override string GenerateCode(HashSet<int> vars, StringBuilder builder)
     {
-        return Inputs[0].GenerateCode();
+        var value = Inputs[0].GenerateCode(vars, builder);
+        builder.AppendLine();
+        builder.Append($"        <color=blue>return</color> {value};");
+
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
@@ -25,8 +26,10 @@ public class FormulaModInputX : FormulaMod
 
     protected override void OnEnable()
     {
-        name = "[In] X";
+        name = "X [In]";
     }
+
+    public override string VarPrefix => null;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
@@ -35,7 +38,7 @@ public class FormulaModInputX : FormulaMod
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string GenerateCode()
+    public override string GenerateCode(HashSet<int> vars, StringBuilder builder)
     {
         return $"x";
     }

@@ -149,7 +149,15 @@ public abstract class ModDrawer<T> where T : FormulaMod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected virtual Vector2 GetTitleMinSize()
     {
-        return GUI.skin.label.CalcSize(new GUIContent(mod.name));
+        return GUI.skin.label.CalcSize(new GUIContent(GetTitleText()));
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private string GetTitleText()
+    {
+        return mod.VarPrefix == null
+            ? mod.name
+            : $"{mod.name} [{mod.VarIndex}]";
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -297,7 +305,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
         GUI.BeginGroup(new Rect(mod.Position + position, WindowSize), m_windowStyle);
         {
             // title
-            GUI.Label(HeaderLabelPlace, mod.name);
+            GUI.Label(HeaderLabelPlace, GetTitleText());
             //EditorGUIUtility.AddCursorRect(HeaderArea, MouseCursor.Pan);
 
             // help
@@ -539,8 +547,10 @@ public abstract class ModDrawer<T> where T : FormulaMod
                             {
                                 foreach (var m in Selected)
                                 {
-                                    mod.Formula.Delete(mod);
+                                    mod.Formula.Delete(m.Key);
                                 }
+
+                                mod.Formula.Delete(mod);
 
                                 Selected.Clear();
                             });

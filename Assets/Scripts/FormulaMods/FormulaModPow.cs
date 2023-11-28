@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
 public class FormulaModPow : FormulaMod
 {
     [SerializeField]
-    private int m_power = 2;
+    private float m_power = 2;
 
-    public int Power
+    public float Power
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => m_power;
@@ -35,6 +36,9 @@ public class FormulaModPow : FormulaMod
         name = "Pow";
     }
 
+    private static readonly string m_varPrefix = "pow";
+    public override string VarPrefix => m_varPrefix;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
@@ -42,8 +46,14 @@ public class FormulaModPow : FormulaMod
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string GenerateCode()
+    public override string GenerateCode(HashSet<int> vars, StringBuilder builder)
     {
-        return $"<color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({Inputs[0].GenerateCode()}, {Power})";
+        if (false == vars.Contains(VarIndex))
+        {
+            vars.Add(VarIndex);
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({Inputs[0].GenerateCode(vars, builder)}, {m_power}f);");
+        }
+
+        return VarName;
     }
 }

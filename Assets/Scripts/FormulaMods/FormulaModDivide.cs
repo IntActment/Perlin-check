@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 using UnityEngine;
 
@@ -22,6 +23,9 @@ public class FormulaModDivide : FormulaMod
         name = "Divide";
     }
 
+    private static readonly string m_varPrefix = "div";
+    public override string VarPrefix => m_varPrefix;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
@@ -33,8 +37,14 @@ public class FormulaModDivide : FormulaMod
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string GenerateCode()
+    public override string GenerateCode(HashSet<int> vars, StringBuilder builder)
     {
-        return $"({Inputs[0].GenerateCode()} / {Inputs[1].GenerateCode()})";
+        if (false == vars.Contains(VarIndex))
+        {
+            vars.Add(VarIndex);
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = {Inputs[0].GenerateCode(vars, builder)} / {Inputs[1].GenerateCode(vars, builder)};");
+        }
+
+        return VarName;
     }
 }

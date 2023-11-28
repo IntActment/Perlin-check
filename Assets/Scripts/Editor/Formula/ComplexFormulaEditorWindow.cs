@@ -109,9 +109,9 @@ public class ComplexFormulaEditorWindow : EditorWindow
                                 m_formula.CreateMod<FormulaModSimplex01>(GetCenter());
                             }
 
-                            if (GUILayout.Button("Constant"))
+                            if (GUILayout.Button("Number"))
                             {
-                                m_formula.CreateMod<FormulaModConstant>(GetCenter());
+                                m_formula.CreateMod<FormulaModNumber>(GetCenter());
                             }
 
                             if (GUILayout.Button("Clamp"))
