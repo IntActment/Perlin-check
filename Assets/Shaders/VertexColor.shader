@@ -31,8 +31,8 @@ Shader "VertexColor"
 
         void surf (Input IN, inout SurfaceOutput o)
         {
-            if (IN.vertColor.r >= _Cutout) 
-            { 
+            if (IN.vertColor.r >= _Cutout)
+            {
                 o.Albedo = _CutColor.rgb;
             }
             else

@@ -70,6 +70,6 @@ public class FormulaModNorm01 : FormulaMod
             return "0";
         }
 
-        return $"({Inputs[1].GenerateCode()} - {m_min}f) / {range}f";
+        return $"({Inputs[0].GenerateCode()} - {m_min}f) / {range}f";
     }
 }

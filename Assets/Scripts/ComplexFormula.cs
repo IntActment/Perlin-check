@@ -106,6 +106,11 @@ public class ComplexFormula : ComplexScriptable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Delete(FormulaMod mod)
     {
+        if (false == mod.IsRemovable)
+        {
+            return;
+        }
+
         if (m_modifiers.Remove(mod))
         {
             while (mod.Outputs.Count > 0)

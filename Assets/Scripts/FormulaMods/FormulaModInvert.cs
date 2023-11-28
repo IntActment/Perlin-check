@@ -4,33 +4,38 @@ using System.Runtime.CompilerServices;
 
 using UnityEngine;
 
-public class FormulaModSubstract : FormulaMod
+public class FormulaModInvert : FormulaMod
 {
 #if UNITY_EDITOR
     protected override void OnLateInit()
     {
         if (Inputs.Count == 0)
         {
-            AddInput("Subtrahend");
-            AddInput("Minuend");
+            AddInput("Value");
         }
     }
 #endif
 
     protected override void OnEnable()
     {
-        name = "Substract";
+        name = "Invert";
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
-        return Inputs[0].CalculateInput() - Inputs[1].CalculateInput();
+        var res = Inputs[0].CalculateInput();
+        if (Mathf.Approximately(0, res))
+        {
+            return float.NaN;
+        }
+
+        return 1 / res;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override string GenerateCode()
     {
-        return $"({Inputs[0].GenerateCode()} - {Inputs[1].GenerateCode()})";
+        return $"(1 / {Inputs[0].GenerateCode()})";
     }
 }

@@ -49,7 +49,7 @@ public class ConstantDrawer : BaseDrawer
     {
         m_space = new Vector2(3, 4);
 
-        m_fieldSize = new Vector2(104, 20);
+        m_fieldSize = new Vector2(64, 20);
 
         return new Vector2(
             m_fieldSize.x + m_space.x * 2,

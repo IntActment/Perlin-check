@@ -9,14 +9,24 @@ using UnityEngine;
 
 public class PopupMessage : PopupWindowContent
 {
-    public static void Show(string message)
+    public static void Show(string message, float zoom)
     {
-        PopupWindow.Show(new Rect(-Event.current.mousePosition, Vector2.zero), new PopupMessage(message));
+        Matrix4x4 previousMatrix = GUI.matrix;
+        GUI.matrix = GUI.matrix * Matrix4x4.Scale(new Vector3(1 / zoom, 1 / zoom, 1));
+
+        PopupWindow.Show(new Rect(Event.current.mousePosition, Vector2.zero), new PopupMessage(message));
+
+        GUI.matrix = previousMatrix;
     }
 
-    public static void ShowCode(string code)
+    public static void ShowCode(string code, float zoom)
     {
+        Matrix4x4 previousMatrix = GUI.matrix;
+        GUI.matrix = GUI.matrix * Matrix4x4.Scale(new Vector3(1 / zoom, 1 / zoom, 1));
+
         PopupWindow.Show(new Rect(Event.current.mousePosition, Vector2.zero), new PopupMessage(code, true));
+
+        GUI.matrix = previousMatrix;
     }
 
     private string m_message;
@@ -293,7 +303,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
             // help
             if (GUI.Button(HelpBtnArea, "?", m_buttonStyle))
             {
-                PopupMessage.Show(HelpMessage);
+                PopupMessage.Show(HelpMessage, zoom);
                 //Window.ShowNotification(new GUIContent(HelpMessage));
             }
 
@@ -527,8 +537,12 @@ public abstract class ModDrawer<T> where T : FormulaMod
                         {
                             menu.AddItem(new GUIContent("Remove"), false, () =>
                             {
-                                mod.Formula.Delete(mod);
-                                Selected.Remove(mod);
+                                foreach (var m in Selected)
+                                {
+                                    mod.Formula.Delete(mod);
+                                }
+
+                                Selected.Clear();
                             });
                         }
                         else
