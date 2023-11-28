@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 using UnityEngine;
 
-public class InputDrawer : BaseDrawer
+public class InputYDrawer : BaseDrawer
 {
     public override string HelpMessage => m_helpMessage;
 
@@ -13,11 +13,11 @@ public class InputDrawer : BaseDrawer
     public override bool HasInput { get; } = false;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public InputDrawer(FormulaModInput mod)
+    public InputYDrawer(FormulaModInputY mod)
         : base(mod) { }
 
-    static InputDrawer()
+    static InputYDrawer()
     {
-        Register(typeof(FormulaModInput), mod => new InputDrawer((FormulaModInput)mod));
+        Register(typeof(FormulaModInputY), mod => new InputYDrawer((FormulaModInputY)mod));
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine;
 public abstract class FormulaMod : ComplexScriptable
 {
 #if UNITY_EDITOR
+
     [SerializeField]
     private Vector2 m_position;
 
@@ -64,8 +65,13 @@ public abstract class FormulaMod : ComplexScriptable
         newSocket.name = "Socket [In]";
         newSocket.Title = title;
         m_inputs.Add(newSocket);
-        UnityEditor.AssetDatabase.AddObjectToAsset(newSocket, this);
+        AddSubAsset(newSocket);
         this.Save();
+    }
+
+    protected virtual void OnEnable()
+    {
+
     }
 
     protected override void OnLateInit()
@@ -88,7 +94,7 @@ public abstract class FormulaMod : ComplexScriptable
         newSocket.name = "Socket [Out]";
 
         m_outputs.Add(newSocket);
-        UnityEditor.AssetDatabase.AddObjectToAsset(newSocket, this);
+        AddSubAsset(newSocket);
         this.Save();
 
         if (null != targetSocketIn.Link)
@@ -255,12 +261,7 @@ public abstract class FormulaMod : ComplexScriptable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public abstract float Calculate();
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected float CalculateInput(int inSocketIndex)
-    {
-        Debug.Assert(0 <= inSocketIndex);
-        Debug.Assert(Inputs.Count > inSocketIndex);
 
-        return Inputs[inSocketIndex].CalculateInput();
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public abstract string GenerateCode();
 }

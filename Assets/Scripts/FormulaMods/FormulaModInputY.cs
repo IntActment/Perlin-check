@@ -4,9 +4,13 @@ using System.Runtime.CompilerServices;
 
 using UnityEngine;
 
-public class FormulaModConstant : FormulaMod
+public class FormulaModInputY : FormulaMod
 {
-    [SerializeField]
+#if UNITY_EDITOR
+    public override bool IsRemovable { get; } = false;
+#endif
+
+    [System.NonSerialized]
     private float m_value;
 
     public float Value
@@ -15,13 +19,13 @@ public class FormulaModConstant : FormulaMod
         get => m_value;
 #if UNITY_EDITOR
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        set => this.ChangeValue(ref m_value, value);
+        set => m_value = value;
 #endif
     }
 
     protected override void OnEnable()
     {
-        name = "Constant";
+        name = "[In] Y";
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -33,6 +37,6 @@ public class FormulaModConstant : FormulaMod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override string GenerateCode()
     {
-        return $"{m_value}f";
+        return $"y";
     }
 }

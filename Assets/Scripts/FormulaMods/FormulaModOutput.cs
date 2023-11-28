@@ -11,8 +11,6 @@ public class FormulaModOutput : FormulaMod
 
     protected override void OnLateInit()
     {
-        base.OnLateInit();
-
         if (Inputs.Count == 0)
         {
             AddInput("Result");
@@ -20,9 +18,20 @@ public class FormulaModOutput : FormulaMod
     }
 #endif
 
+    protected override void OnEnable()
+    {
+        name = "[Out]";
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
         return Inputs[0].CalculateInput();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override string GenerateCode()
+    {
+        return Inputs[0].GenerateCode();
     }
 }

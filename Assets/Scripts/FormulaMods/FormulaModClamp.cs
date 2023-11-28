@@ -32,11 +32,14 @@ public class FormulaModClamp : FormulaMod
 #endif
     }
 
+    protected override void OnEnable()
+    {
+        name = "Clamp";
+    }
+
 #if UNITY_EDITOR
     protected override void OnLateInit()
     {
-        base.OnLateInit();
-
         if (Inputs.Count == 0)
         {
             AddInput("Value");
@@ -48,5 +51,11 @@ public class FormulaModClamp : FormulaMod
     public override float Calculate()
     {
         return Mathf.Clamp(Inputs[0].CalculateInput(), m_min, m_max);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override string GenerateCode()
+    {
+        return $"<color=#2b91af>Mathf</color>.<color=#74531f>Clamp</color>({Inputs[0].GenerateCode()}, {m_min}f, {m_max}f)";
     }
 }

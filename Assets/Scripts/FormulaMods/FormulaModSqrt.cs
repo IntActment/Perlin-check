@@ -9,14 +9,17 @@ public class FormulaModSqrt : FormulaMod
 #if UNITY_EDITOR
     protected override void OnLateInit()
     {
-        base.OnLateInit();
-
         if (Inputs.Count == 0)
         {
             AddInput("Value");
         }
     }
 #endif
+
+    protected override void OnEnable()
+    {
+        name = "Sqrt";
+    }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
@@ -25,5 +28,11 @@ public class FormulaModSqrt : FormulaMod
         return value < 0
             ? float.NaN
             : Mathf.Sqrt(value);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override string GenerateCode()
+    {
+        return $"<color=#2b91af>Mathf</color>.<color=#74531f>Sqrt</color>({Inputs[0].GenerateCode()})";
     }
 }

@@ -100,68 +100,74 @@ public class ComplexFormulaEditorWindow : EditorWindow
                 {
                     if (GUILayout.Button("Simplex01"))
                     {
-                        m_formula.CreateMod<FormulaModSimplex01>("Simplex01", GetCenter());
+                        m_formula.CreateMod<FormulaModSimplex01>(GetCenter());
                     }
 
                     if (GUILayout.Button("Constant"))
                     {
-                        m_formula.CreateMod<FormulaModConstant>("Constant", GetCenter());
+                        m_formula.CreateMod<FormulaModConstant>(GetCenter());
                     }
 
                     if (GUILayout.Button("Clamp"))
                     {
-                        m_formula.CreateMod<FormulaModClamp>("Clamp", GetCenter());
+                        m_formula.CreateMod<FormulaModClamp>(GetCenter());
                     }
 
                     if (GUILayout.Button("Lerp"))
                     {
-                        m_formula.CreateMod<FormulaModLerp>("Lerp", GetCenter());
+                        m_formula.CreateMod<FormulaModLerp>(GetCenter());
                     }
 
                     if (GUILayout.Button("Norm01"))
                     {
-                        m_formula.CreateMod<FormulaModNorm01>("Norm01", GetCenter());
+                        m_formula.CreateMod<FormulaModNorm01>(GetCenter());
                     }
 
                     using (_ = new EditorLayout(LayoutType.Horizontal))
                     {
                         if (GUILayout.Button("+"))
                         {
-                            m_formula.CreateMod<FormulaModSum>("Sum", GetCenter());
+                            m_formula.CreateMod<FormulaModSum>(GetCenter());
                         }
 
                         if (GUILayout.Button("-"))
                         {
-                            m_formula.CreateMod<FormulaModSubstract>("Substract", GetCenter());
+                            m_formula.CreateMod<FormulaModSubstract>(GetCenter());
                         }
 
                         if (GUILayout.Button("×"))
                         {
-                            m_formula.CreateMod<FormulaModMultiply>("Multiply", GetCenter());
+                            m_formula.CreateMod<FormulaModMultiply>(GetCenter());
                         }
 
                         if (GUILayout.Button("÷"))
                         {
-                            m_formula.CreateMod<FormulaModDivide>("Divide", GetCenter());
+                            m_formula.CreateMod<FormulaModDivide>(GetCenter());
                         }
 
                         if (GUILayout.Button("-x"))
                         {
-                            m_formula.CreateMod<FormulaModNegate>("Negate", GetCenter());
+                            m_formula.CreateMod<FormulaModNegate>(GetCenter());
                         }
 
                         if (GUILayout.Button("√x"))
                         {
-                            m_formula.CreateMod<FormulaModSqrt>("Sqrt", GetCenter());
+                            m_formula.CreateMod<FormulaModSqrt>(GetCenter());
                         }
 
                         if (GUILayout.Button("x²"))
                         {
-                            m_formula.CreateMod<FormulaModPow>("Pow", GetCenter());
+                            m_formula.CreateMod<FormulaModPow>(GetCenter());
                         }
                     }
 
                     GUILayout.FlexibleSpace();
+
+                    if (GUILayout.Button("Show code"))
+                    {
+                        var code = m_formula.GetCode();
+                        PopupMessage.ShowCode(code);
+                    }
 
                     EditorGUILayout.HelpBox(new GUIContent("Hold shift to add to selection\nHold ctrl to remove from selection\nPress RMB to remove\n    Note: basic inputs and output\n    cannot be removed\nAll input sockets those has\n  no connection has default\n  input value = 0.0f"));
                 }

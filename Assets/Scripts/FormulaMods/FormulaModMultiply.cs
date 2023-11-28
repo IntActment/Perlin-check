@@ -9,8 +9,6 @@ public class FormulaModMultiply : FormulaMod
 #if UNITY_EDITOR
     protected override void OnLateInit()
     {
-        base.OnLateInit();
-
         if (Inputs.Count == 0)
         {
             AddInput("Multiplicand");
@@ -19,9 +17,20 @@ public class FormulaModMultiply : FormulaMod
     }
 #endif
 
+    protected override void OnEnable()
+    {
+        name = "Multiply";
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
         return Inputs[0].CalculateInput() * Inputs[1].CalculateInput();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override string GenerateCode()
+    {
+        return $"({Inputs[0].GenerateCode()} * {Inputs[1].GenerateCode()})";
     }
 }

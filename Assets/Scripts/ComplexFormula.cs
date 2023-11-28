@@ -49,18 +49,18 @@ public class ComplexFormula : ComplexScriptable
 #endif
 
     [SerializeField]
-    private FormulaModInput m_inputX;
+    private FormulaModInputX m_inputX;
 
-    public FormulaModInput InputX
+    public FormulaModInputX InputX
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => m_inputX;
     }
 
     [SerializeField]
-    private FormulaModInput m_inputY;
+    private FormulaModInputY m_inputY;
 
-    public FormulaModInput InputY
+    public FormulaModInputY InputY
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => m_inputY;
@@ -89,16 +89,15 @@ public class ComplexFormula : ComplexScriptable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public T CreateMod<T>(string name, Vector2 pos) where T : FormulaMod
+    public T CreateMod<T>(Vector2 pos) where T : FormulaMod
     {
         var ret = CreateInstance<T>();
-        ret.name = name;
         ret.Position = pos;
         ret.Formula = this;
         ret.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
 
         m_modifiers.Add(ret);
-        UnityEditor.AssetDatabase.AddObjectToAsset(ret, this);
+        AddSubAsset(ret);
         this.Save();
 
         return ret;
@@ -135,45 +134,35 @@ public class ComplexFormula : ComplexScriptable
         this.Save();
     }
 
-    private TextAsset m_monoScript;
-
-
-    private void CreateScript()
+    public string GetCode()
     {
-        var path = UnityEditor.AssetDatabase.GetAssetPath(this);
-        Debug.Log(path);
+        string code = Output.GenerateCode();
 
-        var content = @"
-     using System;
+        var content = $@"<color=blue>using</color> System;
+<color=blue>using</color> UnityEngine;
  
-     public class CustomClass {
- 
-     }
- 
-     ";
+<color=blue>public class</color> <color=#2b91af>NoiseSample</color>
+{{
+    <color=blue>public static float</color> <color=#74531f>Calculate</color>(<color=blue>float</color> x, <color=blue>float</color> y)
+    {{
+        <color=blue>return</color> {code};
+    }}
+}}
+";
 
-        var fullPath = path + "code.cs";
-
-        File.WriteAllText(fullPath, content);
-        // Need to import the newly created file, otherwise it won't appear in the
-        // editor.
-        UnityEditor.AssetDatabase.ImportAsset(fullPath);
-
-        m_monoScript = UnityEditor.AssetDatabase.LoadAssetAtPath<TextAsset>(fullPath);
-        m_monoScript.name = $"{name} code";
-        UnityEditor.AssetDatabase.AddObjectToAsset(m_monoScript, this);
+        return content;
     }
 
     protected override void OnLateInit()
     {
-        if (null == Modifiers)
+        if (null == m_modifiers)
         {
             m_modifiers = new List<FormulaMod>();
 
-            m_inputX = CreateMod<FormulaModInput>("[In] X", new Vector2(20, 40));
-            m_inputY = CreateMod<FormulaModInput>("[In] Y", new Vector2(20, 100));
-            m_output = CreateMod<FormulaModOutput>("[Out]", new Vector2(300, 60));
-            CreateScript();
+            m_inputX = CreateMod<FormulaModInputX>(new Vector2(20, 40));
+            m_inputY = CreateMod<FormulaModInputY>(new Vector2(20, 100));
+            m_output = CreateMod<FormulaModOutput>(new Vector2(300, 60));
+
             this.Save();
         }
 

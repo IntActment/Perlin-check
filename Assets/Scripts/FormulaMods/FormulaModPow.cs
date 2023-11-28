@@ -20,10 +20,9 @@ public class FormulaModPow : FormulaMod
     }
 
 #if UNITY_EDITOR
+
     protected override void OnLateInit()
     {
-        base.OnLateInit();
-
         if (Inputs.Count == 0)
         {
             AddInput("Value");
@@ -31,9 +30,20 @@ public class FormulaModPow : FormulaMod
     }
 #endif
 
+    protected override void OnEnable()
+    {
+        name = "Pow";
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
         return Mathf.Pow(Inputs[0].CalculateInput(), m_power);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override string GenerateCode()
+    {
+        return $"<color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({Inputs[0].GenerateCode()}, {Power})";
     }
 }

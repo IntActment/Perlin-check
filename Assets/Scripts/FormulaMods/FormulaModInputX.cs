@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 using UnityEngine;
 
-public class FormulaModInput : FormulaMod
+public class FormulaModInputX : FormulaMod
 {
 #if UNITY_EDITOR
     public override bool IsRemovable { get; } = false;
@@ -23,9 +23,20 @@ public class FormulaModInput : FormulaMod
 #endif
     }
 
+    protected override void OnEnable()
+    {
+        name = "[In] X";
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
         return m_value;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override string GenerateCode()
+    {
+        return $"x";
     }
 }

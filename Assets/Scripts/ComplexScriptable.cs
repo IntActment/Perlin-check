@@ -4,9 +4,7 @@ using UnityEngine;
 
 public abstract class ComplexScriptable : ScriptableObject
 {
-
 #if UNITY_EDITOR
-
     private void Awake()
     {
         Init();
@@ -62,6 +60,22 @@ public abstract class ComplexScriptable : ScriptableObject
         //var assets = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(this));
 
         OnLateInit();
+    }
+
+    protected void AddSubAsset(Object subAsset)
+    {
+        UnityEditor.AssetDatabase.AddObjectToAsset(subAsset, this);
+
+        void Upd()
+        {
+            if (UnityEditor.AssetDatabase.Contains(subAsset))
+            {
+                UnityEditor.EditorApplication.update -= Upd;
+                UnityEditor.AssetDatabase.Refresh(UnityEditor.ImportAssetOptions.ForceUpdate);
+            }
+        }
+
+        UnityEditor.EditorApplication.update += Upd;
     }
 #endif
 }

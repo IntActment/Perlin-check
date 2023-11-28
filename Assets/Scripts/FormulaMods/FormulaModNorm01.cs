@@ -35,14 +35,17 @@ public class FormulaModNorm01 : FormulaMod
 #if UNITY_EDITOR
     protected override void OnLateInit()
     {
-        base.OnLateInit();
-
         if (Inputs.Count == 0)
         {
             AddInput("Value");
         }
     }
 #endif
+
+    protected override void OnEnable()
+    {
+        name = "Norm01";
+    }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
@@ -55,5 +58,18 @@ public class FormulaModNorm01 : FormulaMod
         }
 
         return (Inputs[0].CalculateInput() - m_min) / range;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override string GenerateCode()
+    {
+        float range = m_max - m_min;
+        if (Mathf.Approximately(0, range))
+        {
+            // preventing division by zero
+            return "0";
+        }
+
+        return $"({Inputs[1].GenerateCode()} - {m_min}f) / {range}f";
     }
 }

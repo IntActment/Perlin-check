@@ -74,8 +74,6 @@ public class FormulaModSimplex01 : FormulaMod
 #if UNITY_EDITOR
     protected override void OnLateInit()
     {
-        base.OnLateInit();
-
         if (Inputs.Count == 0)
         {
             AddInput("X");
@@ -84,6 +82,11 @@ public class FormulaModSimplex01 : FormulaMod
     }
 #endif
 
+    protected override void OnEnable()
+    {
+        name = "Simplex01";
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
@@ -91,5 +94,11 @@ public class FormulaModSimplex01 : FormulaMod
             m_octaves,
             m_offsetX + Inputs[0].CalculateInput() * m_mulX,
             m_offsetY + Inputs[1].CalculateInput() * m_mulY);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public override string GenerateCode()
+    {
+        return $"<color=#2b91af>SimplexNoise</color>.Singleton.<color=#74531f>MultiNoise01</color>({m_octaves}, {m_offsetX}f + {Inputs[0].GenerateCode()} * {m_mulX}f, {m_offsetY}f + {Inputs[1].GenerateCode()} * {m_mulY}f)";
     }
 }

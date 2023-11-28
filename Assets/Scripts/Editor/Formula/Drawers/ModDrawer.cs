@@ -14,21 +14,68 @@ public class PopupMessage : PopupWindowContent
         PopupWindow.Show(new Rect(-Event.current.mousePosition, Vector2.zero), new PopupMessage(message));
     }
 
+    public static void ShowCode(string code)
+    {
+        PopupWindow.Show(new Rect(Event.current.mousePosition, Vector2.zero), new PopupMessage(code, true));
+    }
+
     private string m_message;
     private Vector2 m_size;
     private GUIStyle m_style;
+    private bool m_isCode;
 
     public override void OnGUI(Rect rect)
     {
-        EditorGUI.LabelField(rect.Enlarge(-4), m_message, m_style);
+        if (m_isCode)
+        {
+            EditorGUI.SelectableLabel(rect.Enlarge(-4), m_message, m_style);
+        }
+        else
+        {
+            EditorGUI.LabelField(rect.Enlarge(-4), m_message, m_style);
+        }
     }
 
-    private PopupMessage(string message)
+    private Texture2D MakeTex(int width, int height, Color col)
     {
+        Color[] pix = new Color[width * height];
+        for (int i = 0; i < pix.Length; ++i)
+        {
+            pix[i] = col;
+        }
+        Texture2D result = new Texture2D(width, height);
+        result.SetPixels(pix);
+        result.Apply();
+
+        return result;
+    }
+
+    private PopupMessage(string message, bool isCode = false)
+    {
+        m_isCode = isCode;
+
         m_message = message;
         m_style = new GUIStyle(EditorStyles.label);
+
+        if (isCode)
+        {
+            m_style = new GUIStyle(EditorStyles.label);
+            m_style.normal.background = MakeTex(1, 1, Color.white);
+            m_style.normal.textColor = Color.black;
+            m_style.font = Font.CreateDynamicFontFromOSFont("Consolas", 10);
+        }
+
+        m_style.wordWrap = true;
         m_style.richText = true;
-        m_size = m_style.CalcSize(new GUIContent(m_message)) + Vector2.one * 8;
+        m_size = m_style.CalcSize(new GUIContent(m_message));
+
+        if (m_size.x > 600)
+        {
+            m_size.x = 600;
+            m_size.y = m_style.CalcHeight(new GUIContent(m_message), 600);
+        }
+
+        m_size += Vector2.one * 8;
     }
 
     public override Vector2 GetWindowSize()
@@ -182,7 +229,8 @@ public abstract class ModDrawer<T> where T : FormulaMod
 
         switch (mod)
         {
-            case FormulaModInput:
+            case FormulaModInputX:
+            case FormulaModInputY:
                 m_windowStyle = skin.FindStyle($"win in{sel}");
                 break;
             case FormulaModOutput:

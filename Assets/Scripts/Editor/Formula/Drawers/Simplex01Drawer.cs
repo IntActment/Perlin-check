@@ -13,10 +13,10 @@ public class Simplex01Drawer : BaseDrawer
     private const string m_helpMessage = "[<color=orange>Simplex01</color>] calculates simplex noise value in range [0 .. 1] based\n" +
         "  on two input slots value and multiple parameters.\n" +
         "Underlying formula will be like\n" +
-        "        res = simplex01(offsetX + x * mulX, offsetY + y * mulY)\n" +
+        "        res = simplex01(octaves, offsetX + x * mulX, offsetY + y * mulY)\n" +
         "where 'x' is the first input slot parameter,\n" +
         "      'y' is the second input slot parameter,\n" +
-        "      'offxetX/Y' and 'mulX/Y' are configurable field parameters.";
+        "      'octaves', 'offxetX/Y' and 'mulX/Y' are configurable field parameters.";
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Simplex01Drawer(FormulaModSimplex01 mod)

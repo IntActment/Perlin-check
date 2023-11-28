@@ -49,4 +49,12 @@ public class FormulaSocketIn : FormulaSocket
             ? 0
             : Link.Owner.Calculate();
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public string GenerateCode()
+    {
+        return (null == Link)
+            ? "0"
+            : Link.Owner.GenerateCode();
+    }
 }
