@@ -63,7 +63,7 @@ Can be used to gain understanding about how different formula members do impact 
   Those nodes represent formula function arguments (x, y) and the return value.
   After pressing one of the operator buttons, new node will be created in the middle of the screen:
 
-    ![](Docs/img7.png?raw=true"")
+  ![](Docs/img7.png?raw=true"")
 
   Every node have/may have common elements:
   - Operator name (with the index number inside of the brackets)
