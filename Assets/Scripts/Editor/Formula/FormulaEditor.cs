@@ -46,7 +46,7 @@ public class FormulaEditor : Editor
             }
 
             {
-                var val = Vector2Int.Max(Vector2Int.one, Vector2Int.Min(Vector2Int.one * 256, EditorGUILayout.Vector2IntField("Offset", m_formula.size)));
+                var val = Vector2Int.Max(Vector2Int.one, Vector2Int.Min(Vector2Int.one * 256, EditorGUILayout.Vector2IntField("Map size", m_formula.size)));
                 if (val != m_formula.size)
                 {
                     Undo.RecordObject(target, $"formula size");
