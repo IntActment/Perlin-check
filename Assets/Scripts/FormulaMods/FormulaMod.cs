@@ -170,10 +170,34 @@ public abstract class FormulaMod : ComplexScriptable
 
     }
 
+    private bool CheckRecursion(FormulaMod mod)
+    {
+        if (this == mod)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < Inputs.Count; i++)
+        {
+            var input = Inputs[i];
+            if (input.Link == null)
+            {
+                continue;
+            }
+
+            if (false == input.Link.Owner.CheckRecursion(mod))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool AddOutput(FormulaSocketIn targetSocketIn)
     {
-        if (targetSocketIn.Owner == this)
+        if (false == CheckRecursion(targetSocketIn.Owner))
         {
             return false;
         }
@@ -206,7 +230,7 @@ public abstract class FormulaMod : ComplexScriptable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool ReplaceOutput(int index, FormulaSocketIn targetSocketIn)
     {
-        if (targetSocketIn.Owner == this)
+        if (false == CheckRecursion(targetSocketIn.Owner))
         {
             return false;
         }

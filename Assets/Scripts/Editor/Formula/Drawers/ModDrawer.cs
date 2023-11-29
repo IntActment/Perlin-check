@@ -124,6 +124,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
     public static readonly Vector2 SocketSize = Vector2.one * 14;
     public static readonly float TitleHeight = 23;
     public static readonly float SocketRadius = 6;
+    private static readonly string m_recursiveLinkMessage = "Cannot create self-dependent recursive link!";
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected Vector2 GetSocketCenter(FormulaSocketType socketType, int index)
@@ -363,15 +364,31 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                 {
                                     if (m_connectingWith.Item2 == FormulaSocketType.Out)
                                     {
-                                        if ((m_connectingWith.Item3 == -1) && (m_connectingWith.Item1.AddOutput(mod.Inputs[i])))
+                                        if (m_connectingWith.Item3 == -1)
                                         {
-                                            m_isConnecting = false;
-                                            //Debug.Log("Link complete: in (output+)");
+                                            bool added = m_connectingWith.Item1.AddOutput(mod.Inputs[i]);
+                                            if (true == added)
+                                            {
+                                                m_isConnecting = false;
+                                                //Debug.Log("Link complete: in (output+)");
+                                            }
+                                            else
+                                            {
+                                                Window.ShowNotification(new GUIContent(m_recursiveLinkMessage));
+                                            }
                                         }
-                                        else if ((m_connectingWith.Item3 > -1) && (m_connectingWith.Item1.ReplaceOutput(m_connectingWith.Item3, mod.Inputs[i])))
+                                        else if (m_connectingWith.Item3 > -1)
                                         {
-                                            m_isConnecting = false;
-                                            //Debug.Log("Link complete: in (output=)");
+                                            bool replaced = m_connectingWith.Item1.ReplaceOutput(m_connectingWith.Item3, mod.Inputs[i]);
+                                            if (true == replaced)
+                                            {
+                                                m_isConnecting = false;
+                                                //Debug.Log("Link complete: in (output=)");
+                                            }
+                                            else
+                                            {
+                                                Window.ShowNotification(new GUIContent(m_recursiveLinkMessage));
+                                            }
                                         }
                                     }
                                 }
@@ -455,15 +472,31 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                 {
                                     if (m_connectingWith.Item2 == FormulaSocketType.In)
                                     {
-                                        if ((i == mod.Outputs.Count) && (mod.AddOutput(m_connectingWith.Item1.Inputs[m_connectingWith.Item3])))
+                                        if (i == mod.Outputs.Count)
                                         {
-                                            m_isConnecting = false;
-                                            //Debug.Log("Link complete: (output+)");
+                                            bool added = mod.AddOutput(m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
+                                            if (true == added)
+                                            {
+                                                m_isConnecting = false;
+                                                //Debug.Log("Link complete: (output+)");
+                                            }
+                                            else
+                                            {
+                                                Window.ShowNotification(new GUIContent(m_recursiveLinkMessage));
+                                            }
                                         }
-                                        else if ((i < mod.Outputs.Count) && (mod.ReplaceOutput(i, m_connectingWith.Item1.Inputs[m_connectingWith.Item3])))
+                                        else if (i < mod.Outputs.Count)
                                         {
-                                            m_isConnecting = false;
-                                            //Debug.Log("Link complete: (output=)");
+                                            bool replaced = mod.ReplaceOutput(i, m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
+                                            if (true == replaced)
+                                            {
+                                                m_isConnecting = false;
+                                                //Debug.Log("Link complete: (output=)");
+                                            }
+                                            else
+                                            {
+                                                Window.ShowNotification(new GUIContent(m_recursiveLinkMessage));
+                                            }
                                         }
                                     }
                                 }
