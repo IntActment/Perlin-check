@@ -745,22 +745,28 @@ public abstract class ModDrawer<T> where T : FormulaMod
 
             if (true == m_isConnecting)
             {
-                var drawer = dic[m_connectingWith.Item1];
-
-                if (m_connectingWith.Item2 == FormulaSocketType.In)
+                if (dic.TryGetValue(m_connectingWith.Item1, out var drawer))
                 {
 
-                    DrawLink(
-                        ev.mousePosition - offset,
-                        m_connectingWith.Item1.Position + drawer.GetSocketCenter(FormulaSocketType.In, m_connectingWith.Item3),
-                        offset);
+                    if (m_connectingWith.Item2 == FormulaSocketType.In)
+                    {
+
+                        DrawLink(
+                            ev.mousePosition - offset,
+                            m_connectingWith.Item1.Position + drawer.GetSocketCenter(FormulaSocketType.In, m_connectingWith.Item3),
+                            offset);
+                    }
+                    else
+                    {
+                        DrawLink(
+                            m_connectingWith.Item1.Position + drawer.GetSocketCenter(FormulaSocketType.Out, m_connectingWith.Item3),
+                            ev.mousePosition - offset,
+                            offset);
+                    }
                 }
                 else
                 {
-                    DrawLink(
-                        m_connectingWith.Item1.Position + drawer.GetSocketCenter(FormulaSocketType.Out, m_connectingWith.Item3),
-                        ev.mousePosition - offset,
-                        offset);
+                    Debug.LogWarning("Invalid state detected!");
                 }
             }
         }
@@ -776,10 +782,17 @@ public abstract class ModDrawer<T> where T : FormulaMod
 
         for (int j = 0; j < mod.Outputs.Count; j++)
         {
-            DrawLink(
-                mod.Position + GetSocketCenter(FormulaSocketType.Out, j),
-                mod.Outputs[j].Link.Owner.Position + dic[mod.Outputs[j].Link.Owner].GetSocketCenter(FormulaSocketType.In, mod.Outputs[j].Link.Owner.GetSocketIndex(mod.Outputs[j].Link)),
-                offset);
+            if (dic.TryGetValue(mod.Outputs[j].Link.Owner, out var drawer))
+            {
+                DrawLink(
+                    mod.Position + GetSocketCenter(FormulaSocketType.Out, j),
+                    mod.Outputs[j].Link.Owner.Position + drawer.GetSocketCenter(FormulaSocketType.In, mod.Outputs[j].Link.Owner.GetSocketIndex(mod.Outputs[j].Link)),
+                    offset);
+            }
+            else
+            {
+                Debug.LogWarning("Invalid state detected!");
+            }
         }
     }
 

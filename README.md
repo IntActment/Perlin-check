@@ -7,7 +7,7 @@ Can be used to gain understanding about how different formula members do impact 
 
 ***Currently supports only dark UI theme!***
 
-  ![](Docs/img2.png?raw=true"")
+  ![](Docs/img0.gif?raw=true"")
 
 ## Usage
 - Create the "**ComplexFormula**" asset from the context menu in the project window:
