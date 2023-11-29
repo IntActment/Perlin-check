@@ -10,12 +10,9 @@ public class FormulaModOutput : FormulaMod
 #if UNITY_EDITOR
     public override bool IsRemovable { get; } = false;
 
-    protected override void OnLateInit()
+    protected override void Initialize()
     {
-        if (Inputs.Count == 0)
-        {
-            AddInput("Result");
-        }
+        AddInput("Result");
     }
 #endif
 
@@ -35,9 +32,10 @@ public class FormulaModOutput : FormulaMod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override string GenerateCode(HashSet<int> vars, StringBuilder builder)
     {
-        var value = Inputs[0].GenerateCode(vars, builder);
+        var val0 = Inputs[0].GenerateCode(vars, builder);
+
         builder.AppendLine();
-        builder.Append($"        <color=blue>return</color> {value};");
+        builder.Append($"        <color=blue>return</color> {val0};");
 
         return null;
     }

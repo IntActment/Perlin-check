@@ -65,17 +65,6 @@ public abstract class ComplexScriptable : ScriptableObject
     protected void AddSubAsset(Object subAsset)
     {
         UnityEditor.AssetDatabase.AddObjectToAsset(subAsset, this);
-
-        void Upd()
-        {
-            if (UnityEditor.AssetDatabase.Contains(subAsset))
-            {
-                UnityEditor.EditorApplication.update -= Upd;
-                UnityEditor.AssetDatabase.Refresh(UnityEditor.ImportAssetOptions.ForceUpdate);
-            }
-        }
-
-        UnityEditor.EditorApplication.update += Upd;
     }
 #endif
 }

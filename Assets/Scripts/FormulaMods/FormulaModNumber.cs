@@ -40,6 +40,7 @@ public class FormulaModNumber : FormulaMod
         if (false == vars.Contains(VarIndex))
         {
             vars.Add(VarIndex);
+
             builder.AppendLine($"        <color=blue>const float</color> {VarName} = 1 - {m_value}f;");
         }
 

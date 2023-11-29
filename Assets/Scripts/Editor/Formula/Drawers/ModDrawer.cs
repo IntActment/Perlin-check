@@ -216,7 +216,9 @@ public abstract class ModDrawer<T> where T : FormulaMod
             outputSize = new Vector2(SocketSize.x, SocketSize.y * (mod.Outputs.Count + 1));
         }
 
-        var bodySize = GetBodySize();
+        var bodySize = mod.IsInitialized
+            ? GetBodySize()
+            : Vector2.zero;
         float windowWidth = Border.left + inputSize.x + bodySize.x + outputSize.x + Border.right;
         float clientHeight = Mathf.Max(inputSize.y, bodySize.y, outputSize.y);
 
@@ -545,14 +547,18 @@ public abstract class ModDrawer<T> where T : FormulaMod
                         {
                             menu.AddItem(new GUIContent("Remove"), false, () =>
                             {
-                                foreach (var m in Selected)
+                                if (Selected.ContainsKey(mod))
                                 {
-                                    mod.Formula.Delete(m.Key);
+                                    foreach (var m in Selected)
+                                    {
+                                        mod.Formula.Delete(m.Key);
+                                    }
+
+                                    Selected.Clear();
                                 }
 
                                 mod.Formula.Delete(mod);
 
-                                Selected.Clear();
                             });
                         }
                         else

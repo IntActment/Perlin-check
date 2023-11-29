@@ -143,7 +143,29 @@ public abstract class FormulaMod : ComplexScriptable
 
     }
 
-    protected override void OnLateInit()
+    [SerializeField]
+    private bool m_isInit = false;
+
+    public bool IsInitialized
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_isInit;
+    }
+
+    protected sealed override void OnLateInit()
+    {
+        if (true == m_isInit)
+        {
+            return;
+        }
+
+        Initialize();
+
+        m_isInit = true;
+        this.Save();
+    }
+
+    protected virtual void Initialize()
     {
 
     }

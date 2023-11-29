@@ -84,16 +84,20 @@ public class FormulaEditor : Editor
                     EditorUtility.SetDirty(target);
                 }
             }
-
-            if (GUI.changed)
-            {
-                m_formula.Build();
-            }
         }
         finally
         {
             serializedObject.ApplyModifiedProperties();
             AssetDatabase.SaveAssetIfDirty(target);
+
+            try
+            {
+                if (GUI.changed)
+                {
+                    m_formula.Build();
+                }
+            }
+            catch { }
         }
     }
 }

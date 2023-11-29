@@ -82,9 +82,9 @@ public class TerrainTest : MonoBehaviour
         MeshRenderer.sharedMaterial.SetFloat("_Cutout", cutLevel);
 
         MeshFilter.sharedMesh.SetVertices(m_vertices);
-        MeshFilter.sharedMesh.RecalculateNormals();
-        MeshFilter.sharedMesh.RecalculateTangents();
         MeshFilter.sharedMesh.SetColors(m_colors);
         MeshFilter.sharedMesh.SetIndices(m_indices, MeshTopology.Quads, 0, true);
+        MeshFilter.sharedMesh.RecalculateNormals();
+        MeshFilter.sharedMesh.RecalculateTangents();
     }
 }

@@ -8,13 +8,10 @@ using UnityEngine;
 public class FormulaModDivide : FormulaMod
 {
 #if UNITY_EDITOR
-    protected override void OnLateInit()
+    protected override void Initialize()
     {
-        if (Inputs.Count == 0)
-        {
-            AddInput("Dividend");
-            AddInput("Divisor");
-        }
+        AddInput("Dividend");
+        AddInput("Divisor");
     }
 #endif
 
@@ -42,7 +39,11 @@ public class FormulaModDivide : FormulaMod
         if (false == vars.Contains(VarIndex))
         {
             vars.Add(VarIndex);
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = {Inputs[0].GenerateCode(vars, builder)} / {Inputs[1].GenerateCode(vars, builder)};");
+
+            var val0 = Inputs[0].GenerateCode(vars, builder);
+            var val1 = Inputs[1].GenerateCode(vars, builder);
+
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = {val0} / {val1};");
         }
 
         return VarName;

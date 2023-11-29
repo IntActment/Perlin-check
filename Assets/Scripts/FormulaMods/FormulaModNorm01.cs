@@ -34,12 +34,9 @@ public class FormulaModNorm01 : FormulaMod
     }
 
 #if UNITY_EDITOR
-    protected override void OnLateInit()
+    protected override void Initialize()
     {
-        if (Inputs.Count == 0)
-        {
-            AddInput("Value");
-        }
+        AddInput("Value");
     }
 #endif
 
@@ -79,7 +76,9 @@ public class FormulaModNorm01 : FormulaMod
             }
             else
             {
-                builder.AppendLine($"        <color=blue>float</color> {VarName} = ({Inputs[0].GenerateCode(vars, builder)} - {m_min}f) / {range}f;");
+                var val0 = Inputs[0].GenerateCode(vars, builder);
+
+                builder.AppendLine($"        <color=blue>float</color> {VarName} = ({val0} - {m_min}f) / {range}f;");
             }
         }
 

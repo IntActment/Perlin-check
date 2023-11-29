@@ -22,12 +22,9 @@ public class FormulaModPow : FormulaMod
 
 #if UNITY_EDITOR
 
-    protected override void OnLateInit()
+    protected override void Initialize()
     {
-        if (Inputs.Count == 0)
-        {
-            AddInput("Value");
-        }
+        AddInput("Value");
     }
 #endif
 
@@ -51,7 +48,10 @@ public class FormulaModPow : FormulaMod
         if (false == vars.Contains(VarIndex))
         {
             vars.Add(VarIndex);
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({Inputs[0].GenerateCode(vars, builder)}, {m_power}f);");
+
+            var val0 = Inputs[0].GenerateCode(vars, builder);
+
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({val0}, {m_power}f);");
         }
 
         return VarName;

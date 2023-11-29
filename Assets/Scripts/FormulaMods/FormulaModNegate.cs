@@ -8,12 +8,9 @@ using UnityEngine;
 public class FormulaModNegate : FormulaMod
 {
 #if UNITY_EDITOR
-    protected override void OnLateInit()
+    protected override void Initialize()
     {
-        if (Inputs.Count == 0)
-        {
-            AddInput("Value");
-        }
+        AddInput("Value");
     }
 #endif
 
@@ -37,7 +34,10 @@ public class FormulaModNegate : FormulaMod
         if (false == vars.Contains(VarIndex))
         {
             vars.Add(VarIndex);
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = -{Inputs[0].GenerateCode(vars, builder)};");
+
+            var val0 = Inputs[0].GenerateCode(vars, builder);
+
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = -{val0};");
         }
 
         return VarName;

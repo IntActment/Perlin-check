@@ -39,12 +39,9 @@ public class FormulaModClamp : FormulaMod
     }
 
 #if UNITY_EDITOR
-    protected override void OnLateInit()
+    protected override void Initialize()
     {
-        if (Inputs.Count == 0)
-        {
-            AddInput("Value");
-        }
+        AddInput("Value");
     }
 #endif
 
@@ -63,7 +60,10 @@ public class FormulaModClamp : FormulaMod
         if (false == vars.Contains(VarIndex))
         {
             vars.Add(VarIndex);
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Clamp</color>({Inputs[0].GenerateCode(vars, builder)}, {m_min}f, {m_max}f);");
+
+            var val0 = Inputs[0].GenerateCode(vars, builder);
+
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Clamp</color>({val0}, {m_min}f, {m_max}f);");
         }
 
         return VarName;

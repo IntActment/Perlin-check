@@ -41,7 +41,7 @@ public class NumberDrawer : BaseDrawer
 
         FormulaModNumber m = (mod as FormulaModNumber);
 
-        m.Value = EditorGUI.FloatField(new Rect(m_space.x, m_space.y * 1 + m_fieldSize.y * 0, m_fieldSize.x, m_fieldSize.y), "Value", m.Value);
+        m.Value = EditorGUI.FloatField(new Rect(m_space.x, m_space.y, m_fieldSize.x, m_fieldSize.y), "Value", m.Value);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
