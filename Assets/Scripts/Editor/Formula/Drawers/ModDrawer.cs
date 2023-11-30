@@ -111,6 +111,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
     private static Vector2 m_draggingModOffset;
     private static bool m_isConnecting = false;
     private static (FormulaMod, FormulaSocketType, int) m_connectingWith;
+    private static (FormulaMod, int) m_tempOutputSocket = (null, -1);
 
     public virtual bool HasInput { get; } = true;
     public virtual bool HasOutput { get; } = true;
@@ -355,9 +356,12 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                 else
                                 {
                                     m_connectingWith = (mod.Inputs[i].Link.Owner, FormulaSocketType.Out, mod.Inputs[i].Link.Owner.GetSocketIndex(mod.Inputs[i].Link));
+                                    m_tempOutputSocket = (mod.Inputs[i].Link.Owner, mod.Inputs[i].Link.Owner.GetSocketIndex(mod.Inputs[i].Link));
                                     mod.ClearInput(mod.Inputs[i]);
                                     //Debug.Log("Link start: unbind in");
                                 }
+
+                                ev.Use();
                             }
                         }
 
@@ -369,6 +373,8 @@ public abstract class ModDrawer<T> where T : FormulaMod
 
                                 if (true == m_isConnecting)
                                 {
+                                    bool succ = false;
+
                                     if (m_connectingWith.Item2 == FormulaSocketType.Out)
                                     {
                                         if (m_connectingWith.Item3 == -1)
@@ -376,6 +382,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                             bool added = m_connectingWith.Item1.AddOutput(mod.Inputs[i]);
                                             if (true == added)
                                             {
+                                                succ = true;
                                                 m_isConnecting = false;
                                                 //Debug.Log("Link complete: in (output+)");
                                             }
@@ -389,6 +396,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                             bool replaced = m_connectingWith.Item1.ReplaceOutput(m_connectingWith.Item3, mod.Inputs[i]);
                                             if (true == replaced)
                                             {
+                                                succ = true;
                                                 m_isConnecting = false;
                                                 //Debug.Log("Link complete: in (output=)");
                                             }
@@ -397,6 +405,17 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                                 Window.ShowNotification(new GUIContent(m_recursiveLinkMessage));
                                             }
                                         }
+                                    }
+
+                                    if ((false == succ) && (m_tempOutputSocket.Item1 != null))
+                                    {
+                                        m_tempOutputSocket.Item1.RemoveOutput(m_tempOutputSocket.Item1.Outputs[m_tempOutputSocket.Item2]);
+                                        m_tempOutputSocket = (null, -1);
+                                    }
+
+                                    if (true == succ)
+                                    {
+                                        ev.Use();
                                     }
                                 }
                             }
@@ -455,10 +474,12 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                 down = true;
                                 m_isConnecting = true;
 
+
                                 if (i < mod.Outputs.Count)
                                 {
                                     m_connectingWith = (mod.Outputs[i].Link.Owner, FormulaSocketType.In, mod.Outputs[i].Link.Owner.GetSocketIndex(mod.Outputs[i].Link));
-                                    mod.RemoveOutput(mod.Outputs[i]);
+                                    m_tempOutputSocket = (mod, i);
+                                    mod.ClearOutput(mod.Outputs[i]);
                                     //Debug.Log("Link start: removed out");
                                 }
                                 else
@@ -466,6 +487,8 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                     m_connectingWith = (mod, FormulaSocketType.Out, -1);
                                     //Debug.Log("Link start: add out");
                                 }
+
+                                ev.Use();
                             }
                         }
 
@@ -477,6 +500,8 @@ public abstract class ModDrawer<T> where T : FormulaMod
 
                                 if (true == m_isConnecting)
                                 {
+                                    bool succ = false;
+
                                     if (m_connectingWith.Item2 == FormulaSocketType.In)
                                     {
                                         if (i == mod.Outputs.Count)
@@ -484,6 +509,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                             bool added = mod.AddOutput(m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
                                             if (true == added)
                                             {
+                                                succ = true;
                                                 m_isConnecting = false;
                                                 //Debug.Log("Link complete: (output+)");
                                             }
@@ -497,6 +523,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                             bool replaced = mod.ReplaceOutput(i, m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
                                             if (true == replaced)
                                             {
+                                                succ = true;
                                                 m_isConnecting = false;
                                                 //Debug.Log("Link complete: (output=)");
                                             }
@@ -505,6 +532,17 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                                 Window.ShowNotification(new GUIContent(m_recursiveLinkMessage));
                                             }
                                         }
+                                    }
+
+                                    if ((false == succ) && (m_tempOutputSocket.Item1 != null))
+                                    {
+                                        m_tempOutputSocket.Item1.RemoveOutput(m_tempOutputSocket.Item1.Outputs[m_tempOutputSocket.Item2]);
+                                        m_tempOutputSocket = (null, -1);
+                                    }
+
+                                    if (true == succ)
+                                    {
+                                        ev.Use();
                                     }
                                 }
                             }
@@ -629,6 +667,13 @@ public abstract class ModDrawer<T> where T : FormulaMod
         if ((ev.rawType == EventType.MouseUp) && (ev.button == 0))
         {
             m_isConnecting = false;
+
+            if (m_tempOutputSocket.Item1 != null)
+            {
+                m_tempOutputSocket.Item1.RemoveOutput(m_tempOutputSocket.Item1.Outputs[m_tempOutputSocket.Item2]);
+                m_tempOutputSocket = (null, -1);
+            }
+
             //Debug.Log("Link canceled (all)");
 
             if (SelectionStart != null)
@@ -787,13 +832,21 @@ public abstract class ModDrawer<T> where T : FormulaMod
             return;
         }
 
+        FormulaSocketIn link;
+
         for (int j = 0; j < mod.Outputs.Count; j++)
         {
-            if (dic.TryGetValue(mod.Outputs[j].Link.Owner, out var drawer))
+            link = mod.Outputs[j].Link;
+            if (null == link)
+            {
+                continue;
+            }
+
+            if (dic.TryGetValue(link.Owner, out var drawer))
             {
                 DrawLink(
                     mod.Position + GetSocketCenter(FormulaSocketType.Out, j),
-                    mod.Outputs[j].Link.Owner.Position + drawer.GetSocketCenter(FormulaSocketType.In, mod.Outputs[j].Link.Owner.GetSocketIndex(mod.Outputs[j].Link)),
+                    link.Owner.Position + drawer.GetSocketCenter(FormulaSocketType.In, link.Owner.GetSocketIndex(link)),
                     offset);
             }
             else

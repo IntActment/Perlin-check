@@ -34,7 +34,7 @@ public class ComplexFormula : ComplexScriptable
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => m_zoom;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        set => DirtySetValue(ref m_zoom, value);
+        set => this.SetValue(ref m_zoom, value);
     }
 
     [SerializeField]
@@ -45,7 +45,7 @@ public class ComplexFormula : ComplexScriptable
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => m_screenOffset;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        set => DirtySetValue(ref m_screenOffset, value);
+        set => this.SetValue(ref m_screenOffset, value);
     }
 #endif
 
@@ -78,18 +78,6 @@ public class ComplexFormula : ComplexScriptable
 
 #if UNITY_EDITOR
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected void DirtySetValue<T>(ref T field, T value)
-    {
-        if (Equals(field, value))
-        {
-            return;
-        }
-
-        field = value;
-        UnityEditor.EditorUtility.SetDirty(this);
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public T CreateMod<T>(Vector2 pos) where T : FormulaMod
     {
         var ret = CreateInstance<T>();
@@ -119,9 +107,9 @@ public class ComplexFormula : ComplexScriptable
                 mod.RemoveOutput(mod.Outputs[0]);
             }
 
-            foreach (var input in mod.Inputs)
+            for (int i = 0; i < mod.Inputs.Count; i++)
             {
-                mod.ClearInput(input);
+                mod.ClearInputAndOutput(mod.Inputs[i]);
             }
 
             UnityEditor.AssetDatabase.RemoveObjectFromAsset(mod);
@@ -185,12 +173,38 @@ public class ComplexFormula : ComplexScriptable
     }
 #endif
 
+    private bool[] m_calcCompletitionList;
+
+    public bool[] CalcCompletitionList
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_calcCompletitionList;
+    }
+
+    private float[] m_calcValuesList;
+
+    public float[] CalcValuesList
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_calcValuesList;
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public float Calculate(float x, float y)
     {
         InputX.Value = x;
         InputY.Value = y;
 
-        return Output.Calculate();
+        if ((null == m_calcCompletitionList) || (m_calcCompletitionList.Length != Modifiers.Count))
+        {
+            m_calcCompletitionList = new bool[Modifiers.Count];
+            m_calcValuesList = new float[Modifiers.Count];
+        }
+        else
+        {
+            Array.Clear(m_calcCompletitionList, 0, m_calcCompletitionList.Length);
+        }
+
+        return Output.Calculate(m_calcCompletitionList, m_calcValuesList);
     }
 }

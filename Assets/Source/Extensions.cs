@@ -24,8 +24,17 @@ public static partial class Extensions
     public static void Save(this ScriptableObject o)
     {
 #if UNITY_EDITOR
-        UnityEditor.AssetDatabase.SaveAssetIfDirty(o);
+        UnityEditor.EditorUtility.SetDirty(o);
+        //UnityEditor.AssetDatabase.SaveAssetIfDirty(o);
         //Debug.Log("Saved");
 #endif
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Bounds CombineWith(this Bounds lhs, Bounds rhs)
+    {
+        lhs.Encapsulate(rhs);
+
+        return lhs;
     }
 }

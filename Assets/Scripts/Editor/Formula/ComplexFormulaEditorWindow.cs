@@ -21,10 +21,11 @@ public class ComplexFormulaEditorWindow : EditorWindow
     public static void ShowEditor()
     {
         ComplexFormulaEditorWindow window = GetWindow<ComplexFormulaEditorWindow>();
+        window.Enable();
         window.Show();
     }
 
-    private void OnEnable()
+    private void Enable()
     {
         titleContent = new GUIContent("Formula graph editor");
 

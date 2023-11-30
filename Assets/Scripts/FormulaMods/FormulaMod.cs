@@ -36,6 +36,13 @@ public abstract class FormulaMod : ComplexScriptable
 
             if (null != value)
             {
+                if (VarPrefix == null)
+                {
+                    // in/out sockets
+                    this.SetValue(ref m_varIndex, -1);
+                    return;
+                }
+
                 // find free index number
                 var mods = Formula.Modifiers.ToList();
                 bool hasDup;
@@ -139,9 +146,24 @@ public abstract class FormulaMod : ComplexScriptable
         this.Save();
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected virtual void OnEnable()
     {
+        for (int i = 0; i < Outputs.Count; i++)
+        {
+            if (Outputs[i].Link == null)
+            {
+                RemoveOutput(Outputs[i]);
+                Debug.LogWarning($"Empty output slot #{i} at {VarName} was removed");
+                i--;
+            }
+        }
+    }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected virtual void OnDisable()
+    {
+        UnityEditor.AssetDatabase.SaveAssetIfDirty(this);
     }
 
     [SerializeField]
@@ -288,7 +310,41 @@ public abstract class FormulaMod : ComplexScriptable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void ClearOutput(FormulaSocketOut mySocketOut)
+    {
+        if (this != mySocketOut.Owner)
+        {
+            Debug.LogWarning("Can pass only socket that belongs to this Mod");
+            return;
+        }
+
+        if (null != mySocketOut.Link)
+        {
+            // remove old connection
+            mySocketOut.Link.Link = null;
+            mySocketOut.Link = null;
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void ClearInput(FormulaSocketIn mySocketIn)
+    {
+        if (this != mySocketIn.Owner)
+        {
+            Debug.LogWarning("Can pass only socket that belongs to this Mod");
+            return;
+        }
+
+        if (null != mySocketIn.Link)
+        {
+            // remove old connection
+            mySocketIn.Link.Link = null;
+            mySocketIn.Link = null;
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void ClearInputAndOutput(FormulaSocketIn mySocketIn)
     {
         if (this != mySocketIn.Owner)
         {
@@ -373,6 +429,27 @@ public abstract class FormulaMod : ComplexScriptable
         UnityEditor.EditorUtility.SetDirty(this);
     }
 #endif
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public float Calculate(bool[] calcCompletitionList, float[] calcValuesList)
+    {
+        if (m_varIndex < 0)
+        {
+            // in/out sockets has negative VarIndex
+            return Calculate();
+        }
+
+        if (true == calcCompletitionList[VarIndex])
+        {
+            return calcValuesList[VarIndex];
+        }
+
+        var ret = Calculate();
+        calcValuesList[VarIndex] = ret;
+        calcCompletitionList[VarIndex] = true;
+
+        return ret;
+    }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public abstract float Calculate();

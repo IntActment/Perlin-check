@@ -19,4 +19,12 @@ public abstract class FormulaSocket : ScriptableObject
     }
 
     public abstract FormulaSocketType SocketType { get; }
+
+#if UNITY_EDITOR
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected virtual void OnDisable()
+    {
+        UnityEditor.AssetDatabase.SaveAssetIfDirty(this);
+    }
+#endif
 }

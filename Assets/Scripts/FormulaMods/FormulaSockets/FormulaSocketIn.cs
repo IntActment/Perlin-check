@@ -61,7 +61,7 @@ public class FormulaSocketIn : FormulaSocket
     {
         return (null == Link)
             ? 0
-            : Link.Owner.Calculate();
+            : Link.Owner.Calculate(Owner.Formula.CalcCompletitionList, Owner.Formula.CalcValuesList);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
