@@ -13,8 +13,8 @@ public class Norm01Drawer : BaseDrawer
     private const string m_helpMessage = "[<color=orange>Norm01</color>] normalizes the first input slot value to the provided range\n" +
         "  and returns its representation in the [0 .. 1] range.\n" +
         "Underlying formula will be like\n" +
-        "        res = (x - min) / (max - min)\n" +
-        "where 'x' is input slot parameter and\n" +
+        "        res = (a - min) / (max - min)\n" +
+        "where 'a' is input slot parameter and\n" +
         "      'min/max' are configurable field parameters.";
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

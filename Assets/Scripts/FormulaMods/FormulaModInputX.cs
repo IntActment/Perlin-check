@@ -24,10 +24,12 @@ public class FormulaModInputX : FormulaMod
 #endif
     }
 
-    protected override void OnEnable()
+#if UNITY_EDITOR
+    protected override void Initialize()
     {
         name = "X [In]";
     }
+#endif
 
     public override string VarPrefix => null;
 

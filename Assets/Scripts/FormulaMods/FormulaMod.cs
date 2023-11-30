@@ -126,13 +126,14 @@ public abstract class FormulaMod : ComplexScriptable
     public virtual bool IsRemovable { get; } = true;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected void AddInput(string title)
+    protected void AddInput(string title, bool isOptional = false)
     {
         var newSocket = CreateInstance<FormulaSocketIn>();
         newSocket.Owner = this;
         newSocket.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
         newSocket.name = "Socket [In]";
         newSocket.Title = title;
+        newSocket.IsOptional = isOptional;
         m_inputs.Add(newSocket);
         AddSubAsset(newSocket);
         this.Save();

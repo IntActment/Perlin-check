@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -24,14 +24,12 @@ public class FormulaModPow : FormulaMod
 
     protected override void Initialize()
     {
+        name = "a²";
+
         AddInput("Value");
+        AddInput("Power", true);
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Pow";
-    }
 
     private static readonly string m_varPrefix = "pow";
     public override string VarPrefix => m_varPrefix;
@@ -51,7 +49,16 @@ public class FormulaModPow : FormulaMod
 
             var val0 = Inputs[0].GenerateCode(vars, builder);
 
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({val0}, {m_power}f);");
+            if (Inputs[1].Link == null)
+            {
+                builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({val0}, {m_power}f);");
+            }
+            else
+            {
+                var val1 = Inputs[1].GenerateCode(vars, builder);
+
+                builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({val0}, {val1}f);");
+            }
         }
 
         return VarName;

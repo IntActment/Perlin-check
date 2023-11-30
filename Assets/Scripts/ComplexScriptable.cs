@@ -30,7 +30,8 @@ public abstract class ComplexScriptable : ScriptableObject
     private void Init()
     {
         // If this asset already exists initialize immediately
-        if (UnityEditor.AssetDatabase.Contains(this))
+        //if (UnityEditor.AssetDatabase.Contains(this))
+        if ((false == UnityEditor.EditorApplication.isUpdating) && (UnityEditor.AssetDatabase.Contains(this)))
         {
             DelayedInit();
         }
@@ -48,7 +49,8 @@ public abstract class ComplexScriptable : ScriptableObject
     {
         // if this asset dos still not exist do nothing
         // this means it is currently being created and the name not confirmed yet
-        if (false == UnityEditor.AssetDatabase.Contains(this))
+        //if 
+        if ((true == UnityEditor.EditorApplication.isUpdating) || (false == UnityEditor.AssetDatabase.Contains(this)))
         {
             return;
         }

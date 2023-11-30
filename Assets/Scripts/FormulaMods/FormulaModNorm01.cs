@@ -36,14 +36,11 @@ public class FormulaModNorm01 : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "Norm01";
+
         AddInput("Value");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Norm01";
-    }
 
     private static readonly string m_varPrefix = "norm01";
     public override string VarPrefix => m_varPrefix;

@@ -8,7 +8,7 @@ public class OutputDrawer : BaseDrawer
 {
     public override string HelpMessage => m_helpMessage;
 
-    private const string m_helpMessage = "[<color=orange>Output</color>] is the output value receiver. Cannot be removed.";
+    private const string m_helpMessage = "<color=orange>[Out]</color> is the output value receiver. Cannot be removed.";
    
     public override bool HasOutput { get; } = false;
 

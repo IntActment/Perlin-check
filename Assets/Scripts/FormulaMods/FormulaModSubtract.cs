@@ -10,15 +10,12 @@ public class FormulaModSubtract : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "a - b";
+
         AddInput("Subtrahend");
         AddInput("Minuend");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Subtract";
-    }
 
     private static readonly string m_varPrefix = "sub";
     public override string VarPrefix => m_varPrefix;

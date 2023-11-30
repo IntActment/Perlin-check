@@ -33,14 +33,11 @@ public class FormulaModClamp : FormulaMod
 #endif
     }
 
-    protected override void OnEnable()
-    {
-        name = "Clamp";
-    }
-
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "Clamp";
+
         AddInput("Value");
     }
 #endif

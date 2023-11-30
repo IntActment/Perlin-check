@@ -20,10 +20,12 @@ public class FormulaModNumber : FormulaMod
 #endif
     }
 
-    protected override void OnEnable()
+#if UNITY_EDITOR
+    protected override void Initialize()
     {
         name = "Number";
     }
+#endif
 
     private static readonly string m_varPrefix = "num";
     public override string VarPrefix => m_varPrefix;

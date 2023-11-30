@@ -10,8 +10,8 @@ public class InvertDrawer : BaseDrawer
 
     private const string m_helpMessage = "[<color=orange>Invert</color>] inverts the first input slot value.\n" +
         "Underlying formula will be like\n" +
-        "        res = 1 / x\n" +
-        "where 'x' is input slot parameter.";
+        "        res = 1 / a\n" +
+        "where 'a' is input slot parameter.";
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public InvertDrawer(FormulaModInvert mod)

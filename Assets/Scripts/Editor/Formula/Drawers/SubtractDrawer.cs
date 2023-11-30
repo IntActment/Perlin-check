@@ -8,7 +8,7 @@ public class SubtractDrawer : BaseDrawer
 {
     public override string HelpMessage => m_helpMessage;
 
-    private const string m_helpMessage = "[<color=orange>Subtract</color>] subtracts the second input slot value from the first input slot value.\n" +
+    private const string m_helpMessage = "[<color=orange>a - b</color>] subtracts the second input slot value from the first input slot value.\n" +
         "Underlying formula will be like\n" +
         "        res = a - b\n" +
         "where 'a' is the first input slot parameter and\n" +

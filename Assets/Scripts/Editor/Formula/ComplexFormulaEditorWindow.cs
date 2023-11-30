@@ -132,17 +132,17 @@ public class ComplexFormulaEditorWindow : EditorWindow
                                 m_formula.CreateMod<FormulaModNorm01>(GetCenter());
                             }
 
-                            if (GUILayout.Button("1 - x"))
+                            if (GUILayout.Button("1 - a"))
                             {
                                 m_formula.CreateMod<FormulaModOneMinus>(GetCenter());
                             }
 
-                            if (GUILayout.Button("1 / x"))
+                            if (GUILayout.Button("1 / a"))
                             {
                                 m_formula.CreateMod<FormulaModInvert>(GetCenter());
                             }
 
-                            if (GUILayout.Button("-x"))
+                            if (GUILayout.Button("-a"))
                             {
                                 m_formula.CreateMod<FormulaModNegate>(GetCenter());
                             }
@@ -170,12 +170,12 @@ public class ComplexFormulaEditorWindow : EditorWindow
                                 m_formula.CreateMod<FormulaModDivide>(GetCenter());
                             }
 
-                            if (GUILayout.Button("√x"))
+                            if (GUILayout.Button("√a"))
                             {
                                 m_formula.CreateMod<FormulaModSqrt>(GetCenter());
                             }
 
-                            if (GUILayout.Button("x²"))
+                            if (GUILayout.Button("a²"))
                             {
                                 m_formula.CreateMod<FormulaModPow>(GetCenter());
                             }

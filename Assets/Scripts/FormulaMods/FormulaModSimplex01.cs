@@ -101,16 +101,13 @@ public class FormulaModSimplex01 : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "Simplex01";
+
         AddInput("X");
         AddInput("Y");
-        AddInput("Z");
+        AddInput("Z", true);
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Simplex01";
-    }
 
     private static readonly string m_varPrefix = "simplex01";
     public override string VarPrefix => m_varPrefix;

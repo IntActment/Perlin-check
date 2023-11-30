@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,14 +10,11 @@ public class FormulaModSqrt : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "√a";
+
         AddInput("Value");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Sqrt";
-    }
 
     private static readonly string m_varPrefix = "sqrt";
     public override string VarPrefix => m_varPrefix;

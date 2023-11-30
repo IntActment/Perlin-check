@@ -10,15 +10,12 @@ public class FormulaModMultiply : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "a * b";
+
         AddInput("Multiplicand");
         AddInput("Multiplier");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Multiply";
-    }
 
     private static readonly string m_varPrefix = "mul";
     public override string VarPrefix => m_varPrefix;

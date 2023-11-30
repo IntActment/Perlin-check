@@ -10,14 +10,11 @@ public class FormulaModNegate : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "-a";
+
         AddInput("Value");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Negate";
-    }
 
     private static readonly string m_varPrefix = "neg";
     public override string VarPrefix => m_varPrefix;

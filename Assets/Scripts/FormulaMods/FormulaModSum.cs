@@ -10,15 +10,12 @@ public class FormulaModSum : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "a + b";
+
         AddInput("Augend");
         AddInput("Addend");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Sum";
-    }
 
     private static readonly string m_varPrefix = "sum";
     public override string VarPrefix => m_varPrefix;

@@ -10,15 +10,12 @@ public class FormulaModDivide : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "a / b";
+
         AddInput("Dividend");
         AddInput("Divisor");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Divide";
-    }
 
     private static readonly string m_varPrefix = "div";
     public override string VarPrefix => m_varPrefix;

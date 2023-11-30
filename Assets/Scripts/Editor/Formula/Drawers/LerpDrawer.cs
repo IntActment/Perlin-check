@@ -12,7 +12,7 @@ public class LerpDrawer : BaseDrawer
         "  values with delta value provided with the third input slot.\n" +
         "Underlying formula will be like\n" +
         "        res = a + delta * (b - a)\n" +
-        "where 'a' is  the first input slot parameter,\n" +
+        "where 'a' is the first input slot parameter,\n" +
         "      'b' is the second input slot parameter and\n" +
         "      'delta' is the third input slot parameter.";
 

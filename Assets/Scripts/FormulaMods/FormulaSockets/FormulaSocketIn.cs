@@ -43,6 +43,19 @@ public class FormulaSocketIn : FormulaSocket
     }
 #endif
 
+#if UNITY_EDITOR
+    [SerializeField]
+    private bool m_isOptional = false;
+
+    public bool IsOptional
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_isOptional;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        set => this.SetValue(ref m_isOptional, value);
+    }
+#endif
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public float CalculateInput()
     {

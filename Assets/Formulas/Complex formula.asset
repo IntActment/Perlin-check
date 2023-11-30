@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9050297753196782122
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &-8979168981182834897
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &-8809164563987223207
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -15,7 +47,8 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
---- !u!114 &-8283342101590897066
+  m_isOptional: 0
+--- !u!114 &-8806780488072211197
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,17 +57,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f62bda63815e8834aa5a3e91e4168774, type: 3}
-  m_Name: Sqrt
+  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
+  m_Name: Socket [Out]
   m_EditorClassIdentifier: 
-  m_position: {x: 840, y: 518}
-  m_formula: {fileID: 11400000}
-  m_inputs:
-  - {fileID: -321271919177335168}
-  m_outputs:
-  - {fileID: 4532380458313256620}
-  m_varIndex: 15
-  m_isInit: 1
+  m_owner: {fileID: -4566649238560099808}
+  m_link: {fileID: -7379355135667608834}
+--- !u!114 &-8777914350198589862
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -4149179654585470740}
+  m_link: {fileID: 0}
+  m_title: X
+  m_isOptional: 0
+--- !u!114 &-8704044876793873454
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
+  m_Name: Socket [Out]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -8103066454659338566}
+  m_link: {fileID: -1617065377441416188}
+--- !u!114 &-8636270700351966391
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &-8103066454659338566
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -45,16 +118,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93180682460160c4386e2f251c8f5f66, type: 3}
-  m_Name: OneMinus
+  m_Name: 1 - a
   m_EditorClassIdentifier: 
-  m_position: {x: 518, y: 518}
+  m_position: {x: 532, y: 518}
   m_formula: {fileID: 11400000}
   m_inputs:
   - {fileID: 7885193027748784899}
   m_outputs:
-  - {fileID: -1248444196765328056}
+  - {fileID: -8704044876793873454}
   m_varIndex: 13
   m_isInit: 1
+--- !u!114 &-8008739877968420672
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101a791b42c9c774487716c4ff850d95, type: 3}
+  m_Name: "a\xB2"
+  m_EditorClassIdentifier: 
+  m_position: {x: 840, y: 518}
+  m_formula: {fileID: 11400000}
+  m_inputs:
+  - {fileID: -7379355135667608834}
+  - {fileID: -2871641509398281029}
+  m_outputs:
+  - {fileID: 7994476160996629475}
+  m_varIndex: 15
+  m_isInit: 1
+  m_power: 1.3
+--- !u!114 &-7964828482740475184
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &-7892517677589590281
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -70,6 +181,7 @@ MonoBehaviour:
   m_owner: {fileID: -5964610089878425998}
   m_link: {fileID: 7712295147234433342}
   m_title: X
+  m_isOptional: 0
 --- !u!114 &-7879774940970285800
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -85,6 +197,45 @@ MonoBehaviour:
   m_owner: {fileID: -5964610089878425998}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
+--- !u!114 &-7766717666187288203
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101a791b42c9c774487716c4ff850d95, type: 3}
+  m_Name: "a\xB2"
+  m_EditorClassIdentifier: 
+  m_position: {x: 812, y: 280}
+  m_formula: {fileID: 11400000}
+  m_inputs:
+  - {fileID: -2502278369892153361}
+  - {fileID: 292838352711285299}
+  m_outputs:
+  - {fileID: 3298280114032902760}
+  m_varIndex: 9
+  m_isInit: 1
+  m_power: 3.4
+--- !u!114 &-7629033305482693320
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &-7389746781335123132
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -100,6 +251,23 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
+--- !u!114 &-7379355135667608834
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -8008739877968420672}
+  m_link: {fileID: -8806780488072211197}
+  m_title: Value
+  m_isOptional: 0
 --- !u!114 &-7361346174637423385
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -115,6 +283,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
 --- !u!114 &-7178538432653492173
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -173,6 +342,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
+  m_isOptional: 0
 --- !u!114 &-7026174991762973278
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -186,8 +356,41 @@ MonoBehaviour:
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
   m_owner: {fileID: -1193698184868086254}
-  m_link: {fileID: 4532380458313256620}
+  m_link: {fileID: 7994476160996629475}
   m_title: Z
+  m_isOptional: 0
+--- !u!114 &-6865979900476282449
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -896597412539920201}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &-6779599925199638931
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 1901740837875044680}
+  m_link: {fileID: 0}
+  m_title: Value
+  m_isOptional: 0
 --- !u!114 &-6662159492835501194
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -203,6 +406,7 @@ MonoBehaviour:
   m_owner: {fileID: 6997245706934906527}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
 --- !u!114 &-6566600721577342292
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -218,6 +422,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &-6557928469570735674
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -230,9 +435,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
-  m_owner: {fileID: 271849896491108417}
-  m_link: {fileID: -1248444196765328056}
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
+--- !u!114 &-6471419706495872033
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &-6422878870181962813
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -248,6 +470,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Augend
+  m_isOptional: 0
 --- !u!114 &-6382429391596041476
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -263,27 +486,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
---- !u!114 &-6284422115799404895
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101a791b42c9c774487716c4ff850d95, type: 3}
-  m_Name: Pow
-  m_EditorClassIdentifier: 
-  m_position: {x: 812, y: 56}
-  m_formula: {fileID: 11400000}
-  m_inputs:
-  - {fileID: -5274865438967244166}
-  m_outputs:
-  - {fileID: -979772077288782664}
-  m_varIndex: 4
-  m_isInit: 1
-  m_power: 3.5
+  m_isOptional: 0
 --- !u!114 &-6241839468930975737
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -299,20 +502,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
---- !u!114 &-6119673618538459572
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
-  m_Name: Socket [Out]
-  m_EditorClassIdentifier: 
-  m_owner: {fileID: 952197352928351539}
-  m_link: {fileID: -5274865438967244166}
+  m_isOptional: 0
 --- !u!114 &-6040770017915932413
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -328,6 +518,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
 --- !u!114 &-5964610089878425998
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -353,10 +544,10 @@ MonoBehaviour:
   m_offsetX: 0
   m_offsetY: -0.11
   m_offsetZ: 0
-  m_mulX: 0.01
-  m_mulY: 0.01
+  m_mulX: 0.02
+  m_mulY: 0.02
   m_mulZ: 1
-  m_octaves: 5
+  m_octaves: 4
 --- !u!114 &-5902914017049660901
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -385,6 +576,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_owner: {fileID: -5964610089878425998}
   m_link: {fileID: 1446257803123410212}
+--- !u!114 &-5652642024058089333
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &-5618470799587541423
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -400,6 +607,39 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
+--- !u!114 &-5494636805886826114
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &-5456153096894145968
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -4149179654585470740}
+  m_link: {fileID: 0}
+  m_title: Z
+  m_isOptional: 1
 --- !u!114 &-5274865438967244166
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -412,9 +652,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
-  m_owner: {fileID: -6284422115799404895}
-  m_link: {fileID: -6119673618538459572}
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
+--- !u!114 &-4840819464641429284
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &-4566649238560099808
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f42e2d693a030478a2d21683a1547d, type: 3}
+  m_Name: Clamp
+  m_EditorClassIdentifier: 
+  m_position: {x: 672, y: 518}
+  m_formula: {fileID: 11400000}
+  m_inputs:
+  - {fileID: -1617065377441416188}
+  m_outputs:
+  - {fileID: -8806780488072211197}
+  m_varIndex: 14
+  m_isInit: 1
+  m_min: 0
+  m_max: 1
 --- !u!114 &-4413474297835010251
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -430,6 +709,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
 --- !u!114 &-4402963302297149900
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -445,7 +725,8 @@ MonoBehaviour:
   m_owner: {fileID: -5964610089878425998}
   m_link: {fileID: -3627861550116276019}
   m_title: Y
---- !u!114 &-3984231876970949191
+  m_isOptional: 0
+--- !u!114 &-4303142509838713120
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -454,11 +735,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
-  m_Name: Socket [Out]
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
   m_EditorClassIdentifier: 
-  m_owner: {fileID: 7439988332674560735}
-  m_link: {fileID: 2141090741176059923}
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &-4149179654585470740
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae598053e74b0b544843b3d45c06023d, type: 3}
+  m_Name: Simplex01
+  m_EditorClassIdentifier: 
+  m_position: {x: 658, y: 630}
+  m_formula: {fileID: 11400000}
+  m_inputs:
+  - {fileID: -8777914350198589862}
+  - {fileID: 8024883297077850121}
+  - {fileID: -5456153096894145968}
+  m_outputs: []
+  m_varIndex: 16
+  m_isInit: 1
+  m_offsetX: 0
+  m_offsetY: 0
+  m_offsetZ: 0
+  m_mulX: 1
+  m_mulY: 1
+  m_mulZ: 1
+  m_octaves: 1
+--- !u!114 &-4146099873190267703
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &-3911409287922913702
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -474,6 +801,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &-3627861550116276019
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -502,6 +830,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_owner: {fileID: 4014056123518942606}
   m_link: {fileID: -724790402857608815}
+--- !u!114 &-3254480682379849147
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
+  m_Name: Socket [Out]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -2234222914597062526}
+  m_link: {fileID: -2502278369892153361}
 --- !u!114 &-3162803353996826489
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -517,6 +859,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
 --- !u!114 &-3103247202109025413
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -532,6 +875,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
 --- !u!114 &-3016758644483947100
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -546,6 +890,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_owner: {fileID: 882781943160109250}
   m_link: {fileID: 7885193027748784899}
+--- !u!114 &-2871641509398281029
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -8008739877968420672}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &-2735809200338313629
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -561,6 +921,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &-2645475859543007306
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -576,6 +937,23 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
+  m_isOptional: 0
+--- !u!114 &-2535128492615396839
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -896597412539920201}
+  m_link: {fileID: 0}
+  m_title: Value
+  m_isOptional: 0
 --- !u!114 &-2532450295727944331
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -591,6 +969,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &-2517445919996327026
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -606,6 +985,39 @@ MonoBehaviour:
   m_owner: {fileID: 4014056123518942606}
   m_link: {fileID: 5977658854327414259}
   m_title: Value
+  m_isOptional: 0
+--- !u!114 &-2516390505450902581
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &-2502278369892153361
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -7766717666187288203}
+  m_link: {fileID: -3254480682379849147}
+  m_title: Value
+  m_isOptional: 0
 --- !u!114 &-2234222914597062526
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -623,7 +1035,7 @@ MonoBehaviour:
   m_inputs:
   - {fileID: -724790402857608815}
   m_outputs:
-  - {fileID: 1618933409550514985}
+  - {fileID: -3254480682379849147}
   m_varIndex: 8
   m_isInit: 1
   m_min: 0
@@ -647,6 +1059,20 @@ MonoBehaviour:
   m_outputs: []
   m_varIndex: 0
   m_isInit: 1
+--- !u!114 &-2044788280919469056
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
+  m_Name: Socket [Out]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -1193698184868086254}
+  m_link: {fileID: 1493880819954422865}
 --- !u!114 &-1978534399185718449
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -661,6 +1087,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_owner: {fileID: -7178538432653492173}
   m_link: {fileID: 4245872081892277138}
+--- !u!114 &-1617065377441416188
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -4566649238560099808}
+  m_link: {fileID: -8704044876793873454}
+  m_title: Value
+  m_isOptional: 0
 --- !u!114 &-1572393718448273771
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -676,20 +1118,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
---- !u!114 &-1248444196765328056
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
-  m_Name: Socket [Out]
-  m_EditorClassIdentifier: 
-  m_owner: {fileID: -8103066454659338566}
-  m_link: {fileID: -6557928469570735674}
+  m_isOptional: 0
 --- !u!114 &-1193698184868086254
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -702,23 +1131,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae598053e74b0b544843b3d45c06023d, type: 3}
   m_Name: Simplex01
   m_EditorClassIdentifier: 
-  m_position: {x: 1064, y: 266}
+  m_position: {x: 1106, y: 266}
   m_formula: {fileID: 11400000}
   m_inputs:
   - {fileID: -56846660569621572}
   - {fileID: 2141090741176059923}
   - {fileID: -7026174991762973278}
   m_outputs:
-  - {fileID: -57517475040085508}
+  - {fileID: -2044788280919469056}
   m_varIndex: 10
   m_isInit: 1
   m_offsetX: 0.51
   m_offsetY: 0.66
   m_offsetZ: 0.88
   m_mulX: 0.88
-  m_mulY: 0.65
-  m_mulZ: 0.44
-  m_octaves: 4
+  m_mulY: 0.74
+  m_mulZ: 0.42
+  m_octaves: 3
 --- !u!114 &-1067090222133988763
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -734,7 +1163,8 @@ MonoBehaviour:
   m_owner: {fileID: 952197352928351539}
   m_link: {fileID: -5902914017049660901}
   m_title: Value
---- !u!114 &-979772077288782664
+  m_isOptional: 0
+--- !u!114 &-896597412539920201
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -743,11 +1173,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
-  m_Name: Socket [Out]
+  m_Script: {fileID: 11500000, guid: 101a791b42c9c774487716c4ff850d95, type: 3}
+  m_Name: "a\xB2"
   m_EditorClassIdentifier: 
-  m_owner: {fileID: -6284422115799404895}
-  m_link: {fileID: -56846660569621572}
+  m_position: {x: 812, y: 56}
+  m_formula: {fileID: 11400000}
+  m_inputs:
+  - {fileID: 2837218859913860255}
+  - {fileID: -6865979900476282449}
+  m_outputs:
+  - {fileID: 4549281993223343210}
+  m_varIndex: 4
+  m_isInit: 1
+  m_power: 3.7
 --- !u!114 &-876941410050401549
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -763,6 +1201,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &-843707390244582178
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -778,6 +1217,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
+  m_isOptional: 0
 --- !u!114 &-724790402857608815
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -793,6 +1233,7 @@ MonoBehaviour:
   m_owner: {fileID: -2234222914597062526}
   m_link: {fileID: -3501324199818463647}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &-465780882103894083
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -808,6 +1249,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
 --- !u!114 &-396462747230998488
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -823,6 +1265,7 @@ MonoBehaviour:
   m_owner: {fileID: 7589386600370388987}
   m_link: {fileID: 3790310806761569279}
   m_title: Y
+  m_isOptional: 0
 --- !u!114 &-321271919177335168
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -835,10 +1278,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
-  m_owner: {fileID: -8283342101590897066}
+  m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
---- !u!114 &-57517475040085508
+  m_isOptional: 0
+--- !u!114 &-149876857535607215
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -847,11 +1291,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
-  m_Name: Socket [Out]
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
   m_EditorClassIdentifier: 
-  m_owner: {fileID: -1193698184868086254}
-  m_link: {fileID: 1493880819954422865}
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &-56846660569621572
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -865,8 +1311,9 @@ MonoBehaviour:
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
   m_owner: {fileID: -1193698184868086254}
-  m_link: {fileID: -979772077288782664}
+  m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,50 +1329,29 @@ MonoBehaviour:
   m_modifiers:
   - {fileID: 516251685390687494}
   - {fileID: 4014056123518942606}
-  - {fileID: -2234222914597062526}
   - {fileID: -7121453065599416304}
-  - {fileID: 952197352928351539}
   - {fileID: 2277603228065937435}
   - {fileID: -7178538432653492173}
   - {fileID: 2660985394079675123}
-  - {fileID: -8103066454659338566}
   - {fileID: 882781943160109250}
-  - {fileID: 271849896491108417}
-  - {fileID: 7439988332674560735}
-  - {fileID: -6284422115799404895}
-  - {fileID: 7589386600370388987}
-  - {fileID: 6997245706934906527}
+  - {fileID: -8103066454659338566}
   - {fileID: -5964610089878425998}
   - {fileID: -2222561194326666652}
+  - {fileID: 7589386600370388987}
+  - {fileID: 6997245706934906527}
+  - {fileID: 952197352928351539}
+  - {fileID: -2234222914597062526}
+  - {fileID: -7766717666187288203}
+  - {fileID: -896597412539920201}
+  - {fileID: -4566649238560099808}
+  - {fileID: -8008739877968420672}
   - {fileID: -1193698184868086254}
-  - {fileID: -8283342101590897066}
-  m_zoom: 0.9090908
-  m_screenOffset: {x: 219, y: -25}
+  - {fileID: -4149179654585470740}
+  m_zoom: 1
+  m_screenOffset: {x: 83, y: -47}
   m_inputX: {fileID: -7178538432653492173}
   m_inputY: {fileID: 2660985394079675123}
   m_output: {fileID: -2222561194326666652}
---- !u!114 &271849896491108417
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27f42e2d693a030478a2d21683a1547d, type: 3}
-  m_Name: Clamp
-  m_EditorClassIdentifier: 
-  m_position: {x: 658, y: 518}
-  m_formula: {fileID: 11400000}
-  m_inputs:
-  - {fileID: -6557928469570735674}
-  m_outputs:
-  - {fileID: 6945692679475211998}
-  m_varIndex: 14
-  m_isInit: 1
-  m_min: 0
-  m_max: 1
 --- !u!114 &289325357236706036
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -941,6 +1367,39 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
+--- !u!114 &292838352711285299
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -7766717666187288203}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &305807181387692769
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &516251685390687494
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -951,7 +1410,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93180682460160c4386e2f251c8f5f66, type: 3}
-  m_Name: OneMinus
+  m_Name: 1 - a
   m_EditorClassIdentifier: 
   m_position: {x: 518, y: 56}
   m_formula: {fileID: 11400000}
@@ -976,6 +1435,23 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
+--- !u!114 &602167244445968235
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &882781943160109250
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -998,6 +1474,22 @@ MonoBehaviour:
   m_isInit: 1
   m_min: 0
   m_max: 1
+--- !u!114 &920928975947088314
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &952197352928351539
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1015,7 +1507,7 @@ MonoBehaviour:
   m_inputs:
   - {fileID: -1067090222133988763}
   m_outputs:
-  - {fileID: -6119673618538459572}
+  - {fileID: 5667925325527864328}
   m_varIndex: 3
   m_isInit: 1
   m_min: 0
@@ -1035,6 +1527,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
 --- !u!114 &1446257803123410212
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1050,6 +1543,23 @@ MonoBehaviour:
   m_owner: {fileID: 882781943160109250}
   m_link: {fileID: -5677359685597642299}
   m_title: Value
+  m_isOptional: 0
+--- !u!114 &1462799253841883114
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &1472036795026487399
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1065,6 +1575,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
+  m_isOptional: 0
 --- !u!114 &1493880819954422865
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1078,8 +1589,9 @@ MonoBehaviour:
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
   m_owner: {fileID: -2222561194326666652}
-  m_link: {fileID: -57517475040085508}
+  m_link: {fileID: -2044788280919469056}
   m_title: Result
+  m_isOptional: 0
 --- !u!114 &1496460502838071909
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1092,23 +1604,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
-  m_owner: {fileID: 7439988332674560735}
-  m_link: {fileID: 1618933409550514985}
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
   m_title: Value
---- !u!114 &1618933409550514985
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
-  m_Name: Socket [Out]
-  m_EditorClassIdentifier: 
-  m_owner: {fileID: -2234222914597062526}
-  m_link: {fileID: 1496460502838071909}
+  m_isOptional: 0
 --- !u!114 &1656430392004607781
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1124,6 +1623,23 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
+  m_isOptional: 0
+--- !u!114 &2036037931393260009
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 1
 --- !u!114 &2100346393630626300
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1153,6 +1669,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Multiplier
+  m_isOptional: 0
 --- !u!114 &2137940449440555456
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1168,6 +1685,7 @@ MonoBehaviour:
   m_owner: {fileID: 2277603228065937435}
   m_link: {fileID: 5122480296044163147}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &2141090741176059923
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1181,8 +1699,9 @@ MonoBehaviour:
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
   m_owner: {fileID: -1193698184868086254}
-  m_link: {fileID: -3984231876970949191}
+  m_link: {fileID: 3298280114032902760}
   m_title: Y
+  m_isOptional: 0
 --- !u!114 &2220790291301427775
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1197,6 +1716,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_owner: {fileID: 2277603228065937435}
   m_link: {fileID: 4567707914818427099}
+--- !u!114 &2245990813699536320
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -896597412539920201}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &2277603228065937435
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1219,6 +1754,22 @@ MonoBehaviour:
   m_isInit: 1
   m_min: 0
   m_max: 1
+--- !u!114 &2649527905712636428
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &2660985394079675123
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1255,6 +1806,23 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
+  m_isOptional: 0
+--- !u!114 &2837218859913860255
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -896597412539920201}
+  m_link: {fileID: 5667925325527864328}
+  m_title: Value
+  m_isOptional: 0
 --- !u!114 &2838785469595145638
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1270,6 +1838,53 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
+--- !u!114 &2973949695992259780
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Value
+  m_isOptional: 0
+--- !u!114 &3125119526290405400
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Value
+  m_isOptional: 0
+--- !u!114 &3298280114032902760
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
+  m_Name: Socket [Out]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -7766717666187288203}
+  m_link: {fileID: 2141090741176059923}
 --- !u!114 &3393640901653727003
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1285,6 +1900,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
 --- !u!114 &3480708117878202712
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1314,6 +1930,23 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
+  m_isOptional: 0
+--- !u!114 &3765677427665669234
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Value
+  m_isOptional: 0
 --- !u!114 &3790310806761569279
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1328,6 +1961,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_owner: {fileID: 2660985394079675123}
   m_link: {fileID: -396462747230998488}
+--- !u!114 &3950339243937438962
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &3976695090421884672
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1343,6 +1992,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
+  m_isOptional: 0
 --- !u!114 &4014056123518942606
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1353,7 +2003,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93180682460160c4386e2f251c8f5f66, type: 3}
-  m_Name: OneMinus
+  m_Name: 1 - a
   m_EditorClassIdentifier: 
   m_position: {x: 518, y: 280}
   m_formula: {fileID: 11400000}
@@ -1378,6 +2028,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Multiplicand
+  m_isOptional: 0
 --- !u!114 &4245872081892277138
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1393,6 +2044,23 @@ MonoBehaviour:
   m_owner: {fileID: 7589386600370388987}
   m_link: {fileID: -1978534399185718449}
   m_title: X
+  m_isOptional: 0
+--- !u!114 &4426510512697593849
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &4433090541549366634
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1408,20 +2076,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
---- !u!114 &4532380458313256620
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
-  m_Name: Socket [Out]
-  m_EditorClassIdentifier: 
-  m_owner: {fileID: -8283342101590897066}
-  m_link: {fileID: -7026174991762973278}
+  m_isOptional: 0
 --- !u!114 &4542282301234921532
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1437,6 +2092,21 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
+--- !u!114 &4549281993223343210
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
+  m_Name: Socket [Out]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -896597412539920201}
+  m_link: {fileID: -56846660569621572}
 --- !u!114 &4551488692372162725
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1452,6 +2122,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Multiplicand
+  m_isOptional: 0
 --- !u!114 &4567707914818427099
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1467,6 +2138,7 @@ MonoBehaviour:
   m_owner: {fileID: 516251685390687494}
   m_link: {fileID: 2220790291301427775}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &4598908785586012608
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1482,6 +2154,23 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
+  m_isOptional: 0
+--- !u!114 &4666702556961866874
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &5122480296044163147
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1496,6 +2185,84 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_owner: {fileID: 7589386600370388987}
   m_link: {fileID: 2137940449440555456}
+--- !u!114 &5128224680504386543
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &5168109935055271803
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &5177009111451132381
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &5667925325527864328
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
+  m_Name: Socket [Out]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 952197352928351539}
+  m_link: {fileID: 2837218859913860255}
+--- !u!114 &5743405989493556408
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 1901740837875044680}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 1
 --- !u!114 &5851638335574394523
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1511,6 +2278,7 @@ MonoBehaviour:
   m_owner: {fileID: 6997245706934906527}
   m_link: {fileID: 3480708117878202712}
   m_title: Y
+  m_isOptional: 0
 --- !u!114 &5878620967688571815
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1526,6 +2294,23 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
+--- !u!114 &5945532004004600642
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Value
+  m_isOptional: 0
 --- !u!114 &5977658854327414259
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1555,6 +2340,23 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
+--- !u!114 &6238791977142231504
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &6534135865686718215
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1570,6 +2372,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Min
+  m_isOptional: 0
 --- !u!114 &6726995674680881992
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1585,7 +2388,8 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Multiplier
---- !u!114 &6945692679475211998
+  m_isOptional: 0
+--- !u!114 &6979427668533059081
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1594,11 +2398,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
-  m_Name: Socket [Out]
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
   m_EditorClassIdentifier: 
-  m_owner: {fileID: 271849896491108417}
-  m_link: {fileID: -321271919177335168}
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &6997245706934906527
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1621,13 +2427,29 @@ MonoBehaviour:
   - {fileID: 7239218384389741851}
   m_varIndex: 5
   m_isInit: 1
-  m_offsetX: 0.46
+  m_offsetX: 0.58
   m_offsetY: 1.04
   m_offsetZ: 0
-  m_mulX: 0.01
+  m_mulX: 0.07
   m_mulY: 0.01
   m_mulZ: 0.02
   m_octaves: 6
+--- !u!114 &7003596365791781768
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &7007365736815538117
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1643,6 +2465,7 @@ MonoBehaviour:
   m_owner: {fileID: 6997245706934906527}
   m_link: {fileID: 2100346393630626300}
   m_title: X
+  m_isOptional: 0
 --- !u!114 &7075590132165216890
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1658,6 +2481,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &7239218384389741851
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1672,7 +2496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_owner: {fileID: 6997245706934906527}
   m_link: {fileID: 8235483496794009987}
---- !u!114 &7439988332674560735
+--- !u!114 &7546488206571664182
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1681,18 +2505,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101a791b42c9c774487716c4ff850d95, type: 3}
-  m_Name: Pow
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
   m_EditorClassIdentifier: 
-  m_position: {x: 812, y: 280}
-  m_formula: {fileID: 11400000}
-  m_inputs:
-  - {fileID: 1496460502838071909}
-  m_outputs:
-  - {fileID: -3984231876970949191}
-  m_varIndex: 9
-  m_isInit: 1
-  m_power: 1.1
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &7560423678044324857
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &7589386600370388987
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1722,6 +2557,38 @@ MonoBehaviour:
   m_mulY: 0.01
   m_mulZ: 0.02
   m_octaves: 3
+--- !u!114 &7592265306179951584
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &7680882966011162428
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 1
 --- !u!114 &7712295147234433342
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1751,6 +2618,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
+  m_isOptional: 0
 --- !u!114 &7885193027748784899
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1766,6 +2634,37 @@ MonoBehaviour:
   m_owner: {fileID: -8103066454659338566}
   m_link: {fileID: -3016758644483947100}
   m_title: Value
+  m_isOptional: 0
+--- !u!114 &7994476160996629475
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
+  m_Name: Socket [Out]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -8008739877968420672}
+  m_link: {fileID: -7026174991762973278}
+--- !u!114 &8024883297077850121
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: -4149179654585470740}
+  m_link: {fileID: 0}
+  m_title: Y
+  m_isOptional: 0
 --- !u!114 &8029540982394848389
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1781,6 +2680,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
 --- !u!114 &8095653006334417660
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1796,6 +2696,23 @@ MonoBehaviour:
   m_owner: {fileID: 7589386600370388987}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
+--- !u!114 &8215191904790452056
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &8235483496794009987
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1811,6 +2728,7 @@ MonoBehaviour:
   m_owner: {fileID: -7121453065599416304}
   m_link: {fileID: 7239218384389741851}
   m_title: Value
+  m_isOptional: 0
 --- !u!114 &8377561642010882125
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1826,6 +2744,39 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Max
+  m_isOptional: 0
+--- !u!114 &8608421521218789109
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
+--- !u!114 &8613077096335243206
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0
 --- !u!114 &8951555883367229001
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1841,6 +2792,7 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Addend
+  m_isOptional: 0
 --- !u!114 &8997183260282244004
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1856,3 +2808,20 @@ MonoBehaviour:
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
+  m_isOptional: 0
+--- !u!114 &9007319758962221278
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
+  m_Name: Socket [In]
+  m_EditorClassIdentifier: 
+  m_owner: {fileID: 0}
+  m_link: {fileID: 0}
+  m_title: Power
+  m_isOptional: 0

@@ -10,14 +10,11 @@ public class FormulaModInvert : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "1/a";
+
         AddInput("Value");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Invert";
-    }
 
     private static readonly string m_varPrefix = "inv";
     public override string VarPrefix => m_varPrefix;

@@ -11,16 +11,13 @@ public class FormulaModLerp : FormulaMod
 #if UNITY_EDITOR
     protected override void Initialize()
     {
+        name = "Lerp";
+
         AddInput("Value");
         AddInput("Min");
         AddInput("Max");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "Lerp";
-    }
 
     private static readonly string m_varPrefix = "lerp";
     public override string VarPrefix => m_varPrefix;

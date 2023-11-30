@@ -8,7 +8,7 @@ public class DivideDrawer : BaseDrawer
 {
     public override string HelpMessage => m_helpMessage;
 
-    private const string m_helpMessage = "[<color=orange>Divide</color>] divides the first input slot value by the second input slot value.\n" +
+    private const string m_helpMessage = "[<color=orange>a / b</color>] divides the first input slot value by the second input slot value.\n" +
         "Underlying formula will be like\n" +
         "        res = a / b\n" +
         "where 'a' is the first input slot parameter and\n" +

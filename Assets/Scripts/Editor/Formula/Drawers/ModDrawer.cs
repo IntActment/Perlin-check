@@ -331,6 +331,13 @@ public abstract class ModDrawer<T> where T : FormulaMod
                     GUI.Box(area, new GUIContent("", mod.Inputs[i].Title), GUI.skin.customStyles[97]);
                     //EditorGUIUtility.AddCursorRect(area, MouseCursor.Pan);
 
+                    if (true == mod.Inputs[i].IsOptional)
+                    {
+                        var style2 = GUI.skin.customStyles[480];
+                        Rect place = new Rect(area.x + style2.fixedWidth / 2, area.y + style2.fixedWidth / 2, style2.fixedWidth, style2.fixedHeight);
+                        GUI.Box(place, "", style2);
+                    }
+
                     if ((ev.button == 0) && area.Contains(ev.mousePosition))
                     {
                         if (false == down)

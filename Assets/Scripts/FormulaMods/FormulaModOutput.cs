@@ -12,14 +12,11 @@ public class FormulaModOutput : FormulaMod
 
     protected override void Initialize()
     {
+        name = "[Out]";
+
         AddInput("Result");
     }
 #endif
-
-    protected override void OnEnable()
-    {
-        name = "[Out]";
-    }
 
     public override string VarPrefix => null;
 
