@@ -23,7 +23,7 @@ public class Simplex01Drawer : BaseDrawer
     private const string m_helpMessage2 = "[<color=orange>Simplex01</color>] calculates simplex noise value in range [0 .. 1] based\n" +
         "  on three input slots values and multiple parameters.\n" +
         "Underlying formula will be like\n" +
-        "        res = simplex01(octaves, offsetX + x * mulX, offsetY + y * mulY)\n" +
+        "        res = simplex01(octaves, offsetX + x * mulX, offsetY + y * mulY, offsetYZ + z * mulZ)\n" +
         "where 'x' is the first input slot parameter,\n" +
         "      'y' is the second input slot parameter,\n" +
         "      'z' is the third input slot parameter,\n" +
