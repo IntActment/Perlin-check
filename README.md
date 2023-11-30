@@ -1,4 +1,4 @@
-# Perlin check
+﻿# Perlin check
 
 Handy editor-based tool for combining simplex noises via building formula in the graph editor.
 Can be used to gain understanding about how different formula members do impact on the resulting noise map.
@@ -112,7 +112,13 @@ Can be used to gain understanding about how different formula members do impact 
 
     | ![](Docs/img10.png?raw=true"") |
     |:--:|
-    | *This rule has one exception: the "**Simplex01**" third input socket binding results into using the 3d noise formula instead.* |
+    | *Non-connected input sockets passes 0 by default.* |
+
+  - Some of the input sockets are "optional": connecting this socket changes the node function behavior. Non-connected "optional" sockets are not used by the formula at all.
+
+    | ![](Docs/img19.png?raw=true"") |
+    |:--:|
+    | *Optional input sockets has special icon. Notice how the "**Simplex01**" and the "**a²**" node appearance has changed after its optional input socket has been connected.* |
 
   - Any node connection or configurable parameter changes will be instantly reflected in the mesh - this is the main target of this project. You 
       change value and watch how it reflects on the result without waiting for code recompilation/assembly reloading.

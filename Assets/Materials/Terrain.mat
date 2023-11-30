@@ -10,7 +10,8 @@ Material:
   m_Name: Terrain
   m_Shader: {fileID: 4800000, guid: 95e7adb82246bd4428d94ff0b9046579, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _EMISSION
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
