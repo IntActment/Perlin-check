@@ -173,10 +173,10 @@ public class ComplexFormula : ComplexScriptable
             noise.MulY = 0.04f;
             noise.MulZ = 0.04f;
 
-            await m_inputX.AddOutput(noise.Inputs[0]);
-            await m_inputY.AddOutput(noise.Inputs[1]);
+            m_inputX.AddOutput(noise.Inputs[0]);
+            m_inputY.AddOutput(noise.Inputs[1]);
 
-            await noise.AddOutput(m_output.Inputs[0]);
+            noise.AddOutput(m_output.Inputs[0]);
 
             this.Save();
         }

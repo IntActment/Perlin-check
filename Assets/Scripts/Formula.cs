@@ -14,6 +14,8 @@ public class Formula : MonoBehaviour
     public Color CutColor = Color.red;
     public float HeightScale = 10;
     public ComplexFormula ComplexFormula;
+    public bool SmoothNormals = true;
+    public bool UseCut = true;
 
     public Vector2Int size = new Vector2Int(128, 128);
     public float[,] data = new float[128, 128];
@@ -107,7 +109,7 @@ public class Formula : MonoBehaviour
             }
         }
 
-        TerrainTest.Rebuild(data, CutLevel, CutColor, HeightScale, m_forceRebuild);
+        TerrainTest.Rebuild(data, CutLevel, CutColor, HeightScale, m_forceRebuild, SmoothNormals, UseCut);
 
         m_forceRebuild = false;
     }

@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 #if UNITY_EDITOR
-using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 #endif
 

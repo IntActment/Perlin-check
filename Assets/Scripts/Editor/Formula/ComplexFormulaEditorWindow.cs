@@ -134,17 +134,17 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("Simplex01"))
                             {
-                                await m_formula.CreateMod<FormulaModSimplex01>(GetCenter());
+                                m_formula.CreateMod<FormulaModSimplex01>(GetCenter());
                             }
 
                             if (GUILayout.Button("Number"))
                             {
-                                await m_formula.CreateMod<FormulaModNumber>(GetCenter());
+                                m_formula.CreateMod<FormulaModNumber>(GetCenter());
                             }
 
                             if (GUILayout.Button("Clamp"))
                             {
-                                await m_formula.CreateMod<FormulaModClamp>(GetCenter());
+                                m_formula.CreateMod<FormulaModClamp>(GetCenter());
                             }
                         }
 
@@ -152,27 +152,27 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("Lerp"))
                             {
-                                await m_formula.CreateMod<FormulaModLerp>(GetCenter());
+                                m_formula.CreateMod<FormulaModLerp>(GetCenter());
                             }
 
                             if (GUILayout.Button("Norm01"))
                             {
-                                await m_formula.CreateMod<FormulaModNorm01>(GetCenter());
+                                m_formula.CreateMod<FormulaModNorm01>(GetCenter());
                             }
 
                             if (GUILayout.Button("1 - a"))
                             {
-                                await m_formula.CreateMod<FormulaModOneMinus>(GetCenter());
+                                m_formula.CreateMod<FormulaModOneMinus>(GetCenter());
                             }
 
                             if (GUILayout.Button("1 / a"))
                             {
-                                await m_formula.CreateMod<FormulaModInvert>(GetCenter());
+                                m_formula.CreateMod<FormulaModInvert>(GetCenter());
                             }
 
                             if (GUILayout.Button("-a"))
                             {
-                                await m_formula.CreateMod<FormulaModNegate>(GetCenter());
+                                m_formula.CreateMod<FormulaModNegate>(GetCenter());
                             }
                         }
 
@@ -180,32 +180,32 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("+"))
                             {
-                                await m_formula.CreateMod<FormulaModSum>(GetCenter());
+                                m_formula.CreateMod<FormulaModSum>(GetCenter());
                             }
 
                             if (GUILayout.Button("-"))
                             {
-                                await m_formula.CreateMod<FormulaModSubtract>(GetCenter());
+                                m_formula.CreateMod<FormulaModSubtract>(GetCenter());
                             }
 
                             if (GUILayout.Button("×"))
                             {
-                                await m_formula.CreateMod<FormulaModMultiply>(GetCenter());
+                                m_formula.CreateMod<FormulaModMultiply>(GetCenter());
                             }
 
                             if (GUILayout.Button("÷"))
                             {
-                                await m_formula.CreateMod<FormulaModDivide>(GetCenter());
+                                m_formula.CreateMod<FormulaModDivide>(GetCenter());
                             }
 
                             if (GUILayout.Button("√a"))
                             {
-                                await m_formula.CreateMod<FormulaModSqrt>(GetCenter());
+                                m_formula.CreateMod<FormulaModSqrt>(GetCenter());
                             }
 
                             if (GUILayout.Button("a²"))
                             {
-                                await m_formula.CreateMod<FormulaModPow>(GetCenter());
+                                m_formula.CreateMod<FormulaModPow>(GetCenter());
                             }
                         }
                     }
@@ -290,7 +290,7 @@ public class ComplexFormulaEditorWindow : EditorWindow
 
                                 for (int i = 0; i < drawersList.Count; i++)
                                 {
-                                    await drawersList[i].DrawGUI(m_keys, state, m_zoomer.zoomOrigin, m_zoomer.zoom);
+                                    drawersList[i].DrawGUI(m_keys, state, m_zoomer.zoomOrigin, m_zoomer.zoom);
                                 }
                             }
 
@@ -319,6 +319,19 @@ public class ComplexFormulaEditorWindow : EditorWindow
                             m_formula.ScreenOffset = Vector2Int.zero;
                             m_formula.Zoom = 1;
                             m_formula.Save();
+                        }
+
+                        if (GUILayout.Button("Reset zoom", GUILayout.ExpandHeight(true)))
+                        {
+                            var scaleOld = 1f / m_formula.Zoom * 100;
+                            var newZoom = 1f;
+                            if (newZoom != m_formula.Zoom)
+                            {
+                                Vector2 mousePos = m_zoomer.zoomArea.center - m_zoomer.zoomArea.min;
+                                m_formula.ScreenOffset = Vector2Int.RoundToInt((mousePos - (mousePos - m_formula.ScreenOffset * m_formula.Zoom) * newZoom / m_formula.Zoom) / newZoom);
+                                m_formula.Zoom = newZoom;
+                                m_formula.Save();
+                            }
                         }
 
                         using (_ = new Layout(LayoutType.Vertical, GUILayout.ExpandHeight(true)))

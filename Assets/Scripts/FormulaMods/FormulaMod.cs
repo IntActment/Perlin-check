@@ -208,7 +208,7 @@ public abstract class FormulaMod : ComplexScriptable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public async Task<bool> AddOutput(FormulaSocketIn targetSocketIn)
+    public bool AddOutput(FormulaSocketIn targetSocketIn)
     {
         if (false == CheckRecursion(targetSocketIn.Owner))
         {
@@ -226,7 +226,7 @@ public abstract class FormulaMod : ComplexScriptable
 
         AddSubAsset(newSocket);
 
-        await newSocket.WaitInit();
+        //await newSocket.WaitInit();
 
         this.Save();
 
@@ -246,7 +246,7 @@ public abstract class FormulaMod : ComplexScriptable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public async Task<bool> ReplaceOutput(int index, FormulaSocketIn targetSocketIn)
+    public bool ReplaceOutput(int index, FormulaSocketIn targetSocketIn)
     {
         if (false == CheckRecursion(targetSocketIn.Owner))
         {
@@ -255,7 +255,7 @@ public abstract class FormulaMod : ComplexScriptable
 
         if (index >= Outputs.Count)
         {
-            return await AddOutput(targetSocketIn);
+            return AddOutput(targetSocketIn);
         }
 
         var socket = Outputs[index];

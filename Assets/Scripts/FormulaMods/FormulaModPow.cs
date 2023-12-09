@@ -38,7 +38,14 @@ public class FormulaModPow : FormulaMod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
-        return Mathf.Pow(Inputs[0].CalculateInput(), m_power);
+        if (Inputs[1].Link == null)
+        {
+            return Mathf.Pow(Inputs[0].CalculateInput(), m_power);
+        }
+        else
+        {
+            return Mathf.Pow(Inputs[0].CalculateInput(), Inputs[1].CalculateInput());
+        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

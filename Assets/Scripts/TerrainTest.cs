@@ -17,7 +17,7 @@ public class TerrainTest : MonoBehaviour
     private Vector2Int m_lastSize = new Vector2Int(0, 0);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Rebuild(float[,] data, float cutLevel, Color cutColor, float heightScale, bool forceRebuildIndices)
+    public void Rebuild(float[,] data, float cutLevel, Color cutColor, float heightScale, bool forceRebuildIndices, bool smoothNormals, bool useCut)
     {
         if (null == data)
         {
@@ -68,7 +68,7 @@ public class TerrainTest : MonoBehaviour
                 {
                     for (int y = 0; y < size.y; y++)
                     {
-                        d = Mathf.Clamp(data[x, y], 0, cutLevel);
+                        d = useCut ? Mathf.Clamp(data[x, y], 0, cutLevel) : data[x, y];
                         vIndex = y * size.x + x;
                         m_vertices[vIndex] = new Vector3(x, d * heightScale, y);
                         m_colors[vIndex] = Color.LerpUnclamped(Color.black, Color.white, d);
@@ -89,7 +89,7 @@ public class TerrainTest : MonoBehaviour
             //UnityEngine.Debug.Log($"TerrainTest Rebuild: {sw2.ElapsedMilliseconds} ms");
 
             MeshRenderer.sharedMaterial.SetColor("_CutColor", cutColor);
-            MeshRenderer.sharedMaterial.SetFloat("_Cutout", cutLevel);
+            MeshRenderer.sharedMaterial.SetFloat("_Cutout", useCut ? cutLevel : 100000);
 
             Stopwatch sw1 = new Stopwatch();
             sw1.Start();
@@ -105,8 +105,11 @@ public class TerrainTest : MonoBehaviour
                 MeshFilter.sharedMesh.SetIndices(m_indices, MeshTopology.Quads, 0, true);
             }
 
-            MeshFilter.sharedMesh.RecalculateNormals();
-            //MeshFilter.sharedMesh.RecalculateTangents();
+            if (smoothNormals)
+            {
+                MeshFilter.sharedMesh.RecalculateNormals();
+                //MeshFilter.sharedMesh.RecalculateTangents();
+            }
         }
         sw.Stop();
 

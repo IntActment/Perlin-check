@@ -56,23 +56,41 @@ public class FormulaEditor : Editor
             }
 
             {
-                var val = EditorGUILayout.Slider("Cut level", m_formula.CutLevel, 0, 1);
-                if (val != m_formula.CutLevel)
+                var val = EditorGUILayout.Toggle("Use cut", m_formula.UseCut);
+                if (val != m_formula.UseCut)
                 {
-                    Undo.RecordObject(target, $"formula CutLevel");
-                    m_formula.CutLevel = val;
+                    Undo.RecordObject(target, $"Use cut");
+                    m_formula.UseCut = val;
                     EditorUtility.SetDirty(target);
                 }
             }
 
             {
-                var val = EditorGUILayout.ColorField("Cut color", m_formula.CutColor);
-                if (val != m_formula.CutColor)
+                EditorGUI.BeginDisabledGroup(false == m_formula.UseCut);
+
+                EditorGUI.indentLevel++;
                 {
-                    Undo.RecordObject(target, $"formula CutColor");
-                    m_formula.CutColor = val;
-                    EditorUtility.SetDirty(target);
+                    var val = EditorGUILayout.Slider("Cut level", m_formula.CutLevel, 0, 1);
+                    if (val != m_formula.CutLevel)
+                    {
+                        Undo.RecordObject(target, $"formula CutLevel");
+                        m_formula.CutLevel = val;
+                        EditorUtility.SetDirty(target);
+                    }
                 }
+
+                {
+                    var val = EditorGUILayout.ColorField("Cut color", m_formula.CutColor);
+                    if (val != m_formula.CutColor)
+                    {
+                        Undo.RecordObject(target, $"formula CutColor");
+                        m_formula.CutColor = val;
+                        EditorUtility.SetDirty(target);
+                    }
+                }
+                EditorGUI.indentLevel--;
+
+                EditorGUI.EndDisabledGroup();
             }
 
             {
@@ -81,6 +99,17 @@ public class FormulaEditor : Editor
                 {
                     Undo.RecordObject(target, $"formula HeightScale");
                     m_formula.HeightScale = val;
+                    EditorUtility.SetDirty(target);
+                }
+            }
+
+            if (false)
+            {
+                var val = EditorGUILayout.Toggle("Smooth normals", m_formula.SmoothNormals);
+                if (val != m_formula.SmoothNormals)
+                {
+                    Undo.RecordObject(target, $"Smooth normals");
+                    m_formula.SmoothNormals = val;
                     EditorUtility.SetDirty(target);
                 }
             }

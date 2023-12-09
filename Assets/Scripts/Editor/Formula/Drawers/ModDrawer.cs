@@ -15,7 +15,11 @@ public class PopupMessage : PopupWindowContent
         Matrix4x4 previousMatrix = GUI.matrix;
         GUI.matrix = GUI.matrix * Matrix4x4.Scale(new Vector3(1 / zoom, 1 / zoom, 1));
 
-        PopupWindow.Show(new Rect(Event.current.mousePosition, Vector2.zero), new PopupMessage(message));
+        try
+        {
+            PopupWindow.Show(new Rect(Event.current.mousePosition, Vector2.zero), new PopupMessage(message));
+        }
+        catch { }
 
         GUI.matrix = previousMatrix;
     }
@@ -25,7 +29,11 @@ public class PopupMessage : PopupWindowContent
         Matrix4x4 previousMatrix = GUI.matrix;
         GUI.matrix = GUI.matrix * Matrix4x4.Scale(new Vector3(1 / zoom, 1 / zoom, 1));
 
-        PopupWindow.Show(new Rect(Event.current.mousePosition, Vector2.zero), new PopupMessage(code, true));
+        try
+        {
+            PopupWindow.Show(new Rect(Event.current.mousePosition, Vector2.zero), new PopupMessage(code, true));
+        }
+        catch { }
 
         GUI.matrix = previousMatrix;
     }
@@ -283,7 +291,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
 
     public bool HasActiveInput { get; set; } = false;
 
-    public async Task DrawGUI(KeyHolder keys, InputState state, Vector2 position, float zoom)
+    public void DrawGUI(KeyHolder keys, InputState state, Vector2 position, float zoom)
     {
         var ev = Event.current;
 
@@ -392,7 +400,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                     {
                                         if (m_connectingWith.Item3 == -1)
                                         {
-                                            bool added = await m_connectingWith.Item1.AddOutput(mod.Inputs[i]);
+                                            bool added = m_connectingWith.Item1.AddOutput(mod.Inputs[i]);
                                             if (true == added)
                                             {
                                                 succ = true;
@@ -406,7 +414,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                         }
                                         else if (m_connectingWith.Item3 > -1)
                                         {
-                                            bool replaced = await m_connectingWith.Item1.ReplaceOutput(m_connectingWith.Item3, mod.Inputs[i]);
+                                            bool replaced = m_connectingWith.Item1.ReplaceOutput(m_connectingWith.Item3, mod.Inputs[i]);
                                             if (true == replaced)
                                             {
                                                 succ = true;
@@ -519,7 +527,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                     {
                                         if (i == mod.Outputs.Count)
                                         {
-                                            bool added = await mod.AddOutput(m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
+                                            bool added = mod.AddOutput(m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
                                             if (true == added)
                                             {
                                                 succ = true;
@@ -533,7 +541,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                         }
                                         else if (i < mod.Outputs.Count)
                                         {
-                                            bool replaced = await mod.ReplaceOutput(i, m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
+                                            bool replaced = mod.ReplaceOutput(i, m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
                                             if (true == replaced)
                                             {
                                                 succ = true;

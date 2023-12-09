@@ -29,11 +29,4 @@ public class FormulaSocketOut : FormulaSocket
         }
 #endif
     }
-
-#if UNITY_EDITOR
-    protected override async Task OnLateInit()
-    {
-        await Task.CompletedTask;
-    }
-#endif
 }
