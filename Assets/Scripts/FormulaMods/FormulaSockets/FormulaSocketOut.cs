@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -28,4 +29,11 @@ public class FormulaSocketOut : FormulaSocket
         }
 #endif
     }
+
+#if UNITY_EDITOR
+    protected override async Task OnLateInit()
+    {
+        await Task.CompletedTask;
+    }
+#endif
 }

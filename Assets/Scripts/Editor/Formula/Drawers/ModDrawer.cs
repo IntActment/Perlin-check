@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 using UnityEditor;
 
@@ -94,6 +95,18 @@ public class PopupMessage : PopupWindowContent
     }
 }
 
+public class InputState
+{
+    public bool down;
+    public bool up;
+
+    public void Reset()
+    {
+        down = false;
+        up = false;
+    }
+}
+
 public abstract class ModDrawer<T> where T : FormulaMod
 {
     public readonly T mod;
@@ -122,7 +135,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
         this.mod = mod;
     }
 
-    public static readonly Vector2 SocketSize = Vector2.one * 14;
+    public static readonly Vector2 SocketSize = FormulaMod.SocketSize;
     public static readonly float TitleHeight = 23;
     public static readonly float SocketRadius = 6;
     private static readonly string m_recursiveLinkMessage = "Cannot create self-dependent recursive link!";
@@ -270,7 +283,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
 
     public bool HasActiveInput { get; set; } = false;
 
-    public void DrawGUI(KeyHolder keys, ref bool down, ref bool up, Vector2 position, float zoom)
+    public async Task DrawGUI(KeyHolder keys, InputState state, Vector2 position, float zoom)
     {
         var ev = Event.current;
 
@@ -341,11 +354,11 @@ public abstract class ModDrawer<T> where T : FormulaMod
 
                     if ((ev.button == 0) && area.Contains(ev.mousePosition))
                     {
-                        if (false == down)
+                        if (false == state.down)
                         {
                             if (ev.rawType == EventType.MouseDown)
                             {
-                                down = true;
+                                state.down = true;
                                 m_isConnecting = true;
 
                                 if (null == mod.Inputs[i].Link)
@@ -365,11 +378,11 @@ public abstract class ModDrawer<T> where T : FormulaMod
                             }
                         }
 
-                        if (false == up)
+                        if (false == state.up)
                         {
                             if (ev.rawType == EventType.MouseUp)
                             {
-                                up = true;
+                                state.up = true;
 
                                 if (true == m_isConnecting)
                                 {
@@ -379,7 +392,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                     {
                                         if (m_connectingWith.Item3 == -1)
                                         {
-                                            bool added = m_connectingWith.Item1.AddOutput(mod.Inputs[i]);
+                                            bool added = await m_connectingWith.Item1.AddOutput(mod.Inputs[i]);
                                             if (true == added)
                                             {
                                                 succ = true;
@@ -393,7 +406,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                         }
                                         else if (m_connectingWith.Item3 > -1)
                                         {
-                                            bool replaced = m_connectingWith.Item1.ReplaceOutput(m_connectingWith.Item3, mod.Inputs[i]);
+                                            bool replaced = await m_connectingWith.Item1.ReplaceOutput(m_connectingWith.Item3, mod.Inputs[i]);
                                             if (true == replaced)
                                             {
                                                 succ = true;
@@ -438,7 +451,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                     Event.current = ev;
                 }
 
-                DrawBodyGUI(ref down, ref up);
+                DrawBodyGUI(state);
 
                 if (old != null)
                 {
@@ -467,11 +480,11 @@ public abstract class ModDrawer<T> where T : FormulaMod
 
                     if ((ev.button == 0) && area.Contains(ev.mousePosition))
                     {
-                        if (false == down)
+                        if (false == state.down)
                         {
                             if (ev.rawType == EventType.MouseDown)
                             {
-                                down = true;
+                                state.down = true;
                                 m_isConnecting = true;
 
 
@@ -492,11 +505,11 @@ public abstract class ModDrawer<T> where T : FormulaMod
                             }
                         }
 
-                        if (false == up)
+                        if (false == state.up)
                         {
                             if (ev.rawType == EventType.MouseUp)
                             {
-                                up = true;
+                                state.up = true;
 
                                 if (true == m_isConnecting)
                                 {
@@ -506,7 +519,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                     {
                                         if (i == mod.Outputs.Count)
                                         {
-                                            bool added = mod.AddOutput(m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
+                                            bool added = await mod.AddOutput(m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
                                             if (true == added)
                                             {
                                                 succ = true;
@@ -520,7 +533,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                         }
                                         else if (i < mod.Outputs.Count)
                                         {
-                                            bool replaced = mod.ReplaceOutput(i, m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
+                                            bool replaced = await mod.ReplaceOutput(i, m_connectingWith.Item1.Inputs[m_connectingWith.Item3]);
                                             if (true == replaced)
                                             {
                                                 succ = true;
@@ -551,14 +564,14 @@ public abstract class ModDrawer<T> where T : FormulaMod
                 }
             }
 
-            if ((false == down) && HasActiveInput)
+            if ((false == state.down) && HasActiveInput)
             {
                 if ((ev.rawType == EventType.MouseDown) && (ev.button == 0))
                 {
                     // title click
                     if (HeaderArea.Contains(ev.mousePosition))
                     {
-                        down = true;
+                        state.down = true;
                         DraggingMod = mod;
                         m_draggingModOffset = ev.mousePosition;
 
@@ -589,7 +602,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                     // window click
                     else if (new Rect(Vector2.zero, WindowSize).Contains(ev.mousePosition))
                     {
-                        down = true;
+                        state.down = true;
 
                         if (keys.IsCtrlPressed)
                         {
@@ -616,7 +629,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                 {
                     if (new Rect(Vector2.zero, WindowSize).Contains(ev.mousePosition))
                     {
-                        down = true;
+                        state.down = true;
                         ev.Use();
 
                         GenericMenu menu = new GenericMenu();
@@ -661,7 +674,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void InvalidateConnection(Rect selectionArea, IDictionary<FormulaMod, BaseDrawer> dic, KeyHolder keys, bool down, Vector2 offset, float zoom)
+    public static void InvalidateConnection(Rect selectionArea, IDictionary<FormulaMod, BaseDrawer> dic, KeyHolder keys, bool down, Vector2 offset)
     {
         var ev = Event.current;
         if ((ev.rawType == EventType.MouseUp) && (ev.button == 0))
@@ -888,7 +901,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected virtual void DrawBodyGUI(ref bool down, ref bool up)
+    protected virtual void DrawBodyGUI(InputState state)
     {
 
     }

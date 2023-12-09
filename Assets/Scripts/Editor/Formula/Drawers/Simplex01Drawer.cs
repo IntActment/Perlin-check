@@ -42,9 +42,9 @@ public class Simplex01Drawer : BaseDrawer
     private Vector2 m_fieldSize;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected override void DrawBodyGUI(ref bool down, ref bool up)
+    protected override void DrawBodyGUI(InputState state)
     {
-        base.DrawBodyGUI(ref down, ref up);
+        base.DrawBodyGUI(state);
 
         if (false == mod.IsInitialized)
         {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -132,17 +133,24 @@ public abstract class FormulaMod : ComplexScriptable
     [field: NonSerialized]
     public virtual bool IsRemovable { get; } = true;
 
+    public static readonly Vector2 SocketSize = Vector2.one * 14;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected void AddInput(string title, bool isOptional = false)
+    protected async Task AddInput(string title, bool isOptional = false)
     {
         var newSocket = CreateInstance<FormulaSocketIn>();
+
         newSocket.Owner = this;
         newSocket.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
         newSocket.name = "Socket [In]";
         newSocket.Title = title;
         newSocket.IsOptional = isOptional;
         m_inputs.Add(newSocket);
+
         AddSubAsset(newSocket);
+
+        await newSocket.WaitInit();
+
         this.Save();
     }
 
@@ -166,32 +174,14 @@ public abstract class FormulaMod : ComplexScriptable
         UnityEditor.AssetDatabase.SaveAssetIfDirty(this);
     }
 
-    [SerializeField]
-    private bool m_isInit = false;
-
-    public bool IsInitialized
+    protected sealed override async Task OnLateInit()
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        get => m_isInit;
-    }
+        await Initialize();
 
-    protected sealed override void OnLateInit()
-    {
-        if (true == m_isInit)
-        {
-            return;
-        }
-
-        Initialize();
-
-        m_isInit = true;
         this.Save();
     }
 
-    protected virtual void Initialize()
-    {
-
-    }
+    protected abstract Task Initialize();
 
     private bool CheckRecursion(FormulaMod mod)
     {
@@ -218,7 +208,7 @@ public abstract class FormulaMod : ComplexScriptable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool AddOutput(FormulaSocketIn targetSocketIn)
+    public async Task<bool> AddOutput(FormulaSocketIn targetSocketIn)
     {
         if (false == CheckRecursion(targetSocketIn.Owner))
         {
@@ -226,13 +216,18 @@ public abstract class FormulaMod : ComplexScriptable
         }
 
         var newSocket = CreateInstance<FormulaSocketOut>();
+
         newSocket.Link = targetSocketIn;
         newSocket.Owner = this;
         newSocket.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
         newSocket.name = "Socket [Out]";
 
         m_outputs.Add(newSocket);
+
         AddSubAsset(newSocket);
+
+        await newSocket.WaitInit();
+
         this.Save();
 
         if (null != targetSocketIn.Link)
@@ -251,7 +246,7 @@ public abstract class FormulaMod : ComplexScriptable
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool ReplaceOutput(int index, FormulaSocketIn targetSocketIn)
+    public async Task<bool> ReplaceOutput(int index, FormulaSocketIn targetSocketIn)
     {
         if (false == CheckRecursion(targetSocketIn.Owner))
         {
@@ -260,8 +255,7 @@ public abstract class FormulaMod : ComplexScriptable
 
         if (index >= Outputs.Count)
         {
-            AddOutput(targetSocketIn);
-            return true;
+            return await AddOutput(targetSocketIn);
         }
 
         var socket = Outputs[index];

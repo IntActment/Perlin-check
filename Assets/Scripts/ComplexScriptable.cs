@@ -1,72 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+
+#if UNITY_EDITOR
+using Unity.EditorCoroutines.Editor;
+using UnityEditor;
+#endif
+
 using UnityEngine;
 
 public abstract class ComplexScriptable : ScriptableObject
 {
 #if UNITY_EDITOR
-    private void Awake()
+
+    private async void Awake()
     {
-        Init();
+        await Init();
     }
 
-    private void OnValidate()
+    private async void OnValidate()
     {
-        Init();
+        await Init();
     }
 
-    private void Reset()
+    private async void Reset()
     {
-        Init();
+        await Init();
     }
 
     private void OnDestroy()
     {
-        UnityEditor.EditorApplication.update -= DelayedInit;
+
     }
 
-    protected abstract void OnLateInit();
+    private bool m_isInitializing = false;
 
-    private void Init()
+    [SerializeField]
+    private bool m_isInit = false;
+
+    public bool IsInitialized
     {
-        // If this asset already exists initialize immediately
-        //if (UnityEditor.AssetDatabase.Contains(this))
-        if ((false == UnityEditor.EditorApplication.isUpdating) && (UnityEditor.AssetDatabase.Contains(this)))
-        {
-            DelayedInit();
-        }
-
-        // otherwise attach a callback to the editor update to re-check repeatedly until it exists
-        // this means it is currently being created an the name has not been confirmed yet
-        else
-        {
-            UnityEditor.EditorApplication.update -= DelayedInit;
-            UnityEditor.EditorApplication.update += DelayedInit;
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_isInit;
     }
 
-    private void DelayedInit()
+    private async Task Init()
     {
-        // if this asset dos still not exist do nothing
-        // this means it is currently being created and the name not confirmed yet
-        //if 
-        if ((true == UnityEditor.EditorApplication.isUpdating) || (false == UnityEditor.AssetDatabase.Contains(this)))
+        if (true == m_isInitializing)
         {
             return;
         }
 
-        // as soon as the asset exists remove the callback as we don't need it anymore
-        UnityEditor.EditorApplication.update -= DelayedInit;
+        if (true == m_isInit)
+        {
+            return;
+        }
+        else
+        {
+            m_isInitializing = true;
+        }
 
-        // first try to find existing child within all assets contained in this asset
-        //var assets = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(this));
+        while ((true == EditorApplication.isUpdating) || (false == AssetDatabase.Contains(this)))
+        {
+            await Task.Delay(1);
+        }
 
-        OnLateInit();
+        await OnLateInit();
+
+        m_isInit = true;
+    }
+
+    public async Task WaitInit()
+    {
+        while (false == m_isInit)
+        {
+            await Task.Delay(1);
+        }
+    }
+
+    protected virtual async Task OnLateInit()
+    {
+        await Task.CompletedTask;
     }
 
     protected void AddSubAsset(Object subAsset)
     {
-        UnityEditor.AssetDatabase.AddObjectToAsset(subAsset, this);
+        AssetDatabase.AddObjectToAsset(subAsset, this);
     }
 #endif
 }

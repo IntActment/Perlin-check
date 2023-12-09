@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -1786119236175151044}
   m_link: {fileID: 2660138311154772092}
 --- !u!114 &-8972273908726095821
@@ -26,6 +27,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 2773512158833802182}
   m_link: {fileID: 1858154929614912768}
 --- !u!114 &-8526997341696417313
@@ -40,6 +42,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae598053e74b0b544843b3d45c06023d, type: 3}
   m_Name: Simplex01
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 196, y: 98}
   m_formula: {fileID: 11400000}
   m_inputs:
@@ -49,7 +52,6 @@ MonoBehaviour:
   m_outputs:
   - {fileID: 4882815682880446099}
   m_varIndex: 1
-  m_isInit: 1
   m_offsetX: 0
   m_offsetY: 0
   m_offsetZ: 0
@@ -69,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
@@ -85,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30338e1b82a95f45bae70a3d44ff0a8, type: 3}
   m_Name: X [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 14, y: 98}
   m_formula: {fileID: 11400000}
   m_inputs: []
@@ -92,7 +96,6 @@ MonoBehaviour:
   - {fileID: 2075344285377317979}
   - {fileID: -1739895636592936716}
   m_varIndex: -1
-  m_isInit: 1
 --- !u!114 &-6164016333188221980
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -105,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 2773512158833802182}
   m_link: {fileID: 0}
   m_title: Value
@@ -121,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -1786119236175151044}
   m_link: {fileID: 5294969733500116972}
 --- !u!114 &-5111938004034096771
@@ -135,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 4914766092933742095}
   m_link: {fileID: 0}
   m_title: Z
@@ -151,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 5189099448290790425}
   m_link: {fileID: -4460226228524324788}
   m_title: X
@@ -167,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 5189099448290790425}
   m_link: {fileID: -3578200317290816668}
 --- !u!114 &-4460226228524324788
@@ -181,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 8104775074332730850}
   m_link: {fileID: -4970648207932478868}
 --- !u!114 &-4067839593862064859
@@ -195,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
@@ -211,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 3762927276818850480}
   m_link: {fileID: 0}
   m_title: Result
@@ -227,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -3032109759223198487}
   m_link: {fileID: 8130668703113342568}
   m_title: Value
@@ -243,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 3762927276818850480}
   m_link: {fileID: -4507987677686289181}
   m_title: Result
@@ -259,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f42e2d693a030478a2d21683a1547d, type: 3}
   m_Name: Clamp
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 546, y: 336}
   m_formula: {fileID: 11400000}
   m_inputs:
@@ -266,7 +280,6 @@ MonoBehaviour:
   m_outputs:
   - {fileID: 3786931094446752144}
   m_varIndex: 8
-  m_isInit: 1
   m_min: 0
   m_max: 1
 --- !u!114 &-2861262617510303780
@@ -281,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Value
@@ -297,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93180682460160c4386e2f251c8f5f66, type: 3}
   m_Name: 1 - a
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 462, y: 98}
   m_formula: {fileID: 11400000}
   m_inputs:
@@ -304,7 +319,6 @@ MonoBehaviour:
   m_outputs:
   - {fileID: 4798650668743031502}
   m_varIndex: 2
-  m_isInit: 1
 --- !u!114 &-1786119236175151044
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -317,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734464f5a685f65499ba284b0247caeb, type: 3}
   m_Name: Y [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 14, y: 336}
   m_formula: {fileID: 11400000}
   m_inputs: []
@@ -324,7 +339,6 @@ MonoBehaviour:
   - {fileID: -9052732153043160908}
   - {fileID: -6120766075400201125}
   m_varIndex: -1
-  m_isInit: 1
 --- !u!114 &-1739895636592936716
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -337,6 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -6774999265398823988}
   m_link: {fileID: -911259258899565020}
 --- !u!114 &-1728685195111439669
@@ -351,6 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
@@ -367,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 4914766092933742095}
   m_link: {fileID: -1739895636592936716}
   m_title: X
@@ -383,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93180682460160c4386e2f251c8f5f66, type: 3}
   m_Name: 1 - a
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 462, y: 336}
   m_formula: {fileID: 11400000}
   m_inputs:
@@ -390,7 +408,6 @@ MonoBehaviour:
   m_outputs:
   - {fileID: 8130668703113342568}
   m_varIndex: 3
-  m_isInit: 1
 --- !u!114 &-733328282025946583
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -403,6 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 7600664254720656091}
   m_link: {fileID: 1741307622084357179}
 --- !u!114 &-550160881704640904
@@ -417,6 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -8526997341696417313}
   m_link: {fileID: 0}
   m_title: Z
@@ -433,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -886832323431042281}
   m_link: {fileID: 1940046568042815019}
   m_title: Value
@@ -449,6 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ff2808c7235c9439a6a98cc195c374, type: 3}
   m_Name: Complex formula
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_modifiers:
   - {fileID: -1786119236175151044}
   - {fileID: -6774999265398823988}
@@ -460,10 +481,10 @@ MonoBehaviour:
   - {fileID: -3032109759223198487}
   - {fileID: 3762927276818850480}
   - {fileID: 2773512158833802182}
-  - {fileID: 5189099448290790425}
   - {fileID: 8104775074332730850}
+  - {fileID: 5189099448290790425}
   m_zoom: 0.9090908
-  m_screenOffset: {x: 72, y: -3}
+  m_screenOffset: {x: 80, y: 58}
   m_inputX: {fileID: -6774999265398823988}
   m_inputY: {fileID: -1786119236175151044}
   m_output: {fileID: 3762927276818850480}
@@ -479,6 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
@@ -495,6 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 8104775074332730850}
   m_link: {fileID: -733328282025946583}
   m_title: Value
@@ -511,6 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
@@ -527,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 5189099448290790425}
   m_link: {fileID: -8972273908726095821}
   m_title: Y
@@ -543,6 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 4914766092933742095}
   m_link: {fileID: -527650466188854155}
 --- !u!114 &2075344285377317979
@@ -557,6 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -6774999265398823988}
   m_link: {fileID: 5193867694041972833}
 --- !u!114 &2660138311154772092
@@ -571,6 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -8526997341696417313}
   m_link: {fileID: -9052732153043160908}
   m_title: Y
@@ -587,6 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101a791b42c9c774487716c4ff850d95, type: 3}
   m_Name: "a\xB2"
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 700, y: 336}
   m_formula: {fileID: 11400000}
   m_inputs:
@@ -595,7 +624,6 @@ MonoBehaviour:
   m_outputs:
   - {fileID: -8972273908726095821}
   m_varIndex: 4
-  m_isInit: 1
   m_power: 3.5
 --- !u!114 &3320760403139705742
 MonoBehaviour:
@@ -609,6 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 7600664254720656091}
   m_link: {fileID: 4798650668743031502}
   m_title: Value
@@ -625,13 +654,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a6557ee7935e049a0135ef32358d2f, type: 3}
   m_Name: '[Out]'
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 1190, y: 168}
   m_formula: {fileID: 11400000}
   m_inputs:
   - {fileID: -3578200317290816668}
   m_outputs: []
   m_varIndex: -1
-  m_isInit: 1
 --- !u!114 &3786931094446752144
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -644,6 +673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -3032109759223198487}
   m_link: {fileID: -6164016333188221980}
 --- !u!114 &4385573660830121095
@@ -658,6 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Z
@@ -674,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y
@@ -690,6 +722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -2071407734336373033}
   m_link: {fileID: 3320760403139705742}
 --- !u!114 &4882815682880446099
@@ -704,6 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -8526997341696417313}
   m_link: {fileID: 8641910526982921160}
 --- !u!114 &4914766092933742095
@@ -718,6 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae598053e74b0b544843b3d45c06023d, type: 3}
   m_Name: Simplex01
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 168, y: 336}
   m_formula: {fileID: 11400000}
   m_inputs:
@@ -727,7 +762,6 @@ MonoBehaviour:
   m_outputs:
   - {fileID: 1940046568042815019}
   m_varIndex: 0
-  m_isInit: 1
   m_offsetX: 0.39
   m_offsetY: 0
   m_offsetZ: 0
@@ -747,7 +781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae598053e74b0b544843b3d45c06023d, type: 3}
   m_Name: Simplex01
   m_EditorClassIdentifier: 
-  m_position: {x: 938, y: 168}
+  m_isInit: 1
+  m_position: {x: 952, y: 168}
   m_formula: {fileID: 11400000}
   m_inputs:
   - {fileID: -4970648207932478868}
@@ -756,7 +791,6 @@ MonoBehaviour:
   m_outputs:
   - {fileID: -4507987677686289181}
   m_varIndex: 6
-  m_isInit: 1
   m_offsetX: 0.39
   m_offsetY: 0.53
   m_offsetZ: 0
@@ -776,6 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -8526997341696417313}
   m_link: {fileID: 2075344285377317979}
   m_title: X
@@ -792,6 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 4914766092933742095}
   m_link: {fileID: -6120766075400201125}
   m_title: Y
@@ -808,6 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 5189099448290790425}
   m_link: {fileID: 0}
   m_title: Z
@@ -824,6 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 8104775074332730850}
   m_link: {fileID: 0}
   m_title: Power
@@ -840,6 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: X
@@ -856,6 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f42e2d693a030478a2d21683a1547d, type: 3}
   m_Name: Clamp
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 546, y: 98}
   m_formula: {fileID: 11400000}
   m_inputs:
@@ -863,7 +903,6 @@ MonoBehaviour:
   m_outputs:
   - {fileID: -733328282025946583}
   m_varIndex: 7
-  m_isInit: 1
   m_min: 0
   m_max: 1
 --- !u!114 &8104775074332730850
@@ -878,6 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101a791b42c9c774487716c4ff850d95, type: 3}
   m_Name: "a\xB2"
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_position: {x: 700, y: 98}
   m_formula: {fileID: 11400000}
   m_inputs:
@@ -886,7 +926,6 @@ MonoBehaviour:
   m_outputs:
   - {fileID: -4460226228524324788}
   m_varIndex: 5
-  m_isInit: 1
   m_power: 5.7
 --- !u!114 &8130668703113342568
 MonoBehaviour:
@@ -900,6 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094a9a339143b5a4f942dfe8efa1c6e9, type: 3}
   m_Name: Socket [Out]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -886832323431042281}
   m_link: {fileID: -3594880634002410796}
 --- !u!114 &8641910526982921160
@@ -914,6 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: -2071407734336373033}
   m_link: {fileID: 4882815682880446099}
   m_title: Value
@@ -930,6 +971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 2773512158833802182}
   m_link: {fileID: 0}
   m_title: Power
@@ -946,6 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34a5db9dd5d1c545acd23c42848a5fa, type: 3}
   m_Name: Socket [In]
   m_EditorClassIdentifier: 
+  m_isInit: 1
   m_owner: {fileID: 0}
   m_link: {fileID: 0}
   m_title: Y

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -99,13 +100,13 @@ public class FormulaModSimplex01 : FormulaMod
     }
 
 #if UNITY_EDITOR
-    protected override void Initialize()
+    protected override async Task Initialize()
     {
         name = "Simplex01";
 
-        AddInput("X");
-        AddInput("Y");
-        AddInput("Z", true);
+        await AddInput("X");
+        await AddInput("Y");
+        await AddInput("Z", true);
     }
 #endif
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -9,13 +10,13 @@ public class FormulaModLerp : FormulaMod
 {
 
 #if UNITY_EDITOR
-    protected override void Initialize()
+    protected override async Task Initialize()
     {
         name = "Lerp";
 
-        AddInput("Value");
-        AddInput("Min");
-        AddInput("Max");
+        await AddInput("Value");
+        await AddInput("Min");
+        await AddInput("Max");
     }
 #endif
 

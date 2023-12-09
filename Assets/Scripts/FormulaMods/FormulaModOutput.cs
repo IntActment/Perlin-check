@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -10,11 +11,11 @@ public class FormulaModOutput : FormulaMod
 #if UNITY_EDITOR
     public override bool IsRemovable { get; } = false;
 
-    protected override void Initialize()
+    protected override async Task Initialize()
     {
         name = "[Out]";
 
-        AddInput("Result");
+        await AddInput("Result");
     }
 #endif
 

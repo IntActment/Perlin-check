@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -21,9 +22,11 @@ public class FormulaModNumber : FormulaMod
     }
 
 #if UNITY_EDITOR
-    protected override void Initialize()
+    protected override async Task Initialize()
     {
         name = "Number";
+
+        await Task.CompletedTask;
     }
 #endif
 

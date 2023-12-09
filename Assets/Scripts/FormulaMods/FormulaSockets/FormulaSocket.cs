@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 using UnityEngine;
 
-public abstract class FormulaSocket : ScriptableObject
+public abstract class FormulaSocket : ComplexScriptable
 {
     [SerializeField]
     private FormulaMod m_owner;

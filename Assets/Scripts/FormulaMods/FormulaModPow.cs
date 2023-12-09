@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -22,12 +23,12 @@ public class FormulaModPow : FormulaMod
 
 #if UNITY_EDITOR
 
-    protected override void Initialize()
+    protected override async Task Initialize()
     {
         name = "a²";
 
-        AddInput("Value");
-        AddInput("Power", true);
+        await AddInput("Value");
+        await AddInput("Power", true);
     }
 #endif
 

@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
 public class FormulaModDivide : FormulaMod
 {
 #if UNITY_EDITOR
-    protected override void Initialize()
+    protected override async Task Initialize()
     {
         name = "a / b";
 
-        AddInput("Dividend");
-        AddInput("Divisor");
+        await AddInput("Dividend");
+        await AddInput("Divisor");
     }
 #endif
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -78,15 +79,22 @@ public class ComplexFormula : ComplexScriptable
 
 #if UNITY_EDITOR
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public T CreateMod<T>(Vector2 pos) where T : FormulaMod
+    public async Task<T> CreateMod<T>(Vector2 pos) where T : FormulaMod
     {
         var ret = CreateInstance<T>();
-        ret.Position = pos;
+
+        ret.Position = new Vector2(
+            Mathf.Floor(pos.x * FormulaMod.SocketSize.x) / FormulaMod.SocketSize.x,
+            Mathf.Floor(pos.y * FormulaMod.SocketSize.y) / FormulaMod.SocketSize.y);
         ret.Formula = this;
         ret.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
 
-        m_modifiers.Add(ret);
         AddSubAsset(ret);
+
+        await ret.WaitInit();
+
+        m_modifiers.Add(ret);
+
         this.Save();
 
         return ret;
@@ -150,15 +158,25 @@ public class ComplexFormula : ComplexScriptable
         return content;
     }
 
-    protected override void OnLateInit()
+    protected override async Task OnLateInit()
     {
         if (null == m_modifiers)
         {
             m_modifiers = new List<FormulaMod>();
 
-            m_inputX = CreateMod<FormulaModInputX>(new Vector2(20, 40));
-            m_inputY = CreateMod<FormulaModInputY>(new Vector2(20, 100));
-            m_output = CreateMod<FormulaModOutput>(new Vector2(300, 60));
+            m_inputX = await CreateMod<FormulaModInputX>(new Vector2(20, 40));
+            m_inputY = await CreateMod<FormulaModInputY>(new Vector2(20, 120));
+            m_output = await CreateMod<FormulaModOutput>(new Vector2(440, 80));
+
+            var noise = await CreateMod<FormulaModSimplex01>(new Vector2(160, 80));
+            noise.MulX = 0.04f;
+            noise.MulY = 0.04f;
+            noise.MulZ = 0.04f;
+
+            await m_inputX.AddOutput(noise.Inputs[0]);
+            await m_inputY.AddOutput(noise.Inputs[1]);
+
+            await noise.AddOutput(m_output.Inputs[0]);
 
             this.Save();
         }

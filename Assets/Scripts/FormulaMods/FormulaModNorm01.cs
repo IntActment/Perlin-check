@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -34,11 +35,11 @@ public class FormulaModNorm01 : FormulaMod
     }
 
 #if UNITY_EDITOR
-    protected override void Initialize()
+    protected override async Task Initialize()
     {
         name = "Norm01";
 
-        AddInput("Value");
+        await AddInput("Value");
     }
 #endif
 

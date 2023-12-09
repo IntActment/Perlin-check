@@ -27,9 +27,9 @@ public class NumberDrawer : BaseDrawer
     public override bool HasInput { get; } = false;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected override void DrawBodyGUI(ref bool down, ref bool up)
+    protected override void DrawBodyGUI(InputState state)
     {
-        base.DrawBodyGUI(ref down, ref up);
+        base.DrawBodyGUI(state);
 
         Vector2 textSizeValue = GetLabelSize("Value");
 

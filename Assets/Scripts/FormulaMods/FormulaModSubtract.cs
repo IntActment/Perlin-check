@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 using UnityEngine;
 
 public class FormulaModSubtract : FormulaMod
 {
 #if UNITY_EDITOR
-    protected override void Initialize()
+    protected override async Task Initialize()
     {
         name = "a - b";
 
-        AddInput("Subtrahend");
-        AddInput("Minuend");
+        await AddInput("Subtrahend");
+        await AddInput("Minuend");
     }
 #endif
 

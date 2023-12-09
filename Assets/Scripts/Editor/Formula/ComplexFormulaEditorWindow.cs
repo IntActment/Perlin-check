@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 using UnityEditor;
 
@@ -18,14 +19,21 @@ public class ComplexFormulaEditorWindow : EditorWindow
 
     // Add menu named "My Window" to the Window menu
     [MenuItem("Window/ComplexFormula editor")]
-    public static void ShowEditor()
+    public static async void ShowEditor()
     {
         ComplexFormulaEditorWindow window = GetWindow<ComplexFormulaEditorWindow>();
-        window.Enable();
+
+        await window.Enable();
+
+        if (null == m_formula)
+        {
+            return;
+        }
+
         window.Show();
     }
 
-    private void Enable()
+    private async Task Enable()
     {
         titleContent = new GUIContent("Formula graph editor");
 
@@ -34,6 +42,15 @@ public class ComplexFormulaEditorWindow : EditorWindow
         {
             return;
         }
+
+        bool showingProgress = false;
+        if (false == m_formula.IsInitialized)
+        {
+            showingProgress = true;
+            EditorUtility.DisplayProgressBar("Initialization in progress", "Please wait...", 80);
+        }
+
+        await m_formula.WaitInit();
 
         wantsMouseMove = true;
         autoRepaintOnSceneChange = true;
@@ -61,6 +78,11 @@ public class ComplexFormulaEditorWindow : EditorWindow
             
         };
         m_backgroundGridStyle.normal.background = m_backgroundGrid;
+
+        if (true == showingProgress)
+        {
+            EditorUtility.ClearProgressBar();
+        }
     }
 
     private void OnDisable()
@@ -75,9 +97,14 @@ public class ComplexFormulaEditorWindow : EditorWindow
         return (m_zoomer.zoomArea.center - m_zoomer.zoomArea.min) / m_formula.Zoom - m_formula.ScreenOffset;
     }
 
-    void OnGUI()
+    async void OnGUI()
     {
         if (null == m_formula)
+        {
+            return;
+        }
+
+        if (false == m_formula.IsInitialized)
         {
             return;
         }
@@ -107,17 +134,17 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("Simplex01"))
                             {
-                                m_formula.CreateMod<FormulaModSimplex01>(GetCenter());
+                                await m_formula.CreateMod<FormulaModSimplex01>(GetCenter());
                             }
 
                             if (GUILayout.Button("Number"))
                             {
-                                m_formula.CreateMod<FormulaModNumber>(GetCenter());
+                                await m_formula.CreateMod<FormulaModNumber>(GetCenter());
                             }
 
                             if (GUILayout.Button("Clamp"))
                             {
-                                m_formula.CreateMod<FormulaModClamp>(GetCenter());
+                                await m_formula.CreateMod<FormulaModClamp>(GetCenter());
                             }
                         }
 
@@ -125,27 +152,27 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("Lerp"))
                             {
-                                m_formula.CreateMod<FormulaModLerp>(GetCenter());
+                                await m_formula.CreateMod<FormulaModLerp>(GetCenter());
                             }
 
                             if (GUILayout.Button("Norm01"))
                             {
-                                m_formula.CreateMod<FormulaModNorm01>(GetCenter());
+                                await m_formula.CreateMod<FormulaModNorm01>(GetCenter());
                             }
 
                             if (GUILayout.Button("1 - a"))
                             {
-                                m_formula.CreateMod<FormulaModOneMinus>(GetCenter());
+                                await m_formula.CreateMod<FormulaModOneMinus>(GetCenter());
                             }
 
                             if (GUILayout.Button("1 / a"))
                             {
-                                m_formula.CreateMod<FormulaModInvert>(GetCenter());
+                                await m_formula.CreateMod<FormulaModInvert>(GetCenter());
                             }
 
                             if (GUILayout.Button("-a"))
                             {
-                                m_formula.CreateMod<FormulaModNegate>(GetCenter());
+                                await m_formula.CreateMod<FormulaModNegate>(GetCenter());
                             }
                         }
 
@@ -153,32 +180,32 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("+"))
                             {
-                                m_formula.CreateMod<FormulaModSum>(GetCenter());
+                                await m_formula.CreateMod<FormulaModSum>(GetCenter());
                             }
 
                             if (GUILayout.Button("-"))
                             {
-                                m_formula.CreateMod<FormulaModSubtract>(GetCenter());
+                                await m_formula.CreateMod<FormulaModSubtract>(GetCenter());
                             }
 
                             if (GUILayout.Button("×"))
                             {
-                                m_formula.CreateMod<FormulaModMultiply>(GetCenter());
+                                await m_formula.CreateMod<FormulaModMultiply>(GetCenter());
                             }
 
                             if (GUILayout.Button("÷"))
                             {
-                                m_formula.CreateMod<FormulaModDivide>(GetCenter());
+                                await m_formula.CreateMod<FormulaModDivide>(GetCenter());
                             }
 
                             if (GUILayout.Button("√a"))
                             {
-                                m_formula.CreateMod<FormulaModSqrt>(GetCenter());
+                                await m_formula.CreateMod<FormulaModSqrt>(GetCenter());
                             }
 
                             if (GUILayout.Button("a²"))
                             {
-                                m_formula.CreateMod<FormulaModPow>(GetCenter());
+                                await m_formula.CreateMod<FormulaModPow>(GetCenter());
                             }
                         }
                     }
@@ -198,8 +225,7 @@ public class ComplexFormulaEditorWindow : EditorWindow
 
                 using (_ = new EditorLayout(LayoutType.Vertical, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true)))
                 {
-                    bool down = false;
-                    bool up = false;
+                    InputState state = new InputState();
 
                     Rect elRect;
                     using (var el = new EditorLayout(LayoutType.Vertical, GUI.skin.customStyles[114], GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true)))
@@ -264,7 +290,7 @@ public class ComplexFormulaEditorWindow : EditorWindow
 
                                 for (int i = 0; i < drawersList.Count; i++)
                                 {
-                                    drawersList[i].DrawGUI(m_keys, ref down, ref up, m_zoomer.zoomOrigin, m_zoomer.zoom);
+                                    await drawersList[i].DrawGUI(m_keys, state, m_zoomer.zoomOrigin, m_zoomer.zoom);
                                 }
                             }
 
@@ -273,7 +299,7 @@ public class ComplexFormulaEditorWindow : EditorWindow
                                 v.DrawLinks(drawersDic, m_zoomer.zoomOrigin);
                             }
 
-                            BaseDrawer.InvalidateConnection(new Rect(Vector2.zero, elRect.size / m_zoomer.zoom), drawersDic, m_keys, down, m_zoomer.zoomOrigin, m_zoomer.zoom);
+                            BaseDrawer.InvalidateConnection(new Rect(Vector2.zero, elRect.size / m_zoomer.zoom), drawersDic, m_keys, state.down, m_zoomer.zoomOrigin);
                         }
                         m_zoomer.End();
 
