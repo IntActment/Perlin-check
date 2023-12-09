@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [ExecuteInEditMode]
 public class FormulaNew : MonoBehaviour
@@ -18,7 +20,6 @@ public class FormulaNew : MonoBehaviour
     public Vector2Int size = new Vector2Int(128, 128);
     private float[,] data = new float[128, 128];
 
-    private TileBatchBuilder<VertexData> m_batcher;
     private MeshData<VertexData> m_meshData;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -50,21 +51,18 @@ public class FormulaNew : MonoBehaviour
             return false;
         }
 
-        Action<int, VertexData> setVertex;
-
-        if ((m_meshData.GetIndexCount(0) == 0) || (size.x * size.y != m_meshData.GetVertexCount()))
+        if ((m_meshData.GetIndexCount() == 0) || (size.x * size.y != m_meshData.GetVertexCount()))
         {
             indicesChanged = true;
             m_meshData.Clear();
-
-            setVertex = (p, v) => m_meshData.AddVertex(v);
         }
         else
         {
-            setVertex = (p, v) => m_meshData.SetVertex(p, v);
+            m_meshData.ClearVertexData();
         }
 
         float d;
+        VertexData vd = default;
 
         for (int y = 0; y < size.y; y++)
         {
@@ -72,14 +70,17 @@ public class FormulaNew : MonoBehaviour
             {
                 d = Mathf.Clamp(data[x, y], 0, CutLevel);
 
-                setVertex(y * size.x + x, new VertexData(new Vector3(x, d * HeightScale, y), Vector3.up, Color.LerpUnclamped(Color.black, Color.white, d)));
+                vd.position = new Vector3(x, d * HeightScale, y);
+                vd.normal = Vector3.up;
+                vd.color = Color.LerpUnclamped(Color.black, Color.white, d);
+                m_meshData.AddVertex(vd);
 
                 if (indicesChanged && (x > 0) && (y > 0))
                 {
-                    m_meshData.AddIndex(0, (ushort)((y - 1) * size.x + x - 1));
-                    m_meshData.AddIndex(0, (ushort)((y - 0) * size.x + x - 1));
-                    m_meshData.AddIndex(0, (ushort)((y - 0) * size.x + x - 0));
-                    m_meshData.AddIndex(0, (ushort)((y - 1) * size.x + x - 0));
+                    m_meshData.AddIndex((ushort)((y - 1) * size.x + x - 1));
+                    m_meshData.AddIndex((ushort)((y - 0) * size.x + x - 1));
+                    m_meshData.AddIndex((ushort)((y - 0) * size.x + x - 0));
+                    m_meshData.AddIndex((ushort)((y - 1) * size.x + x - 0));
                 }
             }
         }
@@ -92,8 +93,7 @@ public class FormulaNew : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Awake");
-        
+
     }
 
     private void OnDestroy()
@@ -103,8 +103,6 @@ public class FormulaNew : MonoBehaviour
 
     private void OnEnable()
     {
-        //Debug.Log("OnEnable");
-
 #if UNITY_EDITOR
         ComplexFormula.OnFormulaChanged += ComplexFormula_OnFormulaChanged;
 #endif
@@ -126,10 +124,8 @@ public class FormulaNew : MonoBehaviour
                 MeshFilter.sharedMesh = new Mesh();
             }
 
-            m_meshData = new MeshData<VertexData>(1, 256 * 256, false);
-            m_batcher = new TileBatchBuilder<VertexData>(m_meshData, GenerateMesh, RebuildNormals);
-
-            m_batcher.Initialize(MeshFilter.sharedMesh, 1);
+            m_meshData = new MeshData<VertexData>(256 * 256);
+            m_meshData.InitializeMesh(MeshFilter.sharedMesh);
         }
 
         MarkChanged();
@@ -146,7 +142,6 @@ public class FormulaNew : MonoBehaviour
 
         m_meshData?.Dispose();
         m_meshData = null;
-        m_batcher = null;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -162,10 +157,30 @@ public class FormulaNew : MonoBehaviour
 
     private void Update()
     {
+        if (false == enabled)
+        {
+            return;
+        }
+
         if (m_needRebuild)
         {
-            //m_batcher.Generate();
+            GenerateMesh();
+
+            m_needRebuild = false;
         }
+    }
+    void OnDrawGizmos()
+    {
+        // Your gizmo drawing thing goes here if required...
+
+#if UNITY_EDITOR
+        // Ensure continuous Update calls.
+        if (false == Application.isPlaying)
+        {
+            UnityEditor.EditorApplication.QueuePlayerLoopUpdate();
+            UnityEditor.SceneView.RepaintAll();
+        }
+#endif
     }
 
     private bool m_needRebuild = false;
@@ -178,19 +193,10 @@ public class FormulaNew : MonoBehaviour
         }
 
         m_needRebuild = true;
-        m_batcher.Generate();
     }
 
-    private bool GenerateMesh(MeshData<VertexData> meshData, out bool indicesChanged)
+    private bool GenerateMesh()
     {
-        if (false == m_needRebuild)
-        {
-            indicesChanged = false;
-            return false;
-        }
-
-        m_needRebuild = false;
-
         if ((data.GetLength(0) != size.x) || (data.GetLength(1) != size.y))
         {
             data = new float[size.x, size.y];
@@ -204,12 +210,33 @@ public class FormulaNew : MonoBehaviour
             }
         }
 
-        if (false == Rebuild(out indicesChanged))
+        bool indicesChanged = false;
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
         {
-            return false;
-        }
+            Stopwatch sw1 = new Stopwatch();
+            sw1.Start();
+            {
+                if (false == Rebuild(out indicesChanged))
+                {
+                    return false;
+                }
+            }
+            sw1.Stop();
+            //UnityEngine.Debug.Log($"FormulaNew Rebuild: {sw1.ElapsedMilliseconds} ms");
 
-        meshData.ApplyVertexData(MeshFilter.sharedMesh);
+            m_meshData.ApplyVertexData(MeshFilter.sharedMesh);
+
+            if (true == indicesChanged)
+            {
+                m_meshData.ApplyIndexData(MeshFilter.sharedMesh);
+            }
+
+            m_meshData.UpdateMesh(MeshFilter.sharedMesh);
+            MeshFilter.sharedMesh.RecalculateNormals();
+        }
+        sw.Stop();
+        //UnityEngine.Debug.Log($"FormulaNew GenerateMesh: {sw.ElapsedMilliseconds} ms (indices: {indicesChanged})");
 
         return true;
     }

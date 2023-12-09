@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 using UnityEngine;
@@ -16,7 +17,7 @@ public class TerrainTest : MonoBehaviour
     private Vector2Int m_lastSize = new Vector2Int(0, 0);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Rebuild(float[,] data, float cutLevel, Color cutColor, float heightScale)
+    public void Rebuild(float[,] data, float cutLevel, Color cutColor, float heightScale, bool forceRebuildIndices)
     {
         if (null == data)
         {
@@ -42,49 +43,73 @@ public class TerrainTest : MonoBehaviour
 
         bool setIndices = false;
 
-        if (m_lastSize != size)
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
         {
-            MeshFilter.sharedMesh.Clear();
-
-            m_lastSize = size;
-            m_vertices = new Vector3[size.x * size.y];
-            m_colors = new Color[m_vertices.Length];
-            m_indices = new ushort[(size.x - 1) * (size.y - 1) * 4];
-            setIndices = true;
-        }
-
-        int vIndex;
-        int iIndex = 0;
-        float d;
-
-        for (int x = 0; x < size.x; x++)
-        {
-            for (int y = 0; y < size.y; y++)
+            if ((true == forceRebuildIndices) || (m_lastSize != size))
             {
-                d = Mathf.Clamp(data[x, y], 0, cutLevel);
-                vIndex = y * size.x + x;
-                m_vertices[vIndex] = new Vector3(x, d * heightScale, y);
-                m_colors[vIndex] = Color.LerpUnclamped(Color.black, Color.white, d);
+                MeshFilter.sharedMesh.Clear();
 
-                if (setIndices && (x < size.x - 1) && (y < size.y - 1))
+                m_lastSize = size;
+                m_vertices = new Vector3[size.x * size.y];
+                m_colors = new Color[m_vertices.Length];
+                m_indices = new ushort[(size.x - 1) * (size.y - 1) * 4];
+                setIndices = true;
+            }
+
+            Stopwatch sw2 = new Stopwatch();
+            sw2.Start();
+            {
+                int vIndex;
+                int iIndex = 0;
+                float d;
+
+                for (int x = 0; x < size.x; x++)
                 {
-                    m_indices[iIndex++] = (ushort)((y + 0) * size.x + x + 0);
-                    //m_indices[iIndex++] = (ushort)((y + 1) * size.x + x + 1);
-                    m_indices[iIndex++] = (ushort)((y + 1) * size.x + x + 0);
-                    //m_indices[iIndex++] = (ushort)((y + 0) * size.x + x + 0);
-                    m_indices[iIndex++] = (ushort)((y + 1) * size.x + x + 1);
-                    m_indices[iIndex++] = (ushort)((y + 0) * size.x + x + 1);
+                    for (int y = 0; y < size.y; y++)
+                    {
+                        d = Mathf.Clamp(data[x, y], 0, cutLevel);
+                        vIndex = y * size.x + x;
+                        m_vertices[vIndex] = new Vector3(x, d * heightScale, y);
+                        m_colors[vIndex] = Color.LerpUnclamped(Color.black, Color.white, d);
+
+                        if (setIndices && (x < size.x - 1) && (y < size.y - 1))
+                        {
+                            m_indices[iIndex++] = (ushort)((y + 0) * size.x + x + 0);
+                            //m_indices[iIndex++] = (ushort)((y + 1) * size.x + x + 1);
+                            m_indices[iIndex++] = (ushort)((y + 1) * size.x + x + 0);
+                            //m_indices[iIndex++] = (ushort)((y + 0) * size.x + x + 0);
+                            m_indices[iIndex++] = (ushort)((y + 1) * size.x + x + 1);
+                            m_indices[iIndex++] = (ushort)((y + 0) * size.x + x + 1);
+                        }
+                    }
                 }
             }
+            sw2.Stop();
+            //UnityEngine.Debug.Log($"TerrainTest Rebuild: {sw2.ElapsedMilliseconds} ms");
+
+            MeshRenderer.sharedMaterial.SetColor("_CutColor", cutColor);
+            MeshRenderer.sharedMaterial.SetFloat("_Cutout", cutLevel);
+
+            Stopwatch sw1 = new Stopwatch();
+            sw1.Start();
+            {
+                MeshFilter.sharedMesh.SetVertices(m_vertices);
+                MeshFilter.sharedMesh.SetColors(m_colors);
+            }
+            sw1.Stop();
+            //UnityEngine.Debug.Log($"SetVertices + SetColors: {sw1.ElapsedTicks} ticks");
+
+            if (setIndices)
+            {
+                MeshFilter.sharedMesh.SetIndices(m_indices, MeshTopology.Quads, 0, true);
+            }
+
+            MeshFilter.sharedMesh.RecalculateNormals();
+            //MeshFilter.sharedMesh.RecalculateTangents();
         }
+        sw.Stop();
 
-        MeshRenderer.sharedMaterial.SetColor("_CutColor", cutColor);
-        MeshRenderer.sharedMaterial.SetFloat("_Cutout", cutLevel);
-
-        MeshFilter.sharedMesh.SetVertices(m_vertices);
-        MeshFilter.sharedMesh.SetColors(m_colors);
-        MeshFilter.sharedMesh.SetIndices(m_indices, MeshTopology.Quads, 0, true);
-        MeshFilter.sharedMesh.RecalculateNormals();
-        MeshFilter.sharedMesh.RecalculateTangents();
+        //UnityEngine.Debug.Log($"TerrainTest Rebuild: {sw.ElapsedMilliseconds} ms (indices: {setIndices})");
     }
 }

@@ -475,14 +475,14 @@ MonoBehaviour:
   - {fileID: -6774999265398823988}
   - {fileID: -2071407734336373033}
   - {fileID: 4914766092933742095}
-  - {fileID: -8526997341696417313}
-  - {fileID: 7600664254720656091}
   - {fileID: -886832323431042281}
   - {fileID: -3032109759223198487}
   - {fileID: 3762927276818850480}
+  - {fileID: -8526997341696417313}
   - {fileID: 2773512158833802182}
-  - {fileID: 8104775074332730850}
   - {fileID: 5189099448290790425}
+  - {fileID: 7600664254720656091}
+  - {fileID: 8104775074332730850}
   m_zoom: 0.9090908
   m_screenOffset: {x: 80, y: 58}
   m_inputX: {fileID: -6774999265398823988}
@@ -624,7 +624,7 @@ MonoBehaviour:
   m_outputs:
   - {fileID: -8972273908726095821}
   m_varIndex: 4
-  m_power: 3.5
+  m_power: 2.9
 --- !u!114 &3320760403139705742
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -926,7 +926,7 @@ MonoBehaviour:
   m_outputs:
   - {fileID: -4460226228524324788}
   m_varIndex: 5
-  m_power: 5.7
+  m_power: 4
 --- !u!114 &8130668703113342568
 MonoBehaviour:
   m_ObjectHideFlags: 3

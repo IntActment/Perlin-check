@@ -18,8 +18,11 @@ public class Formula : MonoBehaviour
     public Vector2Int size = new Vector2Int(128, 128);
     public float[,] data = new float[128, 128];
 
+    private bool m_forceRebuild = false;
+
     private void OnEnable()
     {
+        m_forceRebuild = true;
 #if UNITY_EDITOR
         ComplexFormula.OnFormulaChanged += ComplexFormula_OnFormulaChanged;
 #endif
@@ -40,7 +43,48 @@ public class Formula : MonoBehaviour
             return;
         }
 
-        Build();
+        MarkChanged();
+    }
+
+    private void Update()
+    {
+        if (false == enabled)
+        {
+            return;
+        }
+
+        if (m_needRebuild)
+        {
+            Build();
+
+            m_needRebuild = false;
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        // Your gizmo drawing thing goes here if required...
+
+#if UNITY_EDITOR
+        // Ensure continuous Update calls.
+        if (false == Application.isPlaying)
+        {
+            UnityEditor.EditorApplication.QueuePlayerLoopUpdate();
+            UnityEditor.SceneView.RepaintAll();
+        }
+#endif
+    }
+
+    private bool m_needRebuild = false;
+
+    public void MarkChanged()
+    {
+        if (null == ComplexFormula)
+        {
+            return;
+        }
+
+        m_needRebuild = true;
     }
 
     public void Build()
@@ -63,6 +107,8 @@ public class Formula : MonoBehaviour
             }
         }
 
-        TerrainTest.Rebuild(data, CutLevel, CutColor, HeightScale);
+        TerrainTest.Rebuild(data, CutLevel, CutColor, HeightScale, m_forceRebuild);
+
+        m_forceRebuild = false;
     }
 }
