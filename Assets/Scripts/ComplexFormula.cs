@@ -26,6 +26,9 @@ public class ComplexFormula : ComplexScriptable
         get => m_modifiers;
     }
 
+    [SerializeField]
+    private int m_lastModIndex = -1;
+
 #if UNITY_EDITOR
     [SerializeField]
     private float m_zoom = 1;
@@ -87,6 +90,9 @@ public class ComplexFormula : ComplexScriptable
             Mathf.Floor(pos.x * FormulaMod.SocketSize.x) / FormulaMod.SocketSize.x,
             Mathf.Floor(pos.y * FormulaMod.SocketSize.y) / FormulaMod.SocketSize.y);
         ret.Formula = this;
+
+        m_lastModIndex = Mathf.Max(m_lastModIndex, ret.VarIndex);
+
         ret.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
 
         AddSubAsset(ret);
@@ -118,6 +124,12 @@ public class ComplexFormula : ComplexScriptable
             for (int i = 0; i < mod.Inputs.Count; i++)
             {
                 mod.ClearInputAndOutput(mod.Inputs[i]);
+            }
+
+            m_lastModIndex = -1;
+            foreach (var m in m_modifiers)
+            {
+                m_lastModIndex = Mathf.Max(m_lastModIndex, m.VarIndex);
             }
 
             UnityEditor.AssetDatabase.RemoveObjectFromAsset(mod);
@@ -213,10 +225,10 @@ public class ComplexFormula : ComplexScriptable
         InputX.Value = x;
         InputY.Value = y;
 
-        if ((null == m_calcCompletitionList) || (m_calcCompletitionList.Length != Modifiers.Count))
+        if ((null == m_calcCompletitionList) || (m_calcCompletitionList.Length != m_lastModIndex + 1))
         {
-            m_calcCompletitionList = new bool[Modifiers.Count];
-            m_calcValuesList = new float[Modifiers.Count];
+            m_calcCompletitionList = new bool[m_lastModIndex + 1];
+            m_calcValuesList = new float[m_lastModIndex + 1];
         }
         else
         {
