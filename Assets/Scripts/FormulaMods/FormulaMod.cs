@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public abstract class FormulaMod : ComplexScriptable
 {
@@ -427,11 +428,13 @@ public abstract class FormulaMod : ComplexScriptable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public float Calculate(bool[] calcCompletitionList, float[] calcValuesList)
     {
-        if (m_varIndex < 0)
+        if (VarIndex < 0)
         {
             // in/out sockets has negative VarIndex
             return Calculate();
         }
+
+        Assert.IsTrue(VarIndex < calcCompletitionList.Length);
 
         if (true == calcCompletitionList[VarIndex])
         {
