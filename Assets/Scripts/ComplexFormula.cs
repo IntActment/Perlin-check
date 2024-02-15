@@ -91,7 +91,7 @@ public class ComplexFormula : ComplexScriptable
             Mathf.Floor(pos.y * FormulaMod.SocketSize.y) / FormulaMod.SocketSize.y);
         ret.Formula = this;
 
-        m_lastModIndex = Mathf.Max(m_lastModIndex, ret.VarIndex);
+        UpdateLastModIndex();
 
         ret.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
 
@@ -126,14 +126,19 @@ public class ComplexFormula : ComplexScriptable
                 mod.ClearInputAndOutput(mod.Inputs[i]);
             }
 
-            m_lastModIndex = -1;
-            foreach (var m in m_modifiers)
-            {
-                m_lastModIndex = Mathf.Max(m_lastModIndex, m.VarIndex);
-            }
+            UpdateLastModIndex();
 
             UnityEditor.AssetDatabase.RemoveObjectFromAsset(mod);
             this.Save();
+        }
+    }
+
+    private void UpdateLastModIndex()
+    {
+        m_lastModIndex = -1;
+        foreach (var m in m_modifiers)
+        {
+            m_lastModIndex = Mathf.Max(m_lastModIndex, m.VarIndex);
         }
     }
 
