@@ -6,37 +6,24 @@ using System.Threading.Tasks;
 
 using UnityEngine;
 
-public class FormulaModNumber : FormulaMod
+public class FormulaModAbs : FormulaMod
 {
-    [SerializeField]
-    private float m_value;
-
-    public float Value
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        get => m_value;
-#if UNITY_EDITOR
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        set => this.ChangeValue(ref m_value, value);
-#endif
-    }
-
 #if UNITY_EDITOR
     protected override async Task Initialize()
     {
-        name = "Number";
+        name = "|a|";
 
-        await Task.CompletedTask;
+        await AddInput("Value");
     }
 #endif
 
-    private static readonly string m_varPrefix = "num";
+    private static readonly string m_varPrefix = "abs";
     public override string VarPrefix => m_varPrefix;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
-        return m_value;
+        return Mathf.Abs(Inputs[0].CalculateInput());
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -46,7 +33,9 @@ public class FormulaModNumber : FormulaMod
         {
             vars.Add(VarIndex);
 
-            builder.AppendLine($"        <color=blue>const float</color> {VarName} = {m_value}f;");
+            var val0 = Inputs[0].GenerateCode(vars, builder);
+
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Abs</color>({val0});");
         }
 
         return VarName;

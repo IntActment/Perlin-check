@@ -12,7 +12,7 @@ public class SqrtDrawer : BaseDrawer
         "Underlying formula will be like\n" +
         "        res = sqrt(a)\n" +
         "where 'a' is input slot parameter.\n" +
-        "If 'a' is negative, it returns NaN";
+        "If 'a' is negative, it returns NaN.";
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public SqrtDrawer(FormulaModSqrt mod)

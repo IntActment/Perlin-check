@@ -207,6 +207,11 @@ public class ComplexFormulaEditorWindow : EditorWindow
                             {
                                 m_formula.CreateMod<FormulaModPow>(GetCenter());
                             }
+
+                            if (GUILayout.Button("|a|"))
+                            {
+                                m_formula.CreateMod<FormulaModAbs>(GetCenter());
+                            }
                         }
                     }
 
