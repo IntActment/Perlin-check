@@ -65,7 +65,7 @@ public class FormulaModPow : FormulaMod
             {
                 var val1 = Inputs[1].GenerateCode(vars, builder);
 
-                builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({val0}, {val1}f);");
+                builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({val0}, {val1});");
             }
         }
 
