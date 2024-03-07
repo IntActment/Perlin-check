@@ -166,7 +166,7 @@ Can be used to gain understanding about how different formula members do impact 
       |:--:|
       | *Each node that participate in final result calculation has appropriate variable in the generated code. Its name also contains the number, so you can understand how node turns into a code* |
 
-  - Use "**ComplecFormula**" asset directly and call its "**Calculate**" method:
+  - Use "**ComplexFormula**" asset directly and call its "**Calculate**" method:
 
     | ![](Docs/img18.png?raw=true"") |
     |:--:|
