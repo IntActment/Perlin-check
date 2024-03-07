@@ -533,6 +533,11 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                                 succ = true;
                                                 m_isConnecting = false;
                                                 //Debug.Log("Link complete: (output+)");
+
+                                                if (null == mod.Outputs[0].Link)
+                                                {
+                                                    mod.RemoveOutput(mod.Outputs[0]);
+                                                }
                                             }
                                             else
                                             {
