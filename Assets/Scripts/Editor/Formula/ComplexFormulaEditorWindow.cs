@@ -132,11 +132,19 @@ public class ComplexFormulaEditorWindow : EditorWindow
                     {
                         using (_ = new EditorLayout(LayoutType.Horizontal))
                         {
-                            if (GUILayout.Button("Simplex01"))
+                            if (GUILayout.Button("Simplex01 2D"))
                             {
-                                m_formula.CreateMod<FormulaModSimplex01>(GetCenter());
+                                m_formula.CreateMod<FormulaModSimplex01_2D>(GetCenter());
                             }
 
+                            if (GUILayout.Button("Simplex01 3D"))
+                            {
+                                m_formula.CreateMod<FormulaModSimplex01_3D>(GetCenter());
+                            }
+                        }
+
+                        using (_ = new EditorLayout(LayoutType.Horizontal))
+                        {
                             if (GUILayout.Button("Number"))
                             {
                                 m_formula.CreateMod<FormulaModNumber>(GetCenter());
