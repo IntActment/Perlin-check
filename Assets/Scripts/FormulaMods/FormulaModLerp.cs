@@ -62,8 +62,10 @@ public class FormulaModLerp : FormulaMod
             vars.Add(VarIndex);
 
             var val0 = Inputs[0].GenerateCode(vars, builder);
+            var val1 = PickCode(1, m_min, vars, builder);
+            var val2 = PickCode(2, m_max, vars, builder);
 
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Lerp</color>({PickCode(1, m_min, vars, builder)}, {PickCode(2, m_max, vars, builder)}, {val0});");
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Lerp</color>({val1}, {val2}, {val0});");
         }
 
         return VarName;

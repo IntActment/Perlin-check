@@ -152,18 +152,18 @@ public class FormulaModSimplex01 : FormulaMod
         if (Inputs[2].Link == null)
         {
             return SimplexNoise.Singleton.MultiNoise01(
-            m_octaves,
-            m_offsetX + Inputs[0].CalculateInput() * m_mulX,
-            m_offsetY + Inputs[1].CalculateInput() * m_mulY);
+                m_octaves,
+                m_offsetX + Inputs[0].CalculateInput() * m_mulX,
+                m_offsetY + Inputs[1].CalculateInput() * m_mulY);
 
         }
         else
         {
             return SimplexNoise.Singleton.Multi01(
-                    m_octaves,
-                    m_offsetX + Inputs[0].CalculateInput() * m_mulX,
-                    m_offsetY + Inputs[1].CalculateInput() * m_mulY,
-                    m_offsetZ + Inputs[2].CalculateInput() * m_mulZ);
+                m_octaves,
+                m_offsetX + Inputs[0].CalculateInput() * m_mulX,
+                m_offsetY + Inputs[1].CalculateInput() * m_mulY,
+                m_offsetZ + Inputs[2].CalculateInput() * m_mulZ);
         }
     }
 

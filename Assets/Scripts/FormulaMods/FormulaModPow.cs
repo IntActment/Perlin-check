@@ -49,8 +49,9 @@ public class FormulaModPow : FormulaMod
             vars.Add(VarIndex);
 
             var val0 = Inputs[0].GenerateCode(vars, builder);
+            var val1 = PickCode(1, m_power, vars, builder);
 
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({val0}, {PickCode(1, m_power, vars, builder)});");
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Pow</color>({val0}, {val1});");
         }
 
         return VarName;

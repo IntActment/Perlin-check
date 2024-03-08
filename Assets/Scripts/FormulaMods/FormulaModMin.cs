@@ -49,8 +49,9 @@ public class FormulaModMin : FormulaMod
             vars.Add(VarIndex);
 
             var val0 = Inputs[0].GenerateCode(vars, builder);
+            var val1 = PickCode(1, m_value2, vars, builder);
 
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Min</color>({val0}, {PickCode(1, m_value2, vars, builder)});");
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Min</color>({val0}, {val1});");
         }
 
         return VarName;

@@ -8,13 +8,39 @@ using UnityEngine;
 
 public class FormulaModSum : FormulaMod
 {
+    [SerializeField]
+    private float m_augend = 0;
+
+    public float Augend
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_augend;
+#if UNITY_EDITOR
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        set => this.ChangeValue(ref m_augend, value);
+#endif
+    }
+
+    [SerializeField]
+    private float m_addend = 0;
+
+    public float Addend
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_addend;
+#if UNITY_EDITOR
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        set => this.ChangeValue(ref m_addend, value);
+#endif
+    }
+
 #if UNITY_EDITOR
     protected override async Task Initialize()
     {
         name = "a + b";
 
-        await AddInput("Augend");
-        await AddInput("Addend");
+        await AddInput("Augend", true);
+        await AddInput("Addend", true);
     }
 #endif
 
@@ -24,7 +50,7 @@ public class FormulaModSum : FormulaMod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
-        return Inputs[0].CalculateInput() + Inputs[1].CalculateInput();
+        return PickValue(0, m_augend) + PickValue(1, m_addend);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -34,8 +60,8 @@ public class FormulaModSum : FormulaMod
         {
             vars.Add(VarIndex);
 
-            var val0 = Inputs[0].GenerateCode(vars, builder);
-            var val1 = Inputs[1].GenerateCode(vars, builder);
+            var val0 = PickCode(0, m_augend, vars, builder);
+            var val1 = PickCode(1, m_addend, vars, builder);
 
             builder.AppendLine($"        <color=blue>float</color> {VarName} = {val0} + {val1};");
         }
