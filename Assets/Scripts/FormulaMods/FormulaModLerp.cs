@@ -8,15 +8,40 @@ using UnityEngine;
 
 public class FormulaModLerp : FormulaMod
 {
+    [SerializeField]
+    private float m_min = 0;
+
+    public float Min
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_min;
+#if UNITY_EDITOR
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        set => this.ChangeValue(ref m_min, value);
+#endif
+    }
+
+    [SerializeField]
+    private float m_max = 1;
+
+    public float Max
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_max;
+#if UNITY_EDITOR
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        set => this.ChangeValue(ref m_max, value);
+#endif
+    }
 
 #if UNITY_EDITOR
     protected override async Task Initialize()
     {
         name = "Lerp";
 
-        await AddInput("Value");
-        await AddInput("Min");
-        await AddInput("Max");
+        await AddInput("Delta");
+        await AddInput("Min", true);
+        await AddInput("Max", true);
     }
 #endif
 
@@ -26,7 +51,7 @@ public class FormulaModLerp : FormulaMod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
-        return Mathf.LerpUnclamped(Inputs[1].CalculateInput(), Inputs[2].CalculateInput(), Inputs[0].CalculateInput());
+        return Mathf.LerpUnclamped(PickValue(1, m_min), PickValue(2, m_min), Inputs[0].CalculateInput());
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -37,10 +62,8 @@ public class FormulaModLerp : FormulaMod
             vars.Add(VarIndex);
 
             var val0 = Inputs[0].GenerateCode(vars, builder);
-            var val1 = Inputs[1].GenerateCode(vars, builder);
-            var val2 = Inputs[2].GenerateCode(vars, builder);
 
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Lerp</color>({val1}, {val2}, {val0});");
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Lerp</color>({PickCode(1, m_min, vars, builder)}, {PickCode(2, m_max, vars, builder)}, {val0});");
         }
 
         return VarName;

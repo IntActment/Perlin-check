@@ -33,9 +33,10 @@ public class ClampDrawer : BaseDrawer
     {
         base.DrawBodyGUI(state);
 
-        Vector2 textSizeValue = GetLabelSize("Value");
+        Vector2 textSizeValueMin = GetLabelSize("Min");
+        Vector2 textSizeValueMax = GetLabelSize("Max");
 
-        float maxLabelWidth = textSizeValue.x;
+        float maxLabelWidth = Mathf.Max(textSizeValueMin.x, textSizeValueMax.x);
 
         EditorGUIUtility.labelWidth = maxLabelWidth;
 
