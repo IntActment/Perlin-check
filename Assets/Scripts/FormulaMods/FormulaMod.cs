@@ -130,6 +130,22 @@ public abstract class FormulaMod : ComplexScriptable
         get => $"{VarPrefix}_{m_varIndex}";
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected float PickValue(int inputIndex, float val)
+    {
+        return (null == m_inputs[inputIndex].Link)
+            ? val
+            : m_inputs[inputIndex].CalculateInput();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected string PickCode(int inputIndex, float val, HashSet<int> vars, StringBuilder builder)
+    {
+        return (null == m_inputs[inputIndex].Link)
+            ? $"{val}f"
+            : m_inputs[inputIndex].GenerateCode(vars, builder);
+    }
+
 #if UNITY_EDITOR
     [field: NonSerialized]
     public virtual bool IsRemovable { get; } = true;

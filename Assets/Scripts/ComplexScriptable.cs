@@ -51,23 +51,23 @@ public abstract class ComplexScriptable : ScriptableObject
             return;
         }
 
-        if (true == m_isInit)
+        if (false == m_isInit)
         {
-            return;
-        }
-        else
-        {
+
             m_isInitializing = true;
+
+
+            while ((true == EditorApplication.isUpdating) || (false == AssetDatabase.Contains(this)))
+            {
+                await Task.Delay(1);
+            }
+
+            await OnLateInit();
+
+            m_isInit = true;
         }
 
-        while ((true == EditorApplication.isUpdating) || (false == AssetDatabase.Contains(this)))
-        {
-            await Task.Delay(1);
-        }
-
-        await OnLateInit();
-
-        m_isInit = true;
+        await OnLateAwake();
     }
 
     public async Task WaitInit()
@@ -79,6 +79,11 @@ public abstract class ComplexScriptable : ScriptableObject
     }
 
     protected virtual async Task OnLateInit()
+    {
+        await Task.CompletedTask;
+    }
+
+    protected virtual async Task OnLateAwake()
     {
         await Task.CompletedTask;
     }

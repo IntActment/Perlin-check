@@ -41,6 +41,19 @@ public class FormulaModNorm01 : FormulaMod
 
         await AddInput("Value");
     }
+
+    protected override async Task OnLateAwake()
+    {
+        if (m_inputs.Count < 2)
+        {
+            await AddInput("Min", true);
+        }
+
+        if (m_inputs.Count < 3)
+        {
+            await AddInput("Max", true);
+        }
+    }
 #endif
 
     private static readonly string m_varPrefix = "norm01";
@@ -49,14 +62,18 @@ public class FormulaModNorm01 : FormulaMod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
-        float range = m_max - m_min;
+        var min = PickValue(1, m_min);
+        var max = PickValue(2, m_max);
+
+        float range = max - min;
+
         if (Mathf.Approximately(0, range))
         {
             // preventing division by zero
-            return 0;
+            return float.PositiveInfinity;
         }
 
-        return (Inputs[0].CalculateInput() - m_min) / range;
+        return (Inputs[0].CalculateInput() - min) / range;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -66,18 +83,11 @@ public class FormulaModNorm01 : FormulaMod
         {
             vars.Add(VarIndex);
 
-            float range = m_max - m_min;
-            if (Mathf.Approximately(0, range))
-            {
-                // preventing division by zero
-                builder.AppendLine($"        <color=blue>const float</color> {VarName} = 0;");
-            }
-            else
-            {
-                var val0 = Inputs[0].GenerateCode(vars, builder);
+            var val0 = Inputs[0].GenerateCode(vars, builder);
+            var code1 = PickCode(1, m_min, vars, builder);
+            var code2 = PickCode(2, m_max, vars, builder);
 
-                builder.AppendLine($"        <color=blue>float</color> {VarName} = ({val0} - {m_min}f) / {range}f;");
-            }
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = ({val0} - {code1}) / ({code2} - {code1});");
         }
 
         return VarName;

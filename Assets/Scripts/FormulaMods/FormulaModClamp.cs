@@ -41,6 +41,19 @@ public class FormulaModClamp : FormulaMod
 
         await AddInput("Value");
     }
+
+    protected override async Task OnLateAwake()
+    {
+        if (m_inputs.Count < 2)
+        {
+            await AddInput("Min", true);
+        }
+
+        if (m_inputs.Count < 3)
+        {
+            await AddInput("Max", true);
+        }
+    }
 #endif
 
     private static readonly string m_varPrefix = "clamp01";
@@ -49,7 +62,7 @@ public class FormulaModClamp : FormulaMod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
-        return Mathf.Clamp(Inputs[0].CalculateInput(), m_min, m_max);
+        return Mathf.Clamp(Inputs[0].CalculateInput(), PickValue(1, m_min), PickValue(2, m_max));
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -61,7 +74,7 @@ public class FormulaModClamp : FormulaMod
 
             var val0 = Inputs[0].GenerateCode(vars, builder);
 
-            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Clamp</color>({val0}, {m_min}f, {m_max}f);");
+            builder.AppendLine($"        <color=blue>float</color> {VarName} = <color=#2b91af>Mathf</color>.<color=#74531f>Clamp</color>({val0}, {PickCode(1, m_min, vars, builder)}, {PickCode(2, m_max, vars, builder)});");
         }
 
         return VarName;

@@ -91,8 +91,6 @@ public class ComplexFormula : ComplexScriptable
             Mathf.Floor(pos.y * FormulaMod.SocketSize.y) / FormulaMod.SocketSize.y);
         ret.Formula = this;
 
-        UpdateLastModIndex();
-
         ret.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
 
         AddSubAsset(ret);
@@ -100,6 +98,8 @@ public class ComplexFormula : ComplexScriptable
         await ret.WaitInit();
 
         m_modifiers.Add(ret);
+
+        UpdateLastModIndex();
 
         this.Save();
 

@@ -43,8 +43,27 @@ public class ClampDrawer : BaseDrawer
 
         FormulaModClamp m = (mod as FormulaModClamp);
 
-        m.Min = EditorGUI.FloatField(new Rect(m_space.x, m_space.y * 1 + m_fieldSize.y * 0, m_fieldSize.x, m_fieldSize.y), "Min", m.Min);
-        m.Max = EditorGUI.FloatField(new Rect(m_space.x, m_space.y * 2 + m_fieldSize.y * 1, m_fieldSize.x, m_fieldSize.y), "Max", m.Max);
+        if (mod.Inputs[1].Link != null)
+        {
+            GUI.enabled = false;
+            EditorGUI.TextField(new Rect(m_space.x, m_space.y * 1 + m_fieldSize.y * 0, m_fieldSize.x, m_fieldSize.y), "Min", "input");
+            GUI.enabled = true;
+        }
+        else
+        {
+            m.Min = EditorGUI.FloatField(new Rect(m_space.x, m_space.y * 1 + m_fieldSize.y * 0, m_fieldSize.x, m_fieldSize.y), "Min", m.Min);
+        }
+
+        if (mod.Inputs[2].Link != null)
+        {
+            GUI.enabled = false;
+            EditorGUI.TextField(new Rect(m_space.x, m_space.y * 2 + m_fieldSize.y * 1, m_fieldSize.x, m_fieldSize.y), "Max", "input");
+            GUI.enabled = true;
+        }
+        else
+        {
+            m.Max = EditorGUI.FloatField(new Rect(m_space.x, m_space.y * 2 + m_fieldSize.y * 1, m_fieldSize.x, m_fieldSize.y), "Max", m.Max);
+        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

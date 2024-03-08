@@ -146,6 +146,16 @@ public class ComplexFormulaEditorWindow : EditorWindow
                             {
                                 m_formula.CreateMod<FormulaModClamp>(GetCenter());
                             }
+
+                            if (GUILayout.Button("Min"))
+                            {
+                                m_formula.CreateMod<FormulaModMin>(GetCenter());
+                            }
+
+                            if (GUILayout.Button("Max"))
+                            {
+                                m_formula.CreateMod<FormulaModMax>(GetCenter());
+                            }
                         }
 
                         using (_ = new EditorLayout(LayoutType.Horizontal))
