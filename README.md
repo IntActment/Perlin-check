@@ -114,11 +114,11 @@ Can be used to gain understanding about how different formula members do impact 
     |:--:|
     | *Non-connected input sockets passes 0 by default.* |
 
-  - Some of the input sockets are "optional": connecting this socket changes the node function behavior. Non-connected "optional" sockets are not used by the formula at all.
+  - Some of the input sockets are "optional": connecting this socket lets the appropriate input value be variable instead on constantly defined.
 
     | ![](Docs/img19.png?raw=true"") |
     |:--:|
-    | *Optional input sockets has special icon. Notice how the "**Simplex01**" and the "**a²**" node appearance has changed after its optional input socket has been connected.* |
+    | *Optional input sockets has special icon. Notice how the "**Simplex01 2D**", "**a + b**"  and the "**a²**" nodes appearance has changed after its optional input socket has been connected.* |
 
   - Any node connection or configurable parameter changes will be instantly reflected in the mesh - this is the main target of this project. You 
       change value and watch how it reflects on the result without waiting for code recompilation/assembly reloading.
