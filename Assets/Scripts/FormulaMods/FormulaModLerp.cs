@@ -51,7 +51,7 @@ public class FormulaModLerp : FormulaMod
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override float Calculate()
     {
-        return Mathf.LerpUnclamped(PickValue(1, m_min), PickValue(2, m_min), Inputs[0].CalculateInput());
+        return Mathf.LerpUnclamped(PickValue(1, m_min), PickValue(2, m_max), Inputs[0].CalculateInput());
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
