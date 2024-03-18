@@ -97,7 +97,7 @@ public class ComplexFormulaEditorWindow : EditorWindow
         return (m_zoomer.zoomArea.center - m_zoomer.zoomArea.min) / m_formula.Zoom - m_formula.ScreenOffset;
     }
 
-    async void OnGUI()
+    void OnGUI()
     {
         if (null == m_formula)
         {
@@ -134,12 +134,12 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("Simplex01 2D"))
                             {
-                                m_formula.CreateMod<FormulaModSimplex01_2D>(GetCenter());
+                                m_formula.CreateMod<FormulaModSimplex01_2D>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("Simplex01 3D"))
                             {
-                                m_formula.CreateMod<FormulaModSimplex01_3D>(GetCenter());
+                                m_formula.CreateMod<FormulaModSimplex01_3D>(GetCenter()).Wait(60);
                             }
                         }
 
@@ -147,22 +147,22 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("Number"))
                             {
-                                m_formula.CreateMod<FormulaModNumber>(GetCenter());
+                                m_formula.CreateMod<FormulaModNumber>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("Clamp"))
                             {
-                                m_formula.CreateMod<FormulaModClamp>(GetCenter());
+                                m_formula.CreateMod<FormulaModClamp>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("Min"))
                             {
-                                m_formula.CreateMod<FormulaModMin>(GetCenter());
+                                m_formula.CreateMod<FormulaModMin>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("Max"))
                             {
-                                m_formula.CreateMod<FormulaModMax>(GetCenter());
+                                m_formula.CreateMod<FormulaModMax>(GetCenter()).Wait(60);
                             }
                         }
 
@@ -170,27 +170,27 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("Lerp"))
                             {
-                                m_formula.CreateMod<FormulaModLerp>(GetCenter());
+                                m_formula.CreateMod<FormulaModLerp>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("Norm01"))
                             {
-                                m_formula.CreateMod<FormulaModNorm01>(GetCenter());
+                                m_formula.CreateMod<FormulaModNorm01>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("1 - a"))
                             {
-                                m_formula.CreateMod<FormulaModOneMinus>(GetCenter());
+                                m_formula.CreateMod<FormulaModOneMinus>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("1 / a"))
                             {
-                                m_formula.CreateMod<FormulaModInvert>(GetCenter());
+                                m_formula.CreateMod<FormulaModInvert>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("-a"))
                             {
-                                m_formula.CreateMod<FormulaModNegate>(GetCenter());
+                                m_formula.CreateMod<FormulaModNegate>(GetCenter()).Wait(60);
                             }
                         }
 
@@ -198,37 +198,37 @@ public class ComplexFormulaEditorWindow : EditorWindow
                         {
                             if (GUILayout.Button("+"))
                             {
-                                m_formula.CreateMod<FormulaModSum>(GetCenter());
+                                m_formula.CreateMod<FormulaModSum>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("-"))
                             {
-                                m_formula.CreateMod<FormulaModSubtract>(GetCenter());
+                                m_formula.CreateMod<FormulaModSubtract>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("×"))
                             {
-                                m_formula.CreateMod<FormulaModMultiply>(GetCenter());
+                                m_formula.CreateMod<FormulaModMultiply>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("÷"))
                             {
-                                m_formula.CreateMod<FormulaModDivide>(GetCenter());
+                                m_formula.CreateMod<FormulaModDivide>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("√a"))
                             {
-                                m_formula.CreateMod<FormulaModSqrt>(GetCenter());
+                                m_formula.CreateMod<FormulaModSqrt>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("a²"))
                             {
-                                m_formula.CreateMod<FormulaModPow>(GetCenter());
+                                m_formula.CreateMod<FormulaModPow>(GetCenter()).Wait(60);
                             }
 
                             if (GUILayout.Button("|a|"))
                             {
-                                m_formula.CreateMod<FormulaModAbs>(GetCenter());
+                                m_formula.CreateMod<FormulaModAbs>(GetCenter()).Wait(60);
                             }
                         }
                     }

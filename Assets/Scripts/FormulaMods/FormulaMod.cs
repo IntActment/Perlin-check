@@ -265,6 +265,12 @@ public abstract class FormulaMod : ComplexScriptable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool ReplaceOutput(int index, FormulaSocketIn targetSocketIn)
     {
+        var socket = Outputs[index];
+        if (socket.Link == targetSocketIn)
+        {
+            return false;
+        }
+
         if (false == CheckRecursion(targetSocketIn.Owner))
         {
             return false;
@@ -275,7 +281,6 @@ public abstract class FormulaMod : ComplexScriptable
             return AddOutput(targetSocketIn);
         }
 
-        var socket = Outputs[index];
         var oldLink = socket.Link;
         socket.Link = targetSocketIn;
         socket.Save();

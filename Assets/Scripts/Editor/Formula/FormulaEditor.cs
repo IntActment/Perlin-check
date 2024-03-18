@@ -102,17 +102,6 @@ public class FormulaEditor : Editor
                     EditorUtility.SetDirty(target);
                 }
             }
-
-            if (false)
-            {
-                var val = EditorGUILayout.Toggle("Smooth normals", m_formula.SmoothNormals);
-                if (val != m_formula.SmoothNormals)
-                {
-                    Undo.RecordObject(target, $"Smooth normals");
-                    m_formula.SmoothNormals = val;
-                    EditorUtility.SetDirty(target);
-                }
-            }
         }
         finally
         {
