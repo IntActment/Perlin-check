@@ -538,7 +538,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                                 m_isConnecting = false;
                                                 //Debug.Log("Link complete: (output+)");
 
-                                                if (m_tempOutputSocket.Item1?.Outputs[m_tempOutputSocket.Item2] == null)
+                                                if ((m_tempOutputSocket.Item1 != null) && (m_tempOutputSocket.Item1.Outputs[m_tempOutputSocket.Item2] == null))
                                                 {
                                                     m_tempOutputSocket.Item1.RemoveOutput(m_tempOutputSocket.Item1.Outputs[m_tempOutputSocket.Item2]);
                                                 }
@@ -562,7 +562,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
                                             {
                                                 succ = true;
                                                 m_isConnecting = false;
-                                                if (m_tempOutputSocket.Item1?.Outputs[m_tempOutputSocket.Item2] == null)
+                                                if ((m_tempOutputSocket.Item1 != null) && (m_tempOutputSocket.Item1.Outputs[m_tempOutputSocket.Item2] == null))
                                                 {
                                                     m_tempOutputSocket.Item1.RemoveOutput(m_tempOutputSocket.Item1.Outputs[m_tempOutputSocket.Item2]);
                                                 }
