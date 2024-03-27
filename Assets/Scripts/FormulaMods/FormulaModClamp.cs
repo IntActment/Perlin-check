@@ -40,6 +40,8 @@ public class FormulaModClamp : FormulaMod
         name = "Clamp";
 
         await AddInput("Value");
+        await AddInput("Min", true);
+        await AddInput("Max", true);
     }
 
     protected override async Task OnLateAwake()

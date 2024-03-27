@@ -40,6 +40,8 @@ public class FormulaModNorm01 : FormulaMod
         name = "Norm01";
 
         await AddInput("Value");
+        await AddInput("Min", true);
+        await AddInput("Max", true);
     }
 
     protected override async Task OnLateAwake()

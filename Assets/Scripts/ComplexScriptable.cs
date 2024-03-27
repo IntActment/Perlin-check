@@ -52,6 +52,11 @@ public abstract class ComplexScriptable : ScriptableObject
 
     private async Task Load()
     {
+        if (m_isLoading)
+        {
+            return;
+        }
+
         m_isLoading = true;
 
         if (false == m_isInit)
@@ -69,11 +74,13 @@ public abstract class ComplexScriptable : ScriptableObject
         await OnLateAwake();
 
         m_isLoading = false;
+
+        this.Save();
     }
 
     public async Task WaitInit()
     {
-        while (false == m_isInit)
+        while ((false == m_isInit) || m_isLoading)
         {
             await Task.Delay(1);
         }

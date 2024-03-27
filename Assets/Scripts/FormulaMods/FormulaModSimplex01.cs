@@ -107,6 +107,12 @@ public class FormulaModSimplex01 : FormulaMod
         await AddInput("X");
         await AddInput("Y");
         await AddInput("Z", true);
+        await AddInput("OffsetX", true);
+        await AddInput("OffsetY", true);
+        await AddInput("OffsetZ", true);
+        await AddInput("MulX", true);
+        await AddInput("MulY", true);
+        await AddInput("MulZ", true);
     }
 
     protected override async Task OnLateAwake()
