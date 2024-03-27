@@ -239,7 +239,7 @@ public abstract class ModDrawer<T> where T : FormulaMod
             outputSize = new Vector2(SocketSize.x, SocketSize.y * (mod.Outputs.Count + 1));
         }
 
-        var bodySize = mod.IsInitialized
+        var bodySize = mod.IsInitialized && (false == mod.IsLoading)
             ? GetBodySize()
             : Vector2.zero;
         float windowWidth = Border.left + inputSize.x + bodySize.x + outputSize.x + Border.right;

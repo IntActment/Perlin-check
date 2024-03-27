@@ -44,7 +44,7 @@ public class ComplexFormulaEditorWindow : EditorWindow
         }
 
         bool showingProgress = false;
-        if (false == m_formula.IsInitialized)
+        if (false == m_formula.IsInitialized || m_formula.IsLoading)
         {
             showingProgress = true;
             EditorUtility.DisplayProgressBar("Initialization in progress", "Please wait...", 80);
@@ -104,7 +104,7 @@ public class ComplexFormulaEditorWindow : EditorWindow
             return;
         }
 
-        if (false == m_formula.IsInitialized)
+        if (false == m_formula.IsInitialized || m_formula.IsLoading)
         {
             return;
         }

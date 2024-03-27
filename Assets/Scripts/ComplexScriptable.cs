@@ -15,17 +15,17 @@ public abstract class ComplexScriptable : ScriptableObject
 
     private async void Awake()
     {
-        await Init();
+        await Load();
     }
 
     private async void OnValidate()
     {
-        await Init();
+        await Load();
     }
 
     private async void Reset()
     {
-        await Init();
+        await Load();
     }
 
     private void OnDestroy()
@@ -33,7 +33,13 @@ public abstract class ComplexScriptable : ScriptableObject
 
     }
 
-    private bool m_isInitializing = false;
+    private bool m_isLoading = false;
+
+    public bool IsLoading
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => m_isLoading;
+    }
 
     [SerializeField]
     private bool m_isInit = false;
@@ -44,19 +50,12 @@ public abstract class ComplexScriptable : ScriptableObject
         get => m_isInit;
     }
 
-    private async Task Init()
+    private async Task Load()
     {
-        if (true == m_isInitializing)
-        {
-            return;
-        }
+        m_isLoading = true;
 
         if (false == m_isInit)
         {
-
-            m_isInitializing = true;
-
-
             while ((true == EditorApplication.isUpdating) || (false == AssetDatabase.Contains(this)))
             {
                 await Task.Delay(1);
@@ -68,6 +67,8 @@ public abstract class ComplexScriptable : ScriptableObject
         }
 
         await OnLateAwake();
+
+        m_isLoading = false;
     }
 
     public async Task WaitInit()

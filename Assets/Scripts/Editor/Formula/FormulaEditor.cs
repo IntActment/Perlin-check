@@ -102,6 +102,26 @@ public class FormulaEditor : Editor
                     EditorUtility.SetDirty(target);
                 }
             }
+
+            {
+                var val = EditorGUILayout.Vector2IntField("Map offset", m_formula.mapOffset);
+                if (val != m_formula.mapOffset)
+                {
+                    Undo.RecordObject(target, $"formula map offset");
+                    m_formula.mapOffset = val;
+                    EditorUtility.SetDirty(target);
+                }
+            }
+
+            {
+                var val = EditorGUILayout.Slider("Map scale", m_formula.mapScale, 0.001f, 100f);
+                if (val != m_formula.mapScale)
+                {
+                    Undo.RecordObject(target, $"formula map scale");
+                    m_formula.mapScale = val;
+                    EditorUtility.SetDirty(target);
+                }
+            }
         }
         finally
         {

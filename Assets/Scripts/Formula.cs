@@ -19,6 +19,8 @@ public class Formula : MonoBehaviour
 
     public Vector2Int size = new Vector2Int(128, 128);
     public float[,] data = new float[128, 128];
+    public float mapScale = 1;
+    public Vector2Int mapOffset;
 
     private bool m_forceRebuild = false;
 
@@ -105,11 +107,11 @@ public class Formula : MonoBehaviour
         {
             for (int y = 0; y < size.y; y++)
             {
-                data[x, y] = ComplexFormula.Calculate(x, y);
+                data[x, y] = ComplexFormula.Calculate((x + mapOffset.x) * mapScale, (y + mapOffset.y) * mapScale);
             }
         }
 
-        TerrainTest.Rebuild(data, CutLevel, CutColor, HeightScale, m_forceRebuild, SmoothNormals, UseCut);
+        TerrainTest.Rebuild(data, CutLevel, CutColor, HeightScale / mapScale, m_forceRebuild, SmoothNormals, UseCut);
 
         m_forceRebuild = false;
     }

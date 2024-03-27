@@ -41,7 +41,7 @@ public class MinDrawer : BaseDrawer
     {
         base.DrawBodyGUI(state);
 
-        if (false == mod.IsInitialized)
+        if (false == mod.IsInitialized || mod.IsLoading)
         {
             // asset not ready yet
             return;
